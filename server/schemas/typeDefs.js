@@ -20,7 +20,7 @@ const typeDefs = gql`
     }
 
     type Query{
-        reviews(businessId: ID!) : ****** 
+        users: [User]
         businesses: [Business]
         me: Profile
 
@@ -46,3 +46,5 @@ const typeDefs = gql`
     }
 
 `
+
+module.exports = typeDefs;
