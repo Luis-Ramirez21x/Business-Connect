@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Modal, Tab, Dropdown, DropdownButton } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-// import SignUpForm from './SignupForm';
-// import LoginForm from './LoginForm';
+import SignUpForm from './SignupForm';
+import LoginForm from './LoginForm';
 
 import Auth from '../utils/auth';
 
@@ -59,10 +59,10 @@ const Navv = () => {
           <Modal.Body>
             <Tab.Content>
               <Tab.Pane eventKey='login'>
-                {/* <LoginForm handleModalClose={() => setShowModal(false)} /> */}
+                <LoginForm handleModalClose={() => setShowModal(false)} />
               </Tab.Pane>
               <Tab.Pane eventKey='signup'>
-                {/* <SignUpForm handleModalClose={() => setShowModal(false)} /> */}
+                <SignUpForm handleModalClose={() => setShowModal(false)} />
               </Tab.Pane>
             </Tab.Content>
           </Modal.Body>
