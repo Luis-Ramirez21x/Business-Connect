@@ -30,8 +30,8 @@ const Navv = () => {
                 ) : (
                   <Dropdown.Item onClick={() => setShowModal(true)}>Login/Sign Up</Dropdown.Item>
                 )}
-                <Dropdown.Item tag={Link} to='/mybusiness'>My Business</Dropdown.Item>
-                <Dropdown.Item tag={Link} to='/following' >Following</Dropdown.Item>
+                <Dropdown.Item as={Link} to='/mybusiness'>My Business</Dropdown.Item>
+                <Dropdown.Item as={Link} to='/following' >Following</Dropdown.Item>
               </DropdownButton>
             </Nav>
         </Container>
