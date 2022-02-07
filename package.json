@@ -15,5 +15,7 @@
   "devDependencies": {
     "concurrently": "^5.1.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "bcrypt": "^5.0.1"
+  }
 }
