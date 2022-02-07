@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
+import { Navbar, Nav, Container, Modal, Tab, Dropdown, DropdownButton } from 'react-bootstrap';
 import { TOGGLE_MENU } from '../utils/actions';
 import { useDispatch, useSelector } from 'react-redux';
 // import SignUpForm from './SignupForm';
@@ -22,17 +22,22 @@ const Navv = () => {
             Business Connect
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='navbar' />
-          <Navbar.Collapse id='navbar'>
+          {/* <Navbar.Collapse id='navbar'> */}
             <Nav className='ml-auto'>
               <Nav.Link as={Link} to='/'>
                 Home
               </Nav.Link>
-              <Nav.Link onClick={dispatch({ type: TOGGLE_MENU })}>
-                 Menu
-              </Nav.Link>
-              
+              <DropdownButton id="dropdown-basic-button" title="Menu">
+                {Auth.loggedIn() ? (
+                  <Dropdown.Item onClick={Auth.logout}>Logout</Dropdown.Item>
+                ) : (
+                  <Dropdown.Item onClick={() => setShowModal(true)}>Login/Sign Up</Dropdown.Item>
+                )}
+                <Dropdown.Item tag={Link} to='/mybusiness'>My Business</Dropdown.Item>
+                <Dropdown.Item tag={Link} to='/following' >Following</Dropdown.Item>
+              </DropdownButton>
             </Nav>
-          </Navbar.Collapse>
+          {/* </Navbar.Collapse> */}
         </Container>
       </Navbar>
       {/* set modal data up */}
