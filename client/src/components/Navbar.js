@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Modal, Tab, Dropdown, DropdownButton } from 'react-bootstrap';
-import { TOGGLE_MENU } from '../utils/actions';
 import { useDispatch, useSelector } from 'react-redux';
-// import SignUpForm from './SignupForm';
-// import LoginForm from './LoginForm';
+import SignUpForm from './SignupForm';
+import LoginForm from './LoginForm';
 
 import Auth from '../utils/auth';
 
@@ -21,8 +20,6 @@ const Navv = () => {
           <Navbar.Brand as={Link} to='/'>
             Business Connect
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls='navbar' />
-          {/* <Navbar.Collapse id='navbar'> */}
             <Nav className='ml-auto'>
               <Nav.Link as={Link} to='/'>
                 Home
@@ -37,10 +34,9 @@ const Navv = () => {
                 <Dropdown.Item tag={Link} to='/following' >Following</Dropdown.Item>
               </DropdownButton>
             </Nav>
-          {/* </Navbar.Collapse> */}
         </Container>
       </Navbar>
-      {/* set modal data up */}
+      {/* MODAL FOR LOGIN/SIGNUP */}
       <Modal
         size='lg'
         show={showModal}
@@ -63,10 +59,10 @@ const Navv = () => {
           <Modal.Body>
             <Tab.Content>
               <Tab.Pane eventKey='login'>
-                {/* <LoginForm handleModalClose={() => setShowModal(false)} /> */}
+                <LoginForm handleModalClose={() => setShowModal(false)} />
               </Tab.Pane>
               <Tab.Pane eventKey='signup'>
-                {/* <SignUpForm handleModalClose={() => setShowModal(false)} /> */}
+                <SignUpForm handleModalClose={() => setShowModal(false)} />
               </Tab.Pane>
             </Tab.Content>
           </Modal.Body>
