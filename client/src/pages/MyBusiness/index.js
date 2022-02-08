@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Jumbotron, Container, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
+import { Jumbotron, Container, Col, Form, Button } from 'react-bootstrap';
 
 function MyBusiness() {
   const [nameInput, setNameInput] = useState('');
@@ -84,10 +84,10 @@ function MyBusiness() {
               />
             </Col>
           </Form.Row>
+          <Form.Row>
+            <Button type='submit' variant='success' size='md'>Submit</Button>
+          </Form.Row>
         </Form>
-
-        <Button type='submit' variant='success' size='md'>Submit</Button>
-
       </Container>
     </>
   )
