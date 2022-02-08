@@ -10,6 +10,7 @@ import { setContext } from '@apollo/client/link/context';
 
 import Home from './pages/Home';
 import MyBusiness from './pages/MyBusiness'
+import Connect from './pages/Connect';
 
 import Navv from './components/Navbar';
 import StoreProvider from './utils/GlobalState';
@@ -44,6 +45,7 @@ function App() {
           <Switch>
             <Route exact path='/' component={Home} />
             <Route exact path='/mybusiness' component={MyBusiness} />
+            <Route exact path='/connect' component={Connect} />
             <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
           </Switch>
         </StoreProvider>

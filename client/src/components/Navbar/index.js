@@ -21,7 +21,6 @@ const Navv = () => {
           <Navbar.Brand className='nav-brand-main' as={Link} to='/'>
           <div className='nav-logo'></div>
             <h3 className='nav-brand-title'> Business Connect</h3>
-            
           </Navbar.Brand>
             <Nav className='ml-auto'>
               <Nav.Link as={Link} to='/'>
@@ -29,12 +28,14 @@ const Navv = () => {
               </Nav.Link>
               <DropdownButton id="dropdown-basic-button" title="Menu">
                 {Auth.loggedIn() ? (
-                  <Dropdown.Item onClick={Auth.logout}>Logout</Dropdown.Item>
+                  <div>
+                    <Dropdown.Item onClick={Auth.logout}>Logout</Dropdown.Item>
+                    <Dropdown.Item as={Link} to='/mybusiness'>My Business</Dropdown.Item>
+                    <Dropdown.Item as={Link} to='/connect' >Connect</Dropdown.Item>
+                  </div>
                 ) : (
                   <Dropdown.Item onClick={() => setShowModal(true)}>Login/Sign Up</Dropdown.Item>
                 )}
-                <Dropdown.Item as={Link} to='/mybusiness'>My Business</Dropdown.Item>
-                <Dropdown.Item as={Link} to='/following' >Following</Dropdown.Item>
               </DropdownButton>
             </Nav>
         </Container>
