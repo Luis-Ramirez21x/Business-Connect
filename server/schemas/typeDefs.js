@@ -9,11 +9,22 @@ const typeDefs = gql`
         hashed_password: String!
     }
 
+    type Business{
+        name: String!
+        address: String!
+        description: String!
+        price: String
+        quotes: String
+        image: String
+        user: User
+        tags: [Tag]
+    }
+
       
 
     type Auth {
         token: ID!
-        profile: Profile
+        user: User
     }
 
     type Query{
@@ -28,13 +39,7 @@ const typeDefs = gql`
         addUser(name: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
 
-    #for business user
-        createBusiness(): User
-        deleteBusiness(): User
-        updateBusiness(): Business
-
-    #for service user
-        requestQuote(): user
+    
 
 
     }
@@ -42,3 +47,13 @@ const typeDefs = gql`
 `
 
 module.exports = typeDefs;
+
+/*
+#for business user
+        createBusiness(): User
+        deleteBusiness(): User
+        updateBusiness(): Business
+
+    #for service user
+        requestQuote(): user
+*/

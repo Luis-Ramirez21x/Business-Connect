@@ -3,7 +3,7 @@ const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 
 //model imports 
-import {User/*, Business, tag*/} from '../models'
+const { User, Business, Tag } = require('../models');
 
 
 const resolvers = {
@@ -81,7 +81,7 @@ const resolvers = {
                 //create a quote schema to be attached to that business which can then be populated in messages
                 return Business.finOneAndUpdate(
                   {_id:businessId},
-                  { $addToSet: { quotes: { quoteText }},
+                  { $addToSet: { quotes: { quoteText }}},
                   { new: true},
                 );
               }
