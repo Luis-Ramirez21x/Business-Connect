@@ -23,7 +23,7 @@ const userSchema = new Schema({
   },
   hashed_password: {
     type: String,
-    require: true,
+    required: true,
   },
   businesses: [
     {
