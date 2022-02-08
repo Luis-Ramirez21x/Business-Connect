@@ -16,7 +16,7 @@ const resolvers = {
         },
         myBusiness: async (parent, args, context) => {
             if (context.user) {
-              return User.findOne({ _id: context.user._id }.populate('myBusiness'));
+              return User.findOne({ _id: context.user._id }/*.populate('myBusiness')*/);
             }
             throw new AuthenticationError('You need to be logged in!');
           },
@@ -47,7 +47,7 @@ const resolvers = {
           },
 
           //business mutations
-          createBusiness: async (parent,args, context) =>{
+          /*createBusiness: async (parent,args, context) =>{
             if(context.user){
               const newBusiness = await Business.create(args);
               return await User.findOneAndUpdate(
@@ -85,7 +85,7 @@ const resolvers = {
                   { new: true},
                 );
               }
-          }
+          }*/
     }
 }
 

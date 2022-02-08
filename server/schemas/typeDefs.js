@@ -35,7 +35,7 @@ const typeDefs = gql`
     type Query{
         users: [User]
         businesses: [Business]
-        me: User
+        myBusiness: User
 
     }
 
