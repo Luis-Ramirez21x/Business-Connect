@@ -40,6 +40,12 @@ const businessSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
+  tags: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Tag",
+    },
+  ],
 });
 
 // Initialize our Business model
