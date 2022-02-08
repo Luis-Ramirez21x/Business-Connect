@@ -9,6 +9,11 @@ const typeDefs = gql`
         hashed_password: String!
     }
 
+    type Tag{
+        name: String!
+        businesses: [Business]
+    }
+
     type Business{
         name: String!
         address: String!
