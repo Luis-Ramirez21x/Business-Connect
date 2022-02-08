@@ -3,7 +3,7 @@ const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 
 //model imports 
-//import {User, Business, tag} from '../models'
+import {User/*, Business, tag*/} from '../models'
 
 
 const resolvers = {
@@ -11,28 +11,22 @@ const resolvers = {
         users: async () =>{
             return User.find();
         },
-        
         businesses: async() =>{
             return Business.find();
         },
-
-       /* myBusiness: async(parent, args, context) =>{
-            if(context.user){
-                return Business.find({ })
-            }
-        },*/
-
-        me: async (parent, args, context) => {
+        myBusiness: async (parent, args, context) => {
             if (context.user) {
-              return User.findOne({ _id: context.user._id });
+              return User.findOne({ _id: context.user._id }.populate('myBusiness'));
             }
             throw new AuthenticationError('You need to be logged in!');
           },
     },
 
     Mutation: {
-        addUser: async (parent, { username, email, password }) => {
-            const user = await User.create({ username, email, password });
+
+        //user mutations
+        addUser: async (parent, { username, email, hashed_password }) => {
+            const user = await User.create({ username, email, hashed_password });
             const token = signToken(user);
             return { token, user };       
         },
@@ -50,7 +44,48 @@ const resolvers = {
       
             const token = signToken(user);
             return { token, user };
-          },        
+          },
+
+          //business mutations
+          createBusiness: async (parent,args, context) =>{
+            if(context.user){
+              const newBusiness = await Business.create(args);
+              return await User.findOneAndUpdate(
+                {_id: context.user._id},
+                { $addToSet: { myBusiness: newBusiness }},
+                { new: true}
+              );
+            }
+            throw new AuthenticationError('You need to be logged in!');
+          },
+          deleteBusiness: async (parent,args, context) =>{
+            if(context.user){
+              return await Business.deleteOne({_id:args._id})
+            }
+            throw new AuthenticationError('You need to be logged in!');
+          },
+          updateBusiness: async (parent,args, context) =>{
+            if(context.user){
+              return await Business.finOneAndUpdate(
+                {_id: id},
+                {args},
+                {new:true}
+              )
+            }
+            throw new AuthenticationError('You need to be logged in!');
+          },
+          
+          //client mutations
+          requestQuote: async (parent, {businessId, quoteText}, context) =>{
+              if(context.user){
+                //create a quote schema to be attached to that business which can then be populated in messages
+                return Business.finOneAndUpdate(
+                  {_id:businessId},
+                  { $addToSet: { quotes: { quoteText }},
+                  { new: true},
+                );
+              }
+          }
     }
 }
 
