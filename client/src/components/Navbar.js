@@ -26,12 +26,15 @@ const Navv = () => {
               </Nav.Link>
               <DropdownButton id="dropdown-basic-button" title="Menu">
                 {Auth.loggedIn() ? (
-                  <Dropdown.Item onClick={Auth.logout}>Logout</Dropdown.Item>
+                  <div>
+                    <Dropdown.Item onClick={Auth.logout}>Logout</Dropdown.Item>
+                    <Dropdown.Item as={Link} to='/mybusiness'>My Business</Dropdown.Item>
+                    <Dropdown.Item as={Link} to='/following' >Following</Dropdown.Item>
+                  </div>
                 ) : (
                   <Dropdown.Item onClick={() => setShowModal(true)}>Login/Sign Up</Dropdown.Item>
                 )}
-                <Dropdown.Item as={Link} to='/mybusiness'>My Business</Dropdown.Item>
-                <Dropdown.Item as={Link} to='/following' >Following</Dropdown.Item>
+                
               </DropdownButton>
             </Nav>
         </Container>
