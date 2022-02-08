@@ -1,0 +1,29 @@
+.nav-main {
+    border: rgb(0, 255, 34) solid 2px;
+    color: burlywood;
+    
+  }
+  
+  .nav-brand-main {
+    display: inline-flex;
+    align-content: center;
+    align-items: center;
+    margin-left: 5px;
+    /* padding: 7px; */
+    border: red solid 2px;
+  }
+  .nav-logo {
+    height: 100px;
+    width: 100px;
+    background-color: rgb(240, 127, 255);
+    border-radius: 50%;
+    padding-right: 20px;
+  }
+
+  .nav-brand-title {
+
+    margin-left: 15px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 2em;
+  }
+  

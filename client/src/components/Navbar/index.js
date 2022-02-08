@@ -4,6 +4,7 @@ import { Navbar, Nav, Container, Modal, Tab, Dropdown, DropdownButton } from 're
 import { useDispatch, useSelector } from 'react-redux';
 import SignUpForm from '../SignupForm';
 import LoginForm from '../LoginForm';
+import './index.css';
 
 import Auth from '../../utils/auth';
 
@@ -15,10 +16,11 @@ const Navv = () => {
 
   return (
     <>
-      <Navbar bg='dark' variant='dark' expand='lg'>
+      <Navbar className='nav-main' bg='dark' variant='dark' expand='lg'>
         <Container fluid>
-          <Navbar.Brand as={Link} to='/'>
-            Business Connect
+          <Navbar.Brand className='nav-brand-main' as={Link} to='/'>
+          <div className='nav-logo'></div>
+            <h3 className='nav-brand-title'> Business Connect</h3>
           </Navbar.Brand>
             <Nav className='ml-auto'>
               <Nav.Link as={Link} to='/'>
@@ -34,7 +36,6 @@ const Navv = () => {
                 ) : (
                   <Dropdown.Item onClick={() => setShowModal(true)}>Login/Sign Up</Dropdown.Item>
                 )}
-                
               </DropdownButton>
             </Nav>
         </Container>

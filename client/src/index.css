@@ -15,3 +15,28 @@ h6 {
   font-weight: 300;
   font-style: italic;
 }
+
+/* .nav-main {
+  border: red solid 2px;
+  
+}
+
+.nav-brand-main {
+  display: inline-flex;
+  align-content: center;
+  align-items: center;
+  margin-left: 5px;
+  border: red solid 2px;
+}
+
+.nav-logo {
+  height: 100px;
+  width: 100px;
+  background-color: rgb(240, 127, 255);
+  border-radius: 50%;
+  padding-right: 20px;
+}
+
+.nav-logo img {
+  background-image: url('./components/images/bc_logo.png');
+} */
