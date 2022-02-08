@@ -2,7 +2,7 @@ const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
 
 const validateEmail = function (email) {
-  var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  let re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   return re.test(email);
 };
 
@@ -25,6 +25,12 @@ const userSchema = new Schema({
     type: String,
     require: true,
   },
+  businesses: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Business",
+    },
+  ],
 });
 
 userSchema.virtual("password").set(function (password) {
