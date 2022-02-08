@@ -27,6 +27,7 @@ const Home = () => {
         </Form>
       </Container>
       <Container>
+        {/* WILL RENDER WITH QUERY AND MAP LATER */}
         <Button>Category</Button>
         <Button>Category</Button>
         <Button>Category</Button>
