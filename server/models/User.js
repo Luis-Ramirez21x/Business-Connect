@@ -21,7 +21,7 @@ const userSchema = new Schema({
     trim: true,
     validate: [validateEmail, "Please input a valid email address."],
   },
-  hashed_password: {
+  password: {
     type: String,
     required: true,
   },
@@ -33,12 +33,19 @@ const userSchema = new Schema({
   ],
 });
 
-userSchema.virtual("password").set(function (password) {
-  this.hashed_password = bcrypt.hashSync(password, 12);
+// hash user password
+userSchema.pre('save', async function (next) {
+  if (this.isNew || this.isModified('password')) {
+    const saltRounds = 10;
+    this.password = await bcrypt.hash(this.password, saltRounds);
+  }
+
+  next();
 });
 
-userSchema.methods.isCorrectPassword = function (given_password) {
-  return bcrypt.compareSync(given_password, this.hashed_password);
+// custom method to compare and validate password for logging in
+userSchema.methods.isCorrectPassword = async function (password) {
+  return bcrypt.compare(password, this.password);
 };
 
 // Initialize our User model

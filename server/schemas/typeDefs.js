@@ -6,7 +6,7 @@ const typeDefs = gql`
         _id: ID!
         username: String!
         email: String!
-        hashed_password: String!
+        password: String!
     }
 
     type Tag{
@@ -41,7 +41,7 @@ const typeDefs = gql`
 
     type Mutation{
     #for login
-        addUser(name: String!, email: String!, password: String!): Auth
+        addUser(username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
 
     
