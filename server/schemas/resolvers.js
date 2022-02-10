@@ -38,8 +38,7 @@ const resolvers = {
         },
 
         //user mutations
-        addUser: async (parent, { username, email, password }) => {
-          console.log(username, email, password);
+        addUser: async (parent, { username, email, password }) => {         
             const user = await User.create({ username, email, password });
             const token = signToken(user);
             return { token, user };       
@@ -67,7 +66,7 @@ const resolvers = {
               console.log(args._id);
               await User.findOneAndUpdate(
                 {_id: args._id /*context.user._id*/},
-                { $addToSet: { myBusiness: "test" }},
+                { $addToSet: { myBusiness: newBusiness }},
                 { new: true}
                );
                return newBusiness;
