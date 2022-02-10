@@ -14,6 +14,7 @@ function MyBusiness() {
   const [descriptionInput, setDescriptionInput] = useState('');
   const [priceInput, setPriceInput] = useState('');
   const [imageInput, setImageInput] = useState('');
+  const [tagInput, setTagInput] = useState('');
 
   const {loading, data} = useQuery(ALL_TAGS);
   const [createBusiness, { error }] = useMutation(CREATE_BUSINESS);
@@ -38,8 +39,9 @@ function MyBusiness() {
     }
     
     try {
+      //changing price to an Int to meet model validation
       newBusiness.price = parseInt(newBusiness.price);
-      console.log(newBusiness);
+      console.log(tagInput);
       const { data } = await createBusiness({
         variables: { ...newBusiness }
       })
@@ -51,6 +53,12 @@ function MyBusiness() {
       //setShowAlert(true);
     }
 
+    //clearing the form
+    setNameInput('');
+    setAddressInput('');
+    setDescriptionInput('');
+    setPriceInput('');
+    setImageInput('');
 
   };
 
