@@ -16,7 +16,7 @@ const Navv = () => {
 
   return (
     <>
-      <Navbar className='nav-main' bg='dark' variant='dark' expand='lg'>
+      <Navbar className='nav-main' bg='' variant='dark' expand='lg'>
         <Container fluid>
           <Navbar.Brand className='nav-brand-main' as={Link} to='/'>
           <div className='nav-logo'></div>

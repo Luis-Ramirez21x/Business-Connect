@@ -1,6 +1,6 @@
 .nav-main {
     border: rgb(0, 255, 34) solid 2px;
-    color: burlywood;
+    background-color: rgb(39, 39, 66);
     
   }
   
@@ -13,9 +13,12 @@
     border: red solid 2px;
   }
   .nav-logo {
-    height: 100px;
-    width: 100px;
-    background-color: rgb(240, 127, 255);
+    height: 75px;
+    width: 75px;
+    background-image: url('https://as2.ftcdn.net/v2/jpg/04/23/34/19/1000_F_423341912_flniDkpZIE7TnsGQMJS0KpXoKoDuSI8x.jpg');
+    background-position:center;
+    background-size:5em;
+    background-repeat: no-repeat;
     border-radius: 50%;
     padding-right: 20px;
   }

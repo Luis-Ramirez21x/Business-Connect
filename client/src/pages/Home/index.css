@@ -1,0 +1,97 @@
+
+.parallax {
+    /* The image used */
+    background-image: url("https://cdn.pixabay.com/photo/2017/02/19/23/09/success-2081167_960_720.jpg");
+  
+    /* Set a specific height */
+    min-height: 500px; 
+  
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+.search-container-main {
+    height: 250px;
+    margin-top: 10%;
+    border: rgb(145, 255, 0) solid 2px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.form-main {
+    margin: 0 auto;
+    margin-top: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+.search-main {
+    width: 700px;
+    border: red solid 2px;
+    margin: 0 auto;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.btn-main {
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.category-tag-main{
+    border: red solid 2px;
+    width: 700px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cat-btn{
+    border: transparent;
+    font-size: 1em;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-weight: bold;
+}
+
+.banner-container{
+    background-image: url('https://cdn.pixabay.com/photo/2018/01/19/07/57/shaking-hands-3091906_960_720.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100vw;
+}
+
+.banner-container::before {
+    background-color: rgba(28, 35, 98, 0.658);
+}
+
+.info-text{
+    border: red solid 2px;
+    margin: 0 auto;
+    margin-top: 5%;
+    margin-bottom: 10%;
+    height: 350px;
+    width: 100vw;
+}
+
+.footer-content {
+    border: red solid 2px;
+    background-color: black;
+    height: 200px;
+    color: white;
+  }
+

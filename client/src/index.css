@@ -1,5 +1,6 @@
 body {
-  font-family: 'Rubik', sans-serif;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  background-color: white;
 }
 
 h1,
@@ -8,13 +9,14 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Rubik Mono One', sans-serif;
-}
+font-family: Georgia, 'Times New Roman', Times, serif;}
 
 .small {
   font-weight: 300;
   font-style: italic;
 }
+
+
 
 /* .nav-main {
   border: red solid 2px;
