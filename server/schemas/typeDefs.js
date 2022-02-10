@@ -7,6 +7,7 @@ const typeDefs = gql`
         username: String!
         email: String!
         password: String!
+        myBusiness: [Business]
     }
 
     type Tag{
@@ -19,7 +20,7 @@ const typeDefs = gql`
         name: String!
         address: String!
         description: String!
-        price: String
+        price: Int
         quotes: String
         image: String
         user: User
@@ -46,8 +47,16 @@ const typeDefs = gql`
         addUser(username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
 
+    #for tags    
         createTag(name: String!): Tag
-
+    
+    #for Business
+    createBusiness(name: String!,
+            address: String!,
+            description: String!,
+            price: Int,
+            image: String,
+            ) : Business
     
 
 

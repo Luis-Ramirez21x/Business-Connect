@@ -9,7 +9,7 @@ const { User, Business, Tag } = require('../models');
 const resolvers = {
     Query: {
         users: async () =>{
-            return User.find();
+            return User.find().populate('myBusiness');
         },
         businesses: async() =>{
             return Business.find();
@@ -57,18 +57,19 @@ const resolvers = {
           },
 
           //business mutations
-          /*createBusiness: async (parent,args, context) =>{
-            if(context.user){
+          createBusiness: async (parent,args, context) =>{
+            //if(context.user){
               const newBusiness = await Business.create(args);
-              return await User.findOneAndUpdate(
-                {_id: context.user._id},
+              await User.findOneAndUpdate(
+                {_id: '6202c6ef20707af1fcd48ef9' /*context.user._id*/},
                 { $addToSet: { myBusiness: newBusiness }},
                 { new: true}
-              );
-            }
-            throw new AuthenticationError('You need to be logged in!');
+               );
+               return newBusiness;
+            //}
+            //throw new AuthenticationError('You need to be logged in!');
           },
-          deleteBusiness: async (parent,args, context) =>{
+         /* deleteBusiness: async (parent,args, context) =>{
             if(context.user){
               return await Business.deleteOne({_id:args._id})
             }
