@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import { Jumbotron, Container, Col, Form, Button, DropdownButton, Dropdown } from 'react-bootstrap';
 import DropdownItem from 'react-bootstrap/esm/DropdownItem';
+import { ALL_TAGS} from '../../utils/queries'
 
 function MyBusiness() {
   const [nameInput, setNameInput] = useState('');
@@ -10,10 +11,9 @@ function MyBusiness() {
   const [priceInput, setPriceInput] = useState('');
   const [imageInput, setImageInput] = useState('');
 
-  // const {loading, data} = useQuery()
+  const {loading, data} = useQuery(ALL_TAGS)
 
   const handleSubmit = async (event) => {
-    
     const newBusiness = {
       name: nameInput,
       address: addressInput,
@@ -94,9 +94,13 @@ function MyBusiness() {
         </Form>
         <div>
           <DropdownButton size='lg' id="dropdown-basic-button" title="Tag Your Business">
-            {/* {data.map((tag)=> {
-              <DropdownItem>{tag.name}</DropdownItem>
-            })} */}
+            {loading ? (<DropdownItem>loading...</DropdownItem>) : 
+              data.tags.map((tag)=> {
+                return (
+                  <DropdownItem key={tag.name}>{tag.name}</DropdownItem>
+                )
+              })}
+             
           </DropdownButton>
         </div>
       </Container>

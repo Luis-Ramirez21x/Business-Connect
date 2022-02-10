@@ -27,7 +27,7 @@ mutation addUser ($username : String!, $email,: String! $password: String!){
 }
 `;
 
-export const CREATE_TAG = qgl`
+export const CREATE_TAG = gql`
 mutation createTag($name: String!){
     createTag(name: $name){
       name
