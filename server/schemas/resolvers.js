@@ -64,9 +64,10 @@ const resolvers = {
           createBusiness: async (parent,args, context) =>{
             //if(context.user){
               const newBusiness = await Business.create(args);
+              console.log(args._id);
               await User.findOneAndUpdate(
                 {_id: args._id /*context.user._id*/},
-                { $addToSet: { myBusiness: newBusiness }},
+                { $addToSet: { myBusiness: "test" }},
                 { new: true}
                );
                return newBusiness;

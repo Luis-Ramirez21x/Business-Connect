@@ -2,6 +2,17 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
     
+type Business{
+    name: String!
+    address: String!
+    description: String!
+    price: Int
+    quotes: String
+    image: String
+    user: User
+    tags: [Tag]
+}
+
     type User{
         _id: ID!
         username: String!
@@ -16,16 +27,7 @@ const typeDefs = gql`
         
     }
 
-    type Business{
-        name: String!
-        address: String!
-        description: String!
-        price: Int
-        quotes: String
-        image: String
-        user: User
-        tags: [Tag]
-    }
+    
 
       
 
@@ -52,7 +54,8 @@ const typeDefs = gql`
         createTag(name: String!): Tag
     
     #for Business
-    createBusiness(name: String!,
+    createBusiness(_id:ID
+            name: String!,
             address: String!,
             description: String!,
             price: Int,
