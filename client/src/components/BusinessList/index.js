@@ -7,10 +7,10 @@ const BusinessList = (props) => {
     <>
       <h2>Search Results</h2>  
       {props.map((business) => {
-        <Card>
+        <Card key={busines.id}>
           <CardImg top width="100%" src={business.image} alt="Business Image" />
           <CardBody>
-            <CardLink as={Link} to='/singleBusiness'>{business.name}</CardLink>
+            <CardLink as={Link} to="singleBusiness" params={{id:business.id}}>{business.name}</CardLink>
             <CardText>{business.description}</CardText>
           </CardBody>
         </Card> 

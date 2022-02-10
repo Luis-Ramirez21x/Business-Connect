@@ -47,6 +47,7 @@ function App() {
             <Route exact path='/' component={Home} />
             <Route exact path='/mybusiness' component={MyBusiness} />
             <Route exact path='/businesses' component={BusinessList} />
+            <Route name="singleBusiness" exact path='/businesses/:id' component={BusinessList} />
             <Route exact path='/connect' component={Connect} />
             <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
           </Switch>
