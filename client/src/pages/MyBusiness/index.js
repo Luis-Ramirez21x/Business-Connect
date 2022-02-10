@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useQuery } from '@apollo/client';
 import { Jumbotron, Container, Col, Form, Button, DropdownButton, Dropdown } from 'react-bootstrap';
 import DropdownItem from 'react-bootstrap/esm/DropdownItem';
 
@@ -8,6 +9,8 @@ function MyBusiness() {
   const [descriptionInput, setDescriptionInput] = useState('');
   const [priceInput, setPriceInput] = useState('');
   const [imageInput, setImageInput] = useState('');
+
+  // const {loading, data} = useQuery()
 
   const handleSubmit = async (event) => {
     
@@ -22,11 +25,11 @@ function MyBusiness() {
 
   return (
     <>
-      <Container>
-        <h2>Enter Your Business's Info Here</h2>
+    <h2>Enter Your Business's Info Here</h2>
+      <Container className='d-flex'>
         <Form>
           <Form.Row>
-            <Col xs={12} md={4}>
+            <Col xs={12} md={12}>
               <Form.Control
                   name='businessName'
                   value={nameInput}
@@ -38,7 +41,7 @@ function MyBusiness() {
             </Col>
           </Form.Row>
           <Form.Row>
-            <Col xs={12} md={4}>
+            <Col xs={12} md={12}>
               <Form.Control
                   name='businessAddress'
                   value={addressInput}
@@ -50,7 +53,7 @@ function MyBusiness() {
             </Col>
           </Form.Row>
           <Form.Row>
-            <Col xs={12} md={4}>
+            <Col xs={12} md={12}>
               <Form.Control
                   name='businessDescription'
                   value={descriptionInput}
@@ -62,7 +65,7 @@ function MyBusiness() {
             </Col>
           </Form.Row>
           <Form.Row>
-            <Col xs={12} md={4}>
+            <Col xs={12} md={12}>
               <Form.Control
                   name='businessPrice'
                   value={priceInput}
@@ -74,7 +77,7 @@ function MyBusiness() {
             </Col>
           </Form.Row>
           <Form.Row>
-            <Col xs={12} md={4}>
+            <Col xs={12} md={12}>
               <Form.Control
                   name='businessImage'
                   value={imageInput}
@@ -86,15 +89,16 @@ function MyBusiness() {
             </Col>
           </Form.Row>
           <Form.Row>
-            <DropdownButton size='lg' id="dropdown-basic-button" title="Menu">
-              {}
-              <DropdownItem>hello</DropdownItem>
-            </DropdownButton>
-          </Form.Row>
-          <Form.Row>
             <Button type='submit' variant='success' size='md'>Submit</Button>
           </Form.Row>
         </Form>
+        <div>
+          <DropdownButton size='lg' id="dropdown-basic-button" title="Tag Your Business">
+            {/* {data.map((tag)=> {
+              <DropdownItem>{tag.name}</DropdownItem>
+            })} */}
+          </DropdownButton>
+        </div>
       </Container>
     </>
   )
