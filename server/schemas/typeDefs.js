@@ -12,6 +12,7 @@ const typeDefs = gql`
     type Tag{
         name: String!
         businesses: [Business]
+        
     }
 
     type Business{
@@ -36,6 +37,7 @@ const typeDefs = gql`
         users: [User]
         businesses: [Business]
         myBusiness: User
+        tags: [Tag]
 
     }
 
@@ -43,6 +45,8 @@ const typeDefs = gql`
     #for login
         addUser(username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
+
+        createTag(name: String!): Tag
 
     
 
