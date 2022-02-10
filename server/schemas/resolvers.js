@@ -60,10 +60,10 @@ const resolvers = {
           },
 
           //business mutations
-          createBusiness: async (parent,args, context) =>{
+          createBusiness: async (parent,{ name, address, description, image, price }, context) =>{
             if(context.user){
-              const newBusiness = await Business.create(args);
-              console.log(args._id);
+              const newBusiness = await Business.create({ name, address, description, image, price });
+              
               await User.findOneAndUpdate(
                 {_id: context.user._id},
                 { $addToSet: { myBusiness: newBusiness }},

@@ -1,21 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
+import {useMutation} from '@apollo/client';
 import { Jumbotron, Container, Col, Form, Button, DropdownButton, Dropdown } from 'react-bootstrap';
 import DropdownItem from 'react-bootstrap/esm/DropdownItem';
-import { ALL_TAGS} from '../../utils/queries'
+import { ALL_TAGS } from '../../utils/queries'
+import { CREATE_BUSINESS } from '../../utils/mutations';
+import Auth from '../../utils/auth';
 
 function MyBusiness() {
+  //can be refactored to be userFormData
   const [nameInput, setNameInput] = useState('');
   const [addressInput, setAddressInput] = useState('');
   const [descriptionInput, setDescriptionInput] = useState('');
   const [priceInput, setPriceInput] = useState('');
   const [imageInput, setImageInput] = useState('');
 
-  const {loading, data} = useQuery(ALL_TAGS)
+  const {loading, data} = useQuery(ALL_TAGS);
+  const [createBusiness, { error }] = useMutation(CREATE_BUSINESS);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('Submit button clicked');
+    
 
     // check if form has everything
     const form = event.currentTarget;
@@ -31,7 +36,22 @@ function MyBusiness() {
       price: priceInput,
       image: imageInput
     }
-    console.log(newBusiness);
+    
+    try {
+      newBusiness.price = parseInt(newBusiness.price);
+      console.log(newBusiness);
+      const { data } = await createBusiness({
+        variables: { ...newBusiness }
+      })
+      
+      Auth.login(data.login.token);
+    } catch (err) {
+      console.error(err);
+      //this code can be used to show an alert on the form
+      //setShowAlert(true);
+    }
+
+
   };
 
   
