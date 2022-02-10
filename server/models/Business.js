@@ -35,7 +35,7 @@ const businessSchema = new Schema({
   ],
   image: {
     type: String,
-    validate: [validateURL, "Please input a valid URL"],
+    //validate: [validateURL, "Please input a valid URL"],
   },
   user: {
     type: Schema.Types.ObjectId,

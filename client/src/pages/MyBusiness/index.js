@@ -1,19 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/client';
+import {useMutation} from '@apollo/client';
 import { Jumbotron, Container, Col, Form, Button, DropdownButton, Dropdown } from 'react-bootstrap';
 import DropdownItem from 'react-bootstrap/esm/DropdownItem';
-import { ALL_TAGS} from '../../utils/queries'
+import { ALL_TAGS } from '../../utils/queries'
+import { CREATE_BUSINESS } from '../../utils/mutations';
+import Auth from '../../utils/auth';
 
 function MyBusiness() {
+  //can be refactored to be userFormData
   const [nameInput, setNameInput] = useState('');
   const [addressInput, setAddressInput] = useState('');
   const [descriptionInput, setDescriptionInput] = useState('');
   const [priceInput, setPriceInput] = useState('');
   const [imageInput, setImageInput] = useState('');
+  const [tagInput, setTagInput] = useState('');
 
-  const {loading, data} = useQuery(ALL_TAGS)
+  const {loading, data} = useQuery(ALL_TAGS);
+  const [createBusiness, { error }] = useMutation(CREATE_BUSINESS);
 
   const handleSubmit = async (event) => {
+    event.preventDefault();
+    
+
+    // check if form has everything
+    const form = event.currentTarget;
+     if (form.checkValidity() === false) {
+       event.preventDefault();
+       event.stopPropagation();
+     }
+
     const newBusiness = {
       name: nameInput,
       address: addressInput,
@@ -21,13 +37,38 @@ function MyBusiness() {
       price: priceInput,
       image: imageInput
     }
+    
+    try {
+      //changing price to an Int to meet model validation
+      newBusiness.price = parseInt(newBusiness.price);
+      console.log(tagInput);
+      const { data } = await createBusiness({
+        variables: { ...newBusiness }
+      })
+      
+      Auth.login(data.login.token);
+    } catch (err) {
+      console.error(err);
+      //this code can be used to show an alert on the form
+      //setShowAlert(true);
+    }
+
+    //clearing the form
+    setNameInput('');
+    setAddressInput('');
+    setDescriptionInput('');
+    setPriceInput('');
+    setImageInput('');
+
   };
+
+  
 
   return (
     <>
     <h2>Enter Your Business's Info Here</h2>
       <Container className='d-flex'>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Form.Row>
             <Col xs={12} md={12}>
               <Form.Control
