@@ -26,3 +26,11 @@ mutation addUser ($username : String!, $email,: String! $password: String!){
     }
 }
 `;
+
+export const CREATE_TAG = qgl`
+mutation createTag($name: String!){
+    createTag(name: $name){
+      name
+    }
+}
+`;
