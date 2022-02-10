@@ -3,6 +3,7 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
     
 type Business{
+    _id: ID
     name: String!
     address: String!
     description: String!
