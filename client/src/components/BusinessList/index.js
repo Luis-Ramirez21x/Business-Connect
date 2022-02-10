@@ -1,22 +1,19 @@
 import React, { useState } from "react";
-import { Card } from "react-bootstrap";
+import { Card, CardImg } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 
-const BusinessList = (props) => {
+const BusinessList = ({business}) => {
   return (
     <>
-      <h2>Search Results</h2>  
-      {props.map((business) => {
-        <Card key={busines.id}>
-          <CardImg top width="100%" src={business.image} alt="Business Image" />
-          <CardBody>
-            <CardLink as={Link} to="singleBusiness" params={{id:business.id}}>{business.name}</CardLink>
-            <CardText>{business.description}</CardText>
-          </CardBody>
-        </Card> 
-      })}
+      <Card key={business.id}>
+        <CardImg width="100%" src={business.image} alt="Business Image" />
+        <Card.Body>
+          <Card.Link as={Link} to="singleBusiness" params={{id:business.id}}>{business.name}</Card.Link>
+          <Card.Text>{business.description}</Card.Text>
+        </Card.Body>
+      </Card>
     </>
-  );
+  )
 };
 
-export default BusinessList
+export {BusinessList};
