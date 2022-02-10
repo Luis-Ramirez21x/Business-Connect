@@ -1,8 +1,22 @@
 import React, { useState } from "react";
 import { Container, Col, Form, Button } from 'react-bootstrap';
+import { BusinessList } from '../../components/BusinessList'
 
 const Home = () => {
   const [searchInput, setSearchInput] = useState('');
+  const [searchContent, setSearchContent] 
+  = useState([
+    {
+      id:1,
+      name: "dummy business",
+      image: "dummy image",
+      description: "dummy description"
+    }
+  ])
+
+  const handleSearch = async () => {
+
+  };
 
   return (
     <>
@@ -31,6 +45,18 @@ const Home = () => {
         <Button>Category</Button>
         <Button>Category</Button>
         <Button>Category</Button>
+      </Container>
+
+      <Container>
+        {searchContent.length ? (
+          searchContent.map((business) => {
+            return (
+              <BusinessList key={business.id} business={business}></BusinessList>
+            )
+          })
+        ) : (
+          <h3>Start by Searching for A Category</h3>
+        )}
       </Container>
     </>
   );
