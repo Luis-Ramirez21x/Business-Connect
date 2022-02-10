@@ -14,6 +14,11 @@ const resolvers = {
         businesses: async() =>{
             return Business.find();
         },
+        tags: async() =>{
+           return Tag.find();
+        },
+        
+
         myBusiness: async (parent, args, context) => {
             if (context.user) {
               return User.findOne({ _id: context.user._id }/*.populate('myBusiness')*/);
@@ -23,6 +28,10 @@ const resolvers = {
     },
 
     Mutation: {
+        //tag mutations 
+        createTag: async(parent, {name}, context) =>{
+          return Tag.create({ name });
+        },
 
         //user mutations
         addUser: async (parent, { username, email, password }) => {
