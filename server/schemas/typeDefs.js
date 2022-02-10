@@ -6,35 +6,49 @@ const typeDefs = gql`
         _id: ID!
         username: String!
         email: String!
-        hashed_password: String!
+        password: String!
+    }
+
+    type Tag{
+        name: String!
+        businesses: [Business]
+        
+    }
+
+    type Business{
+        name: String!
+        address: String!
+        description: String!
+        price: String
+        quotes: String
+        image: String
+        user: User
+        tags: [Tag]
     }
 
       
 
     type Auth {
         token: ID!
-        profile: Profile
+        user: User
     }
 
     type Query{
         users: [User]
         businesses: [Business]
-        me: User
+        myBusiness: User
+        tags: [Tag]
 
     }
 
     type Mutation{
     #for login
-        addUser(name: String!, email: String!, password: String!): Auth
+        addUser(username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
 
-    #for business user
-        createBusiness(): User
-        deleteBusiness(): User
-        updateBusiness(): Business
+        createTag(name: String!): Tag
 
-    #for service user
-        requestQuote(): user
+    
 
 
     }
@@ -42,3 +56,13 @@ const typeDefs = gql`
 `
 
 module.exports = typeDefs;
+
+/*
+#for business user
+        createBusiness(): User
+        deleteBusiness(): User
+        updateBusiness(): Business
+
+    #for service user
+        requestQuote(): user
+*/
