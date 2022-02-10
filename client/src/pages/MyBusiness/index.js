@@ -100,7 +100,6 @@ function MyBusiness() {
                   <DropdownItem key={tag.name}>{tag.name}</DropdownItem>
                 )
               })}
-             
           </DropdownButton>
         </div>
       </Container>
