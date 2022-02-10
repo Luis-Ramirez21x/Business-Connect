@@ -36,6 +36,7 @@ const typeDefs = gql`
 
     type Query{
         users: [User]
+        user(_id: ID): User
         businesses: [Business]
         myBusiness: User
         tags: [Tag]

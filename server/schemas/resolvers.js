@@ -11,6 +11,10 @@ const resolvers = {
         users: async () =>{
             return User.find().populate('myBusiness');
         },
+
+        user: async (parent, args )=>{
+          return User.findById(args);
+        },
         businesses: async() =>{
             return Business.find();
         },
@@ -61,7 +65,7 @@ const resolvers = {
             //if(context.user){
               const newBusiness = await Business.create(args);
               await User.findOneAndUpdate(
-                {_id: '6202c6ef20707af1fcd48ef9' /*context.user._id*/},
+                {_id: args._id /*context.user._id*/},
                 { $addToSet: { myBusiness: newBusiness }},
                 { new: true}
                );
