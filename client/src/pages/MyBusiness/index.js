@@ -14,6 +14,16 @@ function MyBusiness() {
   const {loading, data} = useQuery(ALL_TAGS)
 
   const handleSubmit = async (event) => {
+    event.preventDefault();
+    console.log('Submit button clicked');
+
+    // check if form has everything
+    const form = event.currentTarget;
+     if (form.checkValidity() === false) {
+       event.preventDefault();
+       event.stopPropagation();
+     }
+
     const newBusiness = {
       name: nameInput,
       address: addressInput,
@@ -21,13 +31,16 @@ function MyBusiness() {
       price: priceInput,
       image: imageInput
     }
+    console.log(newBusiness);
   };
+
+  
 
   return (
     <>
     <h2>Enter Your Business's Info Here</h2>
       <Container className='d-flex'>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Form.Row>
             <Col xs={12} md={12}>
               <Form.Control

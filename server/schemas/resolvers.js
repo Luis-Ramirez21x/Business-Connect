@@ -61,17 +61,17 @@ const resolvers = {
 
           //business mutations
           createBusiness: async (parent,args, context) =>{
-            //if(context.user){
+            if(context.user){
               const newBusiness = await Business.create(args);
               console.log(args._id);
               await User.findOneAndUpdate(
-                {_id: args._id /*context.user._id*/},
+                {_id: context.user._id},
                 { $addToSet: { myBusiness: newBusiness }},
                 { new: true}
                );
                return newBusiness;
-            //}
-            //throw new AuthenticationError('You need to be logged in!');
+            }
+            throw new AuthenticationError('You need to be logged in!');
           },
          /* deleteBusiness: async (parent,args, context) =>{
             if(context.user){

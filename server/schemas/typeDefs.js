@@ -24,12 +24,7 @@ type Business{
     type Tag{
         name: String!
         businesses: [Business]
-        
     }
-
-    
-
-      
 
     type Auth {
         token: ID!
@@ -42,7 +37,6 @@ type Business{
         businesses: [Business]
         myBusiness: User
         tags: [Tag]
-
     }
 
     type Mutation{
