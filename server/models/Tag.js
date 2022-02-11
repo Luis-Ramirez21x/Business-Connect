@@ -6,12 +6,6 @@ const tagSchema = new Schema({
     required: true,
     trim: true,
   },
-  businesses: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Business",
-    },
-  ],
 });
 
 // Initialize our Tag model
