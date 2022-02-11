@@ -1,4 +1,6 @@
 const { Schema, model, mongoose } = require("mongoose");
+const Review = require("./Review");
+const Tag = require("./Tag");
 
 const validateURL = function (url) {
   let re =
@@ -12,14 +14,12 @@ const businessSchema = new Schema({
     unique: true,
     required: true, // Two businesses can't have the same name
     trim: true,
-    sparse: true
   },
   address: {
     type: String,
     unique: true, // Two businesses can't be at the same address
     required: true,
     trim: true,
-    sparse: true
   },
   description: {
     type: String,
@@ -39,6 +39,7 @@ const businessSchema = new Schema({
     type: String,
     //validate: [validateURL, "Please input a valid URL"],
   },
+
   user: {
     type: Schema.Types.ObjectId,
     ref: "User",
@@ -55,6 +56,7 @@ const businessSchema = new Schema({
       ref: "Review",
     },
   ],
+
 });
 
 // Initialize our Business model
