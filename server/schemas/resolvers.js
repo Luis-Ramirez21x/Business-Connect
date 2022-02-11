@@ -73,7 +73,7 @@ const resolvers = {
               const newBusiness = await Business.create({ name, address, description, image, price });
               await Tag.findOneAndUpdate(
                 { name: tagName},
-                { $addToSet: { myBusiness: newBusiness._id }},
+                { $addToSet: { businesses: newBusiness._id }},
                 { new: true}
                );
               

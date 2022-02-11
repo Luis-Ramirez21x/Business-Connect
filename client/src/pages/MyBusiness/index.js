@@ -60,6 +60,7 @@ function MyBusiness() {
     setDescriptionInput('');
     setPriceInput('');
     setImageInput('');
+    setTagInput('Tag Your Business');
 
   };
 
