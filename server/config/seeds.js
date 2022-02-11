@@ -1,48 +1,124 @@
 const db = require("./connection");
-const { User, Business, Tag, Review } = require("../models");
+const { User, Business, Tag } = require("../models");
 
 db.once("open", async () => {
-  await Tag.deleteMany({});
-  await User.deleteMany({});
   await Business.deleteMany({});
-  await Review.deleteMany({});
+  await User.deleteMany({});
+  await Tag.deleteMany({});
+
+  const companies = await Business.insertMany([
+    {
+      name: "Green Landscaping",
+      address: "570 Brookhaven",
+      description: "asfasdfasdfas",
+      price: 200,
+      image: "image url here",
+    },
+    {
+      name: "Steel Construction",
+      address: "1320 Ark Bush Ct",
+      description: "sjdfnaiufp",
+      price: 50,
+      image: "image url here",
+    },
+    {
+      name: "Luis's Landscaping",
+      address: "90 Peachtree Rd",
+      description: "asfasdfasdfas",
+      price: 100,
+      image: "image url here",
+    },
+    {
+      name: "Car Fix Felix",
+      address: "967 Dunn Pkwy",
+      description: "jfmfghfghs",
+      price: 100,
+      image: "image url here",
+    },
+    {
+      name: "Italian Express Catering",
+      address: "958 Plaza Ct ",
+      description: "nhn;osfgnngsf",
+      price: 20,
+      image: "image url here",
+    },
+  ]);
+  console.log("companies seeded");
+
+  const users = await User.insertMany([
+    {
+      username: "garret",
+      email: "garret@garret.com",
+      password: "password123",
+      myBusiness: [companies[3]._id],
+    },
+    {
+      username: "aaron",
+      email: "aaron@aaron.com",
+      password: "password123",
+      myBusiness: [companies[0]._id],
+    },
+    {
+      username: "tina",
+      email: "tina@tina.com",
+      password: "password123",
+      myBusiness: [companies[1]._id],
+    },
+    {
+      username: "luis",
+      email: "luis@luis.com",
+      password: "password123",
+      myBusiness: [companies[2]._id],
+    },
+  ]);
+  console.log("users seeded");
 
   const tags = await Tag.insertMany([
-    { name: "Food" },
-    { name: "Mechanic" },
-    { name: "landscaping" },
+    {
+      name: "Food",
+    },
+    {
+      name: "Mechanic",
+    },
+    {
+      name: "Landscaping",
+    },
+    {
+      name: "Construction",
+    },
   ]);
 
-  const foodTag = await Tag.findOne({ name: "Food" });
-
-  const user = await User.create({
-    username: "TestUser",
-    email: "test123@gmail.com",
-    password: "easypw",
-  });
-
-  const review = await Review.create({
-    title: "Great Experience",
-    description: "I ate here and the food was great",
-    createdByUser: user._id,
-  });
-
-  const business = await Business.create({
-    name: "Joe's Pizza",
-    address: "123 Easy Street",
-    description: "Good Pizza",
-    price: 10,
-    tags: [foodTag],
-    reviews: [review],
-  });
-
-  await User.findOneAndUpdate(
-    { _id: user._id },
-    { $addToSet: { myBusiness: business } },
+  await Business.findOneAndUpdate(
+    { name: companies[0].name },
+    { tags: tags[2] },
     { new: true }
   );
 
-  console.log("data seeded");
+  await Business.findOneAndUpdate(
+    { name: companies[1].name },
+    { tags: tags[3] },
+    { new: true }
+  );
+
+  await Business.findOneAndUpdate(
+    { name: companies[2].name },
+    { tags: tags[2] },
+    { new: true }
+  );
+
+  await Business.findOneAndUpdate(
+    { name: companies[3].name },
+    { tags: tags[1] },
+    { new: true }
+  );
+
+  await Business.findOneAndUpdate(
+    { name: companies[4].name },
+    { tags: tags[0] },
+    { new: true }
+  );
+
+  console.log("tags seeded");
 
   process.exit();
 });

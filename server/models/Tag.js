@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose");
+const Business = require("./Business");
 
 const tagSchema = new Schema({
   name: {
