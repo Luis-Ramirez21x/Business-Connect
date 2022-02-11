@@ -1,6 +1,9 @@
 import React, { useState } from "react";
-import { Container, Col, Form, Button } from 'react-bootstrap';
+import { Container, Col, Form, Button, Dropdown, DropdownButton } from 'react-bootstrap';
+import DropdownItem from 'react-bootstrap/esm/DropdownItem';
+import { ALL_TAGS } from '../../utils/queries'
 import { BusinessList } from '../../components/BusinessList'
+import { useQuery } from "@apollo/client";
 
 const Home = () => {
   const [searchInput, setSearchInput] = useState('');
@@ -13,6 +16,10 @@ const Home = () => {
       description: "dummy description"
     }
   ])
+
+  const [tagInput, setTagInput] = useState('Select A Category');
+
+  const {loading, data} = useQuery(ALL_TAGS);
 
   const handleSearch = async () => {
 
@@ -41,10 +48,15 @@ const Home = () => {
         </Form>
       </Container>
       <Container>
-        {/* WILL RENDER WITH QUERY AND MAP LATER */}
-        <Button>Category</Button>
-        <Button>Category</Button>
-        <Button>Category</Button>
+      <h2>Or Choose A Category Here</h2>
+        <DropdownButton size='lg' id="dropdown-basic-button" title={tagInput} value={tagInput} onSelect={(eventKey, event) => setTagInput(eventKey)}>
+          {loading ? (<DropdownItem>loading...</DropdownItem>) : 
+            data.tags.map((tag)=> {
+              return (
+                <DropdownItem eventKey={tag.name} value>{tag.name}</DropdownItem>
+              )
+            })}
+        </DropdownButton>
       </Container>
 
       <Container>
