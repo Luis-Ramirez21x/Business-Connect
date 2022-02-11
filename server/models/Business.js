@@ -1,4 +1,6 @@
 const { Schema, model, mongoose } = require("mongoose");
+const Review = require("./Review");
+const Tag = require("./Tag");
 
 const validateURL = function (url) {
   let re =
@@ -37,22 +39,8 @@ const businessSchema = new Schema({
     type: String,
     //validate: [validateURL, "Please input a valid URL"],
   },
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-  },
-  tags: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Tag",
-    },
-  ],
-  reviews: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Review",
-    },
-  ],
+  tags: [Tag.schema],
+  reviews: [Review.schema],
 });
 
 // Initialize our Business model
