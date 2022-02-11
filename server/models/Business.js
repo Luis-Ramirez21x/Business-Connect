@@ -44,12 +44,12 @@ const businessSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "User",
   },
-  tags: [
+  /*tags: [
     {
       type: Schema.Types.ObjectId,
       ref: "Tag",
     },
-  ],
+  ],*/
   reviews: [
     {
       type: Schema.Types.ObjectId,
@@ -60,6 +60,6 @@ const businessSchema = new Schema({
 });
 
 // Initialize our Business model
-const Business = model("business", businessSchema);
+const Business = model("Business", businessSchema);
 
 module.exports = Business;

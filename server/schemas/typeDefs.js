@@ -56,6 +56,7 @@ type Business{
             description: String!,
             price: Int,
             image: String,
+            tagName: String
             ) : Business
     
     }

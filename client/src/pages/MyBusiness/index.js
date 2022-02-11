@@ -14,7 +14,7 @@ function MyBusiness() {
   const [descriptionInput, setDescriptionInput] = useState('');
   const [priceInput, setPriceInput] = useState('');
   const [imageInput, setImageInput] = useState('');
-  const [tagInput, setTagInput] = useState('');
+  const [tagInput, setTagInput] = useState('Tag Your Business');
 
   const {loading, data} = useQuery(ALL_TAGS);
   const [createBusiness, { error }] = useMutation(CREATE_BUSINESS);
@@ -35,7 +35,8 @@ function MyBusiness() {
       address: addressInput,
       description: descriptionInput,
       price: priceInput,
-      image: imageInput
+      image: imageInput,
+      tagName: tagInput
     }
     
     try {
@@ -59,6 +60,7 @@ function MyBusiness() {
     setDescriptionInput('');
     setPriceInput('');
     setImageInput('');
+    setTagInput('Tag Your Business');
 
   };
 
@@ -134,11 +136,11 @@ function MyBusiness() {
           </Form.Row>
         </Form>
         <div>
-          <DropdownButton size='lg' id="dropdown-basic-button" title="Tag Your Business">
+          <DropdownButton size='lg' id="dropdown-basic-button" title={tagInput} value={tagInput} onSelect={(eventKey, event) => setTagInput(eventKey)}>
             {loading ? (<DropdownItem>loading...</DropdownItem>) : 
               data.tags.map((tag)=> {
                 return (
-                  <DropdownItem key={tag.name}>{tag.name}</DropdownItem>
+                  <DropdownItem eventKey={tag.name} value>{tag.name}</DropdownItem>
                 )
               })}
           </DropdownButton>

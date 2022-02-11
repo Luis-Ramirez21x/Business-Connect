@@ -29,7 +29,7 @@ const resolvers = {
 
         //tag querys
         tags: async() =>{
-           return Tag.find();
+           return Tag.find().populate('businesses');
         },
         tag: async(parent, {name}) =>{
           return Tag.findOne({name:name}).populate('businesses');
@@ -68,13 +68,18 @@ const resolvers = {
           },
 
           //business mutations
-          createBusiness: async (parent,{ name, address, description, image, price }, context) =>{
+          createBusiness: async (parent,{ name, address, description, image, price, tagName }, context) =>{
             if(context.user){
               const newBusiness = await Business.create({ name, address, description, image, price });
+              await Tag.findOneAndUpdate(
+                { name: tagName},
+                { $addToSet: { businesses: newBusiness._id }},
+                { new: true}
+               );
               
               await User.findOneAndUpdate(
                 {_id: context.user._id},
-                { $addToSet: { myBusiness: newBusiness }},
+                { $addToSet: { myBusiness: newBusiness._id }},
                 { new: true}
                );
                return newBusiness;

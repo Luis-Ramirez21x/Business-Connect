@@ -37,8 +37,8 @@ mutation createTag($name: String!){
 `;
 //business mutations
 export const CREATE_BUSINESS = gql`
-mutation createBusiness($name: String!, $address: String!, $description: String!, $price: Int, $image: String){
-    createBusiness(name :$name, address: $address, description:$description, price: $price, image: $image){
+mutation createBusiness($name: String!, $address: String!, $description: String!, $price: Int, $image: String, $tagName: String!){
+    createBusiness(name :$name, address: $address, description:$description, price: $price, image: $image, tagName: $tagName){
         name
         address
         description

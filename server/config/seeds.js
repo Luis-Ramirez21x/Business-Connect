@@ -76,18 +76,22 @@ db.once("open", async () => {
   const tags = await Tag.insertMany([
     {
       name: "Food",
+      businesses: [companies[4]._id]
     },
     {
       name: "Mechanic",
+      businesses: [companies[3]._id]
     },
     {
       name: "Landscaping",
+      businesses: [companies[0]._id,companies[2]._id]
     },
     {
       name: "Construction",
+      businesses: [companies[1]._id]
     },
   ]);
-
+/*
   await Business.findOneAndUpdate(
     { name: companies[0].name },
     { tags: tags[2] },
@@ -117,6 +121,38 @@ db.once("open", async () => {
     { tags: tags[0] },
     { new: true }
   );
+
+  await Tag.findOneAndUpdate(
+    { name: tags[0].name },
+    { businesses: companies[4]._id },
+    { new: true }
+  );  
+  await Tag.findOneAndUpdate(
+    { name: tags[1].name },
+    { businesses: companies[3]._id },
+    { new: true }
+  );
+  await Tag.findOneAndUpdate(
+    { name: tags[2].name },
+    { businesses: companies[0]._id },
+    { new: true }
+  );
+  await Tag.findOneAndUpdate(
+    { name: tags[3].name },
+    { businesses: companies[1]._id },
+    { new: true }
+  );
+  await Tag.findOneAndUpdate(
+    { name: tags[2].name },
+    { $addToSet: {businesses: companies[2]._id} },
+    { new: true }
+  );
+  */
+  
+    
+
+
+
 
   console.log("tags seeded");
 
