@@ -6,4 +6,16 @@ export const ALL_TAGS = gql`
             name
         }
     }
-`
+`;
+
+export const BUSINESSES_BY_TAG = gql`
+query tag( $name: String!){
+    tag(name: $name){
+        name
+        businesses{
+            name
+  
+        }
+    }
+}
+`;
