@@ -1,22 +1,34 @@
-import React, { useState } from "react";
-import { Container, Col, Form, Button } from 'react-bootstrap';
+import React, { useEffect, useState } from "react";
+import { Container, Col, Form, Button, Dropdown, DropdownButton } from 'react-bootstrap';
+import DropdownItem from 'react-bootstrap/esm/DropdownItem';
+
+import { ALL_TAGS, BUSINESSES_BY_TAG } from '../../utils/queries'
 import { BusinessList } from '../../components/BusinessList'
+
+import { useQuery, useLazyQuery } from "@apollo/client";
 
 const Home = () => {
   const [searchInput, setSearchInput] = useState('');
-  const [searchContent, setSearchContent] 
-  = useState([
-    {
-      id:1,
-      name: "dummy business",
-      image: "dummy image",
-      description: "dummy description"
+  const [searchContent, setSearchContent] = useState([])
+  const [tagInput, setTagInput] = useState('Select A Category');
+
+  const {loading:tag_loading, data:tag_data} = useQuery(ALL_TAGS);
+  const [loadBusinesses, { error }] = useLazyQuery(
+    BUSINESSES_BY_TAG,
+    { variables: { name: tagInput } }
+  );
+
+  const callLoadBusiness = async () => {
+    try {
+      const { data:business_data } = await loadBusinesses()
+      if (business_data) {
+        setSearchContent(business_data.tag.businesses)
+      }
     }
-  ])
-
-  const handleSearch = async () => {
-
-  };
+    catch (err) {
+      console.error(err);
+    }
+  }
 
   return (
     <>
@@ -40,18 +52,25 @@ const Home = () => {
           </Form.Row>
         </Form>
       </Container>
+
       <Container>
-        {/* WILL RENDER WITH QUERY AND MAP LATER */}
-        <Button>Category</Button>
-        <Button>Category</Button>
-        <Button>Category</Button>
+      <h2>Or Choose A Category Here</h2>
+        <DropdownButton size='lg' id="dropdown-basic-button" title={tagInput} value={tagInput} onSelect={(eventKey, event) => setTagInput(eventKey)}>
+          {tag_loading ? (<DropdownItem>loading...</DropdownItem>) : 
+            tag_data.tags.map((tag)=> {
+              return (
+                <DropdownItem eventKey={tag.name} key={tag.name} value>{tag.name}</DropdownItem>
+              )
+            })}
+        </DropdownButton>
+        <Button onClick={callLoadBusiness}>Search</Button>
       </Container>
 
       <Container>
         {searchContent.length ? (
           searchContent.map((business) => {
             return (
-              <BusinessList key={business.id} business={business}></BusinessList>
+              <BusinessList key={business.name} business={business}></BusinessList>
             )
           })
         ) : (
