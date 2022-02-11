@@ -39,8 +39,24 @@ const businessSchema = new Schema({
     type: String,
     //validate: [validateURL, "Please input a valid URL"],
   },
-  tags: [Tag.schema],
-  reviews: [Review.schema],
+
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
+  tags: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Tag",
+    },
+  ],
+  reviews: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Review",
+    },
+  ],
+
 });
 
 // Initialize our Business model
