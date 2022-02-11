@@ -43,6 +43,6 @@ const reviewSchema = new Schema(
 );
 
 // Initialize our Tag model
-const Review = model("review", reviewSchema);
+const Review = model("Review", reviewSchema);
 
 module.exports = Review;

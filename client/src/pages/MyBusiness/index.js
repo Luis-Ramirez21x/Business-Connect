@@ -35,7 +35,8 @@ function MyBusiness() {
       address: addressInput,
       description: descriptionInput,
       price: priceInput,
-      image: imageInput
+      image: imageInput,
+      tagName: tagInput
     }
     
     try {
