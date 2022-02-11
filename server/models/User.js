@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
-const Business = require('./Business');
+//const Business = require('./Business');
 
 const validateEmail = function (email) {
   let re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -26,7 +26,13 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  myBusiness: [Business.schema],
+  //myBusiness: [Business.schema],
+  myBusiness: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'business'
+    }
+  ]
 });
 
 // hash user password

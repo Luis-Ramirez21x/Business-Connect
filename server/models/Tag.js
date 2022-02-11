@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose");
+const Business = require('./Business');
 
 const tagSchema = new Schema({
   name: {
@@ -9,8 +10,8 @@ const tagSchema = new Schema({
   businesses: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Business",
-    },
+      ref: 'business'
+    }
   ],
 });
 

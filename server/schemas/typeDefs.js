@@ -3,6 +3,7 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
     
 type Business{
+    _id: ID
     name: String!
     address: String!
     description: String!
@@ -37,6 +38,7 @@ type Business{
         businesses: [Business]
         myBusiness: User
         tags: [Tag]
+        tag (name: String!): Tag
     }
 
     type Mutation{
@@ -56,10 +58,7 @@ type Business{
             image: String,
             ) : Business
     
-
-
     }
-
 `
 
 module.exports = typeDefs;

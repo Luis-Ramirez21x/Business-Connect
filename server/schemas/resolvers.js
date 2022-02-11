@@ -8,27 +8,35 @@ const { User, Business, Tag } = require('../models');
 
 const resolvers = {
     Query: {
+        //user querys
         users: async () =>{
             return User.find().populate('myBusiness');
         },
-
         user: async (parent, args )=>{
           return User.findById(args);
         },
+
+        //business querys
         businesses: async() =>{
             return Business.find();
         },
+        myBusiness: async (parent, args, context) => {
+          if (context.user) {
+            return User.findOne({ _id: context.user._id }/*.populate('myBusiness')*/);
+          }
+          throw new AuthenticationError('You need to be logged in!');
+        },
+
+        //tag querys
         tags: async() =>{
            return Tag.find();
         },
+        tag: async(parent, {name}) =>{
+          return Tag.findOne({name:name}).populate('businesses');
+        }
         
 
-        myBusiness: async (parent, args, context) => {
-            if (context.user) {
-              return User.findOne({ _id: context.user._id }/*.populate('myBusiness')*/);
-            }
-            throw new AuthenticationError('You need to be logged in!');
-          },
+
     },
 
     Mutation: {

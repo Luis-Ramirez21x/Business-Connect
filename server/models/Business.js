@@ -12,12 +12,14 @@ const businessSchema = new Schema({
     unique: true,
     required: true, // Two businesses can't have the same name
     trim: true,
+    sparse: true
   },
   address: {
     type: String,
     unique: true, // Two businesses can't be at the same address
     required: true,
     trim: true,
+    sparse: true
   },
   description: {
     type: String,
