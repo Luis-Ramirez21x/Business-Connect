@@ -4,6 +4,9 @@ const { User, Business, Tag} = require('../models');
 db.once('open', async ()=>{
 
     await Business.deleteMany();
+    await User.deleteMany();
+    await Tag.deleteMany();
+
     const companies = await Business.insertMany([
         {
             name: "Green Landscaping",
@@ -43,54 +46,55 @@ db.once('open', async ()=>{
     ])
     console.log('companies seeded');
 
-    await User.deleteMany();
+    
 
     const users = await User.insertMany([
         {
-        username: "garret",
-        email: "garret@garret.com",
-        password: "password123",
+            username: "garret",
+            email: "garret@garret.com",
+            password: "password123",
+            myBusiness: companies[3]._id
         },
         {
             username: "aaron",
             email: "aaron@aaron.com",
             password: "password123",
-            myBusiness: companies[0]
+            myBusiness: companies[0]._id
         },
         {
             username: "tina",
             email: "tina@tina.com",
             password: "password123",
-            myBusiness: companies[1]
+            myBusiness: companies[1]._id
         },
         {
             username: "luis",
             email: "luis@luis.com",
             password: "password123",
-            myBusiness: companies[2]
+            myBusiness: companies[2]._id
         },
     ])
     console.log('users seeded');
 
 
-    await Tag.deleteMany();
+    
 
     const tags = await Tag.insertMany([
         { 
             name: 'Food',
-            businesses: [companies[3]]
+            businesses: [companies[3]]._id
         },
         { 
             name: 'Mechanic',
-            businesses: [companies[4]]
+            businesses: [companies[4]]._id
         },
         { 
             name: 'Landscaping' ,
-            businesses: [companies[0], companies[2]]
+            businesses: [companies[0]._id, companies[2]._id]
         },
         { 
             name: 'Construction',
-            businesses: [companies[1]]
+            businesses: [companies[1]._id]
         }
     ]);
 

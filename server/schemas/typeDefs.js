@@ -58,10 +58,7 @@ type Business{
             image: String,
             ) : Business
     
-
-
     }
-
 `
 
 module.exports = typeDefs;
