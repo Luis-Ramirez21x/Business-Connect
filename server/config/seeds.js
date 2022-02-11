@@ -5,6 +5,7 @@ db.once("open", async () => {
   await Tag.deleteMany({});
   await User.deleteMany({});
   await Business.deleteMany({});
+  await Review.deleteMany({});
 
   const tags = await Tag.insertMany([
     { name: "Food" },
