@@ -38,6 +38,7 @@ type Business{
         businesses: [Business]
         myBusiness: User
         tags: [Tag]
+        tag (name: String!): Tag
     }
 
     type Mutation{

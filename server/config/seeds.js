@@ -23,7 +23,21 @@ db.once('open', async ()=>{
             name: "Luis's Landscaping",
             address: "90 Peachtree Rd",
             description: "asfasdfasdfas",
-            price: 1000,
+            price: 100,
+            image: "image url here",
+        },
+        {
+            name: "Car Fix Felix",
+            address: "967 Dunn Pkwy",
+            description: "jfmfghfghs",
+            price: 100,
+            image: "image url here",
+        },
+        {
+            name: "Italian Express Catering",
+            address: "958 Plaza Ct ",
+            description: "nhn;osfgnngsf",
+            price: 20,
             image: "image url here",
         },
     ])
@@ -62,15 +76,21 @@ db.once('open', async ()=>{
     await Tag.deleteMany();
 
     const tags = await Tag.insertMany([
-        { name: 'Food'},
-        { name: 'Mechanic'},
+        { 
+            name: 'Food',
+            businesses: [companies[3]]
+        },
+        { 
+            name: 'Mechanic',
+            businesses: [companies[4]]
+        },
         { 
             name: 'Landscaping' ,
-            businesses: [companies[0]._id, companies[2]._id]
+            businesses: [companies[0], companies[2]]
         },
         { 
             name: 'Construction',
-            businesses: companies[1]._id
+            businesses: [companies[1]]
         }
     ]);
 

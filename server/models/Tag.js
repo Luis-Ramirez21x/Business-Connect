@@ -1,5 +1,5 @@
 const { Schema, model } = require("mongoose");
-const { Business} = require('../models');
+const Business = require('./Business');
 
 const tagSchema = new Schema({
   name: {
@@ -7,12 +7,7 @@ const tagSchema = new Schema({
     required: true,
     trim: true,
   },
-  businesses: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Business",
-    },
-  ],
+  businesses: [Business.schema],
 });
 
 // Initialize our Tag model
