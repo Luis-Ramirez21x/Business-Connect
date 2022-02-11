@@ -10,11 +10,9 @@ import { useQuery, useLazyQuery } from "@apollo/client";
 const Home = () => {
   const [searchInput, setSearchInput] = useState('');
   const [searchContent, setSearchContent] = useState([])
-
   const [tagInput, setTagInput] = useState('Select A Category');
 
   const {loading:tag_loading, data:tag_data} = useQuery(ALL_TAGS);
-
   const [loadBusinesses, { error }] = useLazyQuery(
     BUSINESSES_BY_TAG,
     { variables: { name: tagInput } }
@@ -27,8 +25,8 @@ const Home = () => {
         setSearchContent(business_data.tag.businesses)
       }
     }
-    catch {
-      console.log(Error)
+    catch (err) {
+      console.error(err);
     }
   }
 
@@ -54,6 +52,7 @@ const Home = () => {
           </Form.Row>
         </Form>
       </Container>
+
       <Container>
       <h2>Or Choose A Category Here</h2>
         <DropdownButton size='lg' id="dropdown-basic-button" title={tagInput} value={tagInput} onSelect={(eventKey, event) => setTagInput(eventKey)}>
