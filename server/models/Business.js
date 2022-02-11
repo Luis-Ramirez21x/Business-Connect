@@ -49,6 +49,12 @@ const businessSchema = new Schema({
       ref: "Tag",
     },
   ],
+  reviews: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Review",
+    },
+  ],
 });
 
 // Initialize our Business model
