@@ -21,20 +21,15 @@ const reviewSchema = new Schema(
         return `${dateString} @ ${timeString}`;
       },
     },
-    user: {
+    createdByUser: {
       type: Schema.Types.ObjectId,
       ref: "User",
-    },
-    business: {
-      type: Schema.Types.ObjectId,
-      ref: "Business",
     },
   },
   {
     toJSON: {
       getters: true,
     },
-    id: false,
   }
 );
 
