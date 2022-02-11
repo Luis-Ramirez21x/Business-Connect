@@ -13,8 +13,12 @@ query tag( $name: String!){
     tag(name: $name){
         name
         businesses{
+            _id
             name
-  
+            address
+            description
+            price
+            image
         }
     }
 }

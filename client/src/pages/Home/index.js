@@ -22,7 +22,7 @@ const Home = () => {
 
   const callLoadBusiness = async () => {
     try {
-      const { loading:business_loading, data:business_data } = await loadBusinesses()
+      const { data:business_data } = await loadBusinesses()
       if (business_data) {
         setSearchContent(business_data.tag.businesses)
       }
