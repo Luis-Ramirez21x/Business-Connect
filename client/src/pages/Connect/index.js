@@ -8,9 +8,9 @@ const Connect = () => {
   const [toggle, flipToggle] = useState(true);
   const {loading, data} = useQuery(MY_FOLLOWS);
 
- 
+ console.log(data);
 
-  //const myFollows = data.user?.following || {};
+  
 
  
 
@@ -53,7 +53,7 @@ const Connect = () => {
             </div>) 
             : <>
                 {loading? (<div>Loading</div>)
-                :data.user.following.map((businessName) =>{
+                :data.user.following.name.map((businessName) =>{
                   return(
                   <li>{businessName}</li>
                   )

@@ -110,9 +110,15 @@ db.once("open", async () => {
       email: "luis@luis.com",
       password: "password123",
       myBusiness: [companies[2]._id],
-      following: [companies[0]._id,companies[1]._id,companies[2]._id]
     },
   ]);
+
+  await User.create({
+    username: "test",
+    email: "test@test.com",
+    password: "password123",
+    following: [companies[0]._id,companies[1]._id,companies[2]._id]
+  }),
   console.log("users seeded");
 
   const tags = await Tag.insertMany([
