@@ -1,7 +1,8 @@
-import React from "react";
-import { Container, Card, CardImg } from "react-bootstrap";
+import React, { useState } from "react";
+import { Container, Card, CardImg, Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
+import Review from "../../components/Review";
 
 
 import { SINGLE_BUSINESS } from "../../utils/queries";
@@ -9,6 +10,11 @@ import { SINGLE_BUSINESS } from "../../utils/queries";
 const SingleBusiness = () => {
   const { id } = useParams()
   const {loading, data} = useQuery(SINGLE_BUSINESS, { variables: {_id: id} })
+  const [showReview, toggleShowReview] = useState(false)
+
+  function toggleReview(val) {
+    toggleShowReview(val)
+  };
   
   return (
     <>
@@ -26,6 +32,14 @@ const SingleBusiness = () => {
               <Card.Text>Owner:</Card.Text>
             </Card.Body>
           </Card>
+
+          <Container>
+            {showReview 
+            ? 
+            (<Review toggleReview={toggleReview}></Review>) 
+            :
+            (<Button onClick={() => toggleReview(true)}>Leave Review</Button>)}
+          </Container>
 
           <Container>
             <h2>Reviews</h2>
