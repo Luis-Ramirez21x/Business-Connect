@@ -4,7 +4,7 @@ import { Container, Col ,Card, CardImg, Button, Form } from "react-bootstrap";
 import { POST_REVIEW } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 
-const Review = ({ businessID, toggleReview }) => {
+const ReviewForm = ({ businessID, toggleReview }) => {
   const [reviewFormData, setReviewFormData] = useState({ title: '', description: '' });
   const [validated] = useState(false);
   const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -87,4 +87,4 @@ const Review = ({ businessID, toggleReview }) => {
   )
 };
 
-export default Review;
+export default ReviewForm;

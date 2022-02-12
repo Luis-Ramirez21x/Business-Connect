@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Container, Card, CardImg, Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import Review from "../../components/Review";
+import ReviewForm from "../../components/ReviewForm";
 
 
 import { SINGLE_BUSINESS, GET_REVIEWS } from "../../utils/queries";
@@ -37,7 +37,7 @@ const SingleBusiness = () => {
           <Container>
             {showReview 
             ? 
-            (<Review businessID={data.business._id} toggleReview={toggleReview}></Review>) 
+            (<ReviewForm businessID={data.business._id} toggleReview={toggleReview}></ReviewForm>) 
             :
             (<Button onClick={() => toggleReview(true)}>Leave Review</Button>)}
           </Container>
