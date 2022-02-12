@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Container, Col, Form, Button, Dropdown, DropdownButton } from 'react-bootstrap';
 import DropdownItem from 'react-bootstrap/esm/DropdownItem';
+import "./index.css"
 
 import { ALL_TAGS, BUSINESSES_BY_TAG } from '../../utils/queries'
 import { BusinessList } from '../../components/BusinessList'

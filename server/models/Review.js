@@ -21,11 +21,15 @@ const reviewSchema = new Schema(
         return `${dateString} @ ${timeString}`;
       },
     },
-
-    user: {
+    userName:{
+      type:String,
+      required: true,
+    },
+/*
+    author: {
       type: Schema.Types.ObjectId,
       ref: "User",
-    },
+    },*/
     business: {
       type: Schema.Types.ObjectId,
       ref: "Business",

@@ -40,10 +40,12 @@ const businessSchema = new Schema({
     //validate: [validateURL, "Please input a valid URL"],
   },
 
-  user: {
+  followers : [
+    {
     type: Schema.Types.ObjectId,
     ref: "User",
-  },
+    },
+  ],
   /*tags: [
     {
       type: Schema.Types.ObjectId,

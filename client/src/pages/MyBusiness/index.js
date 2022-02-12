@@ -10,15 +10,19 @@ import "./index.css"
 
 function MyBusiness() {
   //can be refactored to be userFormData
-  const [nameInput, setNameInput] = useState('');
-  const [addressInput, setAddressInput] = useState('');
-  const [descriptionInput, setDescriptionInput] = useState('');
-  const [priceInput, setPriceInput] = useState('');
-  const [imageInput, setImageInput] = useState('');
-  const [tagInput, setTagInput] = useState('Tag Your Business');
+  const [businessFormData, setBusinessFormData] = useState(
+    { name: '', address: '', description: '', 
+    price: '', image: '' }
+  )
+  const [tagInput, setTagInput] = useState('Tag Your Business Here')
 
   const {loading, data} = useQuery(ALL_TAGS);
   const [createBusiness, { error }] = useMutation(CREATE_BUSINESS);
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setBusinessFormData({ ...businessFormData, [name]: value });
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -32,12 +36,8 @@ function MyBusiness() {
      }
 
     const newBusiness = {
-      name: nameInput,
-      address: addressInput,
-      description: descriptionInput,
-      price: priceInput,
-      image: imageInput,
-      tagName: tagInput
+      ...businessFormData,
+      tagInput: tagInput
     }
     
     try {
@@ -56,13 +56,14 @@ function MyBusiness() {
     }
 
     //clearing the form
-    setNameInput('');
-    setAddressInput('');
-    setDescriptionInput('');
-    setPriceInput('');
-    setImageInput('');
-    setTagInput('Tag Your Business');
-
+    setBusinessFormData({
+      name: '',
+      address: '',
+      description: '',
+      price: '',
+      image: ''
+    });
+    setTagInput('Tag Your Business Here')
   };
 
   return (
@@ -70,86 +71,86 @@ function MyBusiness() {
     <h2 className='business-info-header'>Enter Your Business's Info Here</h2>
       <Container className='bi-background'>
         <div className='business-info-main'>
-            <Form className='form-input-container' onSubmit={handleSubmit}>
-              <Form.Row>
-                <Col xs={12} md={12}>
-                  <Form.Control
-                      className='form-control-section'
-                      name='businessName'
-                      value={nameInput}
-                      onChange={(e) => setNameInput(e.target.value)}
-                      type='text'
-                      size='md'
-                      placeholder='Business name'
-                  />
-                </Col>
-              </Form.Row>
-              <Form.Row>
-                <Col xs={12} md={12}>
-                  <Form.Control
-                      className='form-control-section'
-                      name='businessAddress'
-                      value={addressInput}
-                      onChange={(e) => setAddressInput(e.target.value)}
-                      type='text'
-                      size='md'
-                      placeholder='Business address'
-                  />
-                </Col>
-              </Form.Row>
-              <Form.Row>
-                <Col xs={12} md={12}>
-                  <Form.Control
-                      className='form-control-section'
-                      name='businessDescription'
-                      value={descriptionInput}
-                      onChange={(e) => setDescriptionInput(e.target.value)}
-                      type='text'
-                      size='md'
-                      placeholder='Business description'
-                  />
-                </Col>
-              </Form.Row>
-              <Form.Row>
-                <Col xs={12} md={12}>
-                  <Form.Control
-                      className='form-control-section'
-                      name='businessPrice'
-                      value={priceInput}
-                      onChange={(e) => setPriceInput(e.target.value)}
-                      type='text'
-                      size='md'
-                      placeholder='Business Price (per hour/ per job)'
-                  />
-                </Col>
-              </Form.Row>
-              <Form.Row>
-                <Col xs={12} md={12}>
-                  <Form.Control
-                      className='form-control-section'
-                      name='businessImage'
-                      value={imageInput}
-                      onChange={(e) => setImageInput(e.target.value)}
-                      type='text'
-                      size='md'
-                      placeholder='Business image url'
-                  />
-                </Col>
-              </Form.Row>
-              <Form.Row>
-                <Button className='bi-submit-btn' type='submit' variant='success' size='md'>Submit</Button>
-              </Form.Row>
-            </Form>
-            <div>
-              <DropdownButton size='lg' id="dropdown-basic-button" title={tagInput} value={tagInput} onSelect={(eventKey, event) => setTagInput(eventKey)}>
-                {loading ? (<DropdownItem>loading...</DropdownItem>) : 
-                  data.tags.map((tag)=> {
-                    return (
-                      <DropdownItem eventKey={tag.name} value>{tag.name}</DropdownItem>
-                    )
-                  })}
-              </DropdownButton>
-            </div>
+          <Form className='form-input-container' onSubmit={handleSubmit}>
+            <Form.Row>
+              <Col xs={12} md={12}>
+                <Form.Control
+                    className='form-control-section'
+                    name='name'
+                    value={businessFormData.name}
+                    onChange={handleInputChange}
+                    type='text'
+                    size='md'
+                    placeholder='Business name'
+                />
+              </Col>
+            </Form.Row>
+            <Form.Row>
+              <Col xs={12} md={12}>
+                <Form.Control
+                    className='form-control-section'
+                    name='address'
+                    value={businessFormData.address}
+                    onChange={handleInputChange}
+                    type='text'
+                    size='md'
+                    placeholder='Business address'
+                />
+              </Col>
+            </Form.Row>
+            <Form.Row>
+              <Col xs={12} md={12}>
+                <Form.Control
+                    className='form-control-section'
+                    name='description'
+                    value={businessFormData.description}
+                    onChange={handleInputChange}
+                    type='text'
+                    size='md'
+                    placeholder='Business description'
+                />
+              </Col>
+            </Form.Row>
+            <Form.Row>
+              <Col xs={12} md={12}>
+                <Form.Control
+                    className='form-control-section'
+                    name='price'
+                    value={businessFormData.price}
+                    onChange={handleInputChange}
+                    type='text'
+                    size='md'
+                    placeholder='Business Price (per hour/ per job)'
+                />
+              </Col>
+            </Form.Row>
+            <Form.Row>
+              <Col xs={12} md={12}>
+                <Form.Control
+                    className='form-control-section'
+                    name='image'
+                    value={businessFormData.image}
+                    onChange={handleInputChange}
+                    type='text'
+                    size='md'
+                    placeholder='Business image url'
+                />
+              </Col>
+            </Form.Row>
+            <Form.Row>
+              <Button className='bi-submit-btn' type='submit' variant='success' size='md'>Submit</Button>
+            </Form.Row>
+          </Form>
+        <div>
+          <DropdownButton size='lg' id="dropdown-basic-button" title={tagInput} value={tagInput} onSelect={(eventKey, event) => setTagInput(eventKey)}>
+            {loading ? (<DropdownItem>loading...</DropdownItem>) : 
+              data.tags.map((tag)=> {
+                return (
+                  <DropdownItem eventKey={tag.name} value>{tag.name}</DropdownItem>
+                )
+              })}
+          </DropdownButton>
+        </div>
         </div>
       </Container>
     </>
