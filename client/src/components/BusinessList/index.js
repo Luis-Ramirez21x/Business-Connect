@@ -11,6 +11,7 @@ const BusinessList = ({business}) => {
           <Card.Link as={Link} to={`/businesses/${business._id}`}>{business.name}</Card.Link>
         </Card.Body>
       </Card>
+      
     </>
   )
 };

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { Form, Button, Alert } from 'react-bootstrap';
-
+import './index.css';
 
 import { LOGIN_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
@@ -52,7 +52,7 @@ const LoginForm = () => {
 
   return (
     <>
-      <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+      <Form className='login-signup-main' noValidate validated={validated} onSubmit={handleFormSubmit}>
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
           Something went wrong with your login credentials!
         </Alert>

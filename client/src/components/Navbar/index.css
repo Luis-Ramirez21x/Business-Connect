@@ -1,6 +1,14 @@
+:root {
+  --primaryA: rgb(38, 38, 87);
+  --primaryB: rgb(67, 120, 206);
+  --secondaryA: rgb(177, 177, 180);
+  --secondaryB: rgb(24, 24, 42);
+}
+
+
 .nav-main {
-    border: rgb(0, 255, 34) solid 2px;
-    color: burlywood;
+    /* border: rgb(0, 255, 34) solid 2px; */
+    background-color: var(--primaryA)
     
   }
   
@@ -10,12 +18,15 @@
     align-items: center;
     margin-left: 5px;
     /* padding: 7px; */
-    border: red solid 2px;
+    /* border: red solid 2px; */
   }
   .nav-logo {
-    height: 100px;
-    width: 100px;
-    background-color: rgb(240, 127, 255);
+    height: 75px;
+    width: 75px;
+    background-image: url('../../images/bc_logo2.png');
+    background-position:center;
+    background-size:5em;
+    background-repeat: no-repeat;
     border-radius: 50%;
     padding-right: 20px;
   }
@@ -24,6 +35,9 @@
 
     margin-left: 15px;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 2em;
+    font-size: 1.5em;
   }
   
+  .nav-menu {
+    margin-right: 50px;
+  }
