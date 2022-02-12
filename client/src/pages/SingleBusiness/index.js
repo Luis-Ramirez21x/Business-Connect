@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardImg } from "react-bootstrap";
+import { Container, Card, CardImg } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 
@@ -22,8 +22,17 @@ const SingleBusiness = () => {
               <Card.Text>{data.singleBusiness.name}</Card.Text>
               <Card.Text>{data.singleBusiness.description}</Card.Text>
               <Card.Text>{data.singleBusiness._id}</Card.Text>
+              <Card.Text>Rating:</Card.Text>
             </Card.Body>
           </Card>
+
+          <Container>
+            <h2>Reviews</h2>
+            {/* {REVIEWS WILL GO HERE} */}
+            <li>review 1</li>
+            <li>review 2</li>
+            <li>review 3</li>
+          </Container>
         </>
       )}
     </>
