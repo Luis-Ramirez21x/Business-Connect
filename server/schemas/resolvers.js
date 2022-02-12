@@ -86,6 +86,22 @@ const resolvers = {
             }
             throw new AuthenticationError('You need to be logged in!');
           },
+          followBusiness: async (parent, {businessId}, context) =>{
+            if(context.user){
+              await Business.findOneAndUpdate(
+                {_id: businessId},
+                { $addToSet: { followers: context.user._id }},
+                { new: true}
+               );
+
+               return await User.findOneAndUpdate(
+                {_id: context.user._id},
+                { $addToSet: { following: businessId }},
+                { new: true}
+               );
+            }
+            throw new AuthenticationError('You need to be logged in!');
+          },
          /* deleteBusiness: async (parent,args, context) =>{
             if(context.user){
               return await Business.deleteOne({_id:args._id})

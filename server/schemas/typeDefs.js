@@ -59,7 +59,7 @@ type Business{
             image: String,
             tagName: String
             ) : Business
-    
+    followBusiness(businessId: ID) : User
     }
 `
 
