@@ -5,7 +5,8 @@ import { useQuery } from "@apollo/client";
 import Review from "../../components/Review";
 
 
-import { SINGLE_BUSINESS } from "../../utils/queries";
+import { SINGLE_BUSINESS, GET_REVIEWS } from "../../utils/queries";
+
 
 const SingleBusiness = () => {
   const { id } = useParams()
@@ -15,7 +16,7 @@ const SingleBusiness = () => {
   function toggleReview(val) {
     toggleShowReview(val)
   };
-  
+ console.log(data);
   return (
     <>
       {loading? (

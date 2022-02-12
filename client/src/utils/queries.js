@@ -24,6 +24,8 @@ query tag( $name: String!){
 }
 `;
 
+
+
 export const SINGLE_BUSINESS = gql`
 query business($_id: ID!) {
     business(businessId: $_id) {
@@ -33,6 +35,10 @@ query business($_id: ID!) {
             description
             price
             image
+            reviews{
+                title
+                description
+            }
     }
 }
 `;

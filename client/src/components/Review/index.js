@@ -18,7 +18,7 @@ const Review = ({ businessID, toggleReview }) => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(reviewFormData)
+    console.log(reviewFormData.title);
 
     if (!token) {
         return false;
