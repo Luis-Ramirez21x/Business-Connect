@@ -48,3 +48,15 @@ export const SINGLE_BUSINESS = gql`
     }
   }
 `;
+
+export const MY_FOLLOWS = gql`
+  query user {
+    user {
+      username
+      email
+      following {
+        name
+      }
+    }
+  }
+`;

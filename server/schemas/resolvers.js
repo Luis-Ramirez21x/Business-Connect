@@ -11,8 +11,11 @@ const resolvers = {
     users: async () => {
       return User.find().populate("myBusiness");
     },
-    user: async (parent, args) => {
-      return User.findById(args);
+    user: async (parent, args, context) => {
+      if (context.user) {
+        return User.findById(context.user._id).populate("following");
+      }
+      throw new AuthenticationError("You need to be logged in!");
     },
 
     //business querys
