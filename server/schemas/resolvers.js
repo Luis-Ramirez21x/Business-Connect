@@ -105,9 +105,11 @@ const resolvers = {
             throw new AuthenticationError('You need to be logged in!');
           },
           leaveReview: async (parent, {businessId, title, description, createdAt}, context) =>{
+
             // if(context.user){
               // console.log(context.user.username)
                 const newReview = await Review.create({title, description, createdAt, userName:"GarrettLB" })
+
                 return await Business.findOneAndUpdate(
                   {_id: businessId},
                   { $addToSet: { reviews: newReview }},
@@ -116,6 +118,7 @@ const resolvers = {
             // }
            throw new AuthenticationError('You need to be logged in!');
           },
+        
 
           //business mutations
           createBusiness: async (parent,{ name, address, description, image, price, tagName }, context) =>{
