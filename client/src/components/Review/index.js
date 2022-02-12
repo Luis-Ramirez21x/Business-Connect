@@ -5,7 +5,7 @@ const Review = ({review}) => {
 
   return(
     <>
-      <Card>
+      <Card className="review-list">
         <Card.Body>
           <Card.Title>{review.title}</Card.Title>
           <Card.Text>{review.description}</Card.Text>
