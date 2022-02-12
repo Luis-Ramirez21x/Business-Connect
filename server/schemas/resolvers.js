@@ -24,7 +24,7 @@ const resolvers = {
             return Business.find().populate('reviews');
         },
         business: async(parent, {businessId}, context) =>{
-            return Business.findById({_id: businessId});
+            return Business.findById({_id: businessId}).populate('reviews');
         },
         myBusiness: async (parent, args, context) => {
           if (context.user) {
@@ -106,16 +106,14 @@ const resolvers = {
           },
           leaveReview: async (parent, {businessId, title, description, createdAt}, context) =>{
 
-            // if(context.user){
-              // console.log(context.user.username)
-                const newReview = await Review.create({title, description, createdAt, userName:"GarrettLB" })
-
+             if(context.user){
+                const newReview = await Review.create({title, description, createdAt, userName:context.user.username})
                 return await Business.findOneAndUpdate(
                   {_id: businessId},
-                  { $addToSet: { reviews: newReview }},
+                  { $addToSet: { reviews: newReview._id }},
                   { new: true}
-                 );
-            // }
+                 ).populate('reviews');
+             }
            throw new AuthenticationError('You need to be logged in!');
           },
         
