@@ -23,6 +23,11 @@ const resolvers = {
         business: async(parent, {businessId}, context) =>{
             return Business.findById({_id: businessId});
         },
+
+        singleBusiness: async(parent, { _id }) => {
+          return Business.findOne({ _id: _id });
+        },
+
         myBusiness: async (parent, args, context) => {
           if (context.user) {
             return User.findOne({ _id: context.user._id }.populate('myBusiness'));

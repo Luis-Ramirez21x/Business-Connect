@@ -16,13 +16,13 @@ const Navv = () => {
 
   return (
     <>
-      <Navbar className='nav-main' bg='dark' variant='dark' expand='lg'>
+      <Navbar className='nav-main' bg='' variant='dark' expand='lg'>
         <Container fluid>
           <Navbar.Brand className='nav-brand-main' as={Link} to='/'>
           <div className='nav-logo'></div>
             <h3 className='nav-brand-title'> Business Connect</h3>
           </Navbar.Brand>
-            <Nav className='ml-auto'>
+            <Nav className='ml-auto nav-menu'>
               <Nav.Link as={Link} to='/'>
                 Home
               </Nav.Link>

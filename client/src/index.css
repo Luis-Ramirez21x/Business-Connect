@@ -1,5 +1,15 @@
+:root {
+  --primaryA: rgb(38, 38, 87);
+  --primaryB: #dae2f0;
+  --secondaryA: rgb(177, 177, 180);
+  --secondaryB: rgb(24, 24, 42);
+  --secondaryC: white;
+}
+
+
 body {
-  font-family: 'Rubik', sans-serif;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  background-color: rgba(221, 225, 238, 0.397);
 }
 
 h1,
@@ -8,13 +18,14 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Rubik Mono One', sans-serif;
-}
+font-family: Georgia, 'Times New Roman', Times, serif;}
 
 .small {
   font-weight: 300;
   font-style: italic;
 }
+
+
 
 /* .nav-main {
   border: red solid 2px;
