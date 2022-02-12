@@ -47,9 +47,6 @@ const LoginForm = () => {
      });
    };
 
-
-   
-
   return (
     <>
       <Form className='login-signup-main' noValidate validated={validated} onSubmit={handleFormSubmit}>
