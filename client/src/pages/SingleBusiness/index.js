@@ -16,7 +16,7 @@ const SingleBusiness = () => {
   function toggleReview(val) {
     toggleShowReview(val)
   };
-  console.log(data);
+ console.log(data);
   return (
     <>
       {loading? (
