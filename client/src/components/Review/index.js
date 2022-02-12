@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { Container, Col ,Card, CardImg, Button, Form } from "react-bootstrap";
 import { POST_REVIEW } from "../../utils/mutations";
+import Auth from "../../utils/auth";
 
 const Review = ({ businessID, toggleReview }) => {
   const [reviewFormData, setReviewFormData] = useState({ title: '', description: '' });
   const [validated] = useState(false);
+  const token = Auth.loggedIn() ? Auth.getToken() : null;
 
   const [postReview, { error }] = useMutation(POST_REVIEW)
 
@@ -16,6 +18,11 @@ const Review = ({ businessID, toggleReview }) => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+
+    if (!token) {
+        return false;
+        alert('You must be logged in to leave a review!')
+    }
 
     // check if form has everything (as per react-bootstrap docs)
     const form = event.currentTarget;
