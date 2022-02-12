@@ -1,6 +1,15 @@
+:root {
+  --primaryA: rgb(38, 38, 87);
+  --primaryB: #4378ce;
+  --secondaryA: rgb(177, 177, 180);
+  --secondaryB: rgb(24, 24, 42);
+  --secondaryC: white;
+}
+
+
 body {
   font-family:Georgia, 'Times New Roman', Times, serif;
-  background-color: white;
+  background-color: rgba(221, 225, 238, 0.397);
 }
 
 h1,

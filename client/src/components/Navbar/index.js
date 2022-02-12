@@ -22,7 +22,7 @@ const Navv = () => {
           <div className='nav-logo'></div>
             <h3 className='nav-brand-title'> Business Connect</h3>
           </Navbar.Brand>
-            <Nav className='ml-auto'>
+            <Nav className='ml-auto nav-menu'>
               <Nav.Link as={Link} to='/'>
                 Home
               </Nav.Link>

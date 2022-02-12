@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container, Col, Form, Button } from 'react-bootstrap';
 import "./index.css"
-import { BusinessList } from '../../components/BusinessList'
+import { BusinessList } from '../../components/BusinessList';
 
 const Home = () => {
   const [searchInput, setSearchInput] = useState('');
@@ -22,6 +22,13 @@ const Home = () => {
   return (
     <>
       <div class="parallax"></div>
+
+      <div className="top-banner-container">
+        <div className="top-info-text">
+          <h1 id="top-banner-text">Find the services you need in an instant.</h1>
+            <p>Get all the help you need with a simple search. We can connect you with a wide range of services with upfront pricing and instant booking for daycare, cleaning and more.</p>
+        </div>
+      </div>
 
       <Container className="search-container-main">
         <Form className='form-main'>
@@ -67,8 +74,9 @@ const Home = () => {
         )}
       </Container>
 
-      <div className="banner-container">
-        <div className="info-text">
+      <Container className="bot-banner-container">
+        <div id="bot-banner-img"></div>
+        <div className="bot-info-text">
           <h1>Banner Title/ placeholder</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
               Donec mauris erat, dignissim nec bibendum vitae, tincidunt a enim. 
@@ -79,7 +87,7 @@ const Home = () => {
               Duis quis aliquet felis, eu aliquet est. Vestibulum varius vehicula congue. 
               Proin tristique mattis lorem at rhoncus.</p>
         </div>
-      </div>
+      </Container>
 
       <div class="container-fluid footer-content">
       
