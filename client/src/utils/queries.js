@@ -1,56 +1,67 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const ALL_TAGS = gql`
-    query tags{
-        tags{
-            name
-        }
+  query tags {
+    tags {
+      name
     }
+  }
 `;
 
 export const BUSINESSES_BY_TAG = gql`
-query tag( $name: String!){
-    tag(name: $name){
+  query tag($name: String!) {
+    tag(name: $name) {
+      name
+      businesses {
+        _id
         name
-        businesses{
-            _id
-            name
-            address
-            description
-            price
-            image
-        }
+        address
+        description
+        price
+        image
+      }
     }
-}
+  }
 `;
 
-
+export const BUSINESS_SEARCH = gql`
+  query businessSearch($query: String!) {
+    businessSearch(query: $query) {
+      _id
+      name
+      address
+      description
+      price
+      image
+    }
+  }
+`;
 
 export const SINGLE_BUSINESS = gql`
-query business($_id: ID!) {
+  query business($_id: ID!) {
     business(businessId: $_id) {
-            _id
-            name
-            address
-            description
-            price
-            image
-            reviews{
-                title
-                description
-            }
+      _id
+      name
+      address
+      description
+      price
+      image
+      reviews {
+        title
+        description
+      }
     }
-}
+  }
 `;
 
 export const MY_FOLLOWS = gql`
-query user{
-    user{
-        username
-        email
-        following{
-            name
-        }
+  query user {
+    user {
+      username
+      email
+      following {
+        name
+      }
     }
-}
+  }
 `;

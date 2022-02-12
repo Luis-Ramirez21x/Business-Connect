@@ -5,9 +5,8 @@ import { useQuery } from "@apollo/client";
 import ReviewForm from "../../components/ReviewForm";
 import Review from "../../components/Review"
 
-
+import "./index.css"
 import { SINGLE_BUSINESS } from "../../utils/queries";
-
 
 const SingleBusiness = () => {
   const { id } = useParams()
@@ -25,8 +24,8 @@ const SingleBusiness = () => {
         <h2>Loading...</h2>
       ) : (
         <>
-          <Card key={data.business._id}>
-            <CardImg width="100%" src={data.business.image} alt="Business Image" />
+          <Card className="business-card-main" key={data.business._id}>
+            <CardImg className="card-img" width="100%" src={data.business.image} alt="Business Image" />
             <Card.Body>
               <Card.Text>{data.business.name}</Card.Text>
               <Card.Text>{data.business.description}</Card.Text>
@@ -36,7 +35,7 @@ const SingleBusiness = () => {
             </Card.Body>
           </Card>
 
-          <Container>
+          <Container className="review-section">
             {showReview 
             ? 
             (<ReviewForm businessID={data.business._id} toggleReview={toggleReview}></ReviewForm>) 
@@ -45,11 +44,15 @@ const SingleBusiness = () => {
           </Container>
 
           <Container>
-            {data.business.reviews.map((review) => {
-              return (
-                <Review review={review}></Review>
-              )
-            })}
+            <h2 className="review-heading">User Reviews</h2>
+            <ul className="list-container">
+              {data.business.reviews.map((review) => {
+                return (
+                  <Review review={review}></Review>
+                )
+              })}
+            </ul>
+            // className="review-list"
           </Container>
         </>
       )}
