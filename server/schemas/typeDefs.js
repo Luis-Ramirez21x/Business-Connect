@@ -72,9 +72,6 @@ const typeDefs = gql`
             image: String,
             tagName: String
             ) : Business
-    
-
-
     }
 `
 

@@ -25,8 +25,8 @@ query tag( $name: String!){
 `;
 
 export const SINGLE_BUSINESS = gql`
-query singleBusiness($_id: ID!) {
-    singleBusiness(_id: $_id) {
+query business($_id: ID!) {
+    business(businessId: $_id) {
             _id
             name
             address

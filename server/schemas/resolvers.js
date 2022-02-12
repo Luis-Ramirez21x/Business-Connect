@@ -26,11 +26,6 @@ const resolvers = {
         business: async(parent, {businessId}, context) =>{
             return Business.findById({_id: businessId});
         },
-/*
-        singleBusiness: async(parent, { _id }) => {
-          return Business.findOne({ _id: _id });
-        },*/
-
         myBusiness: async (parent, args, context) => {
           if (context.user) {
             return User.findOne({ _id: context.user._id }.populate('myBusiness'));
@@ -110,14 +105,15 @@ const resolvers = {
             throw new AuthenticationError('You need to be logged in!');
           },
           leaveReview: async (parent, {businessId, title, description, createdAt}, context) =>{
-            if(context.user){
-                const newReview = await Review.create({title, description, createdAt, username:context.user.username })
+            // if(context.user){
+              // console.log(context.user.username)
+                const newReview = await Review.create({title, description, createdAt, userName:"GarrettLB" })
                 return await Business.findOneAndUpdate(
                   {_id: businessId},
                   { $addToSet: { reviews: newReview }},
                   { new: true}
                  );
-            }
+            // }
            throw new AuthenticationError('You need to be logged in!');
           },
 
