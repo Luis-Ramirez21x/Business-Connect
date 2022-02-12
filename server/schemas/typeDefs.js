@@ -10,7 +10,7 @@ type Business{
     price: Int
     quotes: String
     image: String
-    user: User
+    followers: [User]
     tags: [Tag]
 }
 
@@ -20,6 +20,7 @@ type Business{
         email: String!
         password: String!
         myBusiness: [Business]
+        following: [Business]
     }
 
     type Tag{
