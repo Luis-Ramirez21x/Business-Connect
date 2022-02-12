@@ -36,7 +36,7 @@ const SingleBusiness = () => {
           <Container>
             {showReview 
             ? 
-            (<Review toggleReview={toggleReview}></Review>) 
+            (<Review businessID={data.singleBusiness._id} toggleReview={toggleReview}></Review>) 
             :
             (<Button onClick={() => toggleReview(true)}>Leave Review</Button>)}
           </Container>

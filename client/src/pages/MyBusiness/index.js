@@ -10,6 +10,10 @@ import "./index.css"
 
 function MyBusiness() {
   //can be refactored to be userFormData
+  const [businessFormData, setBusinessFormData] = useState(
+    { name: '', address: '', description: '', 
+    price: '', image: '', tag: '', }
+  )
   const [nameInput, setNameInput] = useState('');
   const [addressInput, setAddressInput] = useState('');
   const [descriptionInput, setDescriptionInput] = useState('');

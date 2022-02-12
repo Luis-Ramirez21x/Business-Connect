@@ -1,9 +1,13 @@
 import React, { useState } from "react";
+import { useMutation } from "@apollo/client";
 import { Container, Col ,Card, CardImg, Button, Form } from "react-bootstrap";
+import { POST_REVIEW } from "../../utils/mutations";
 
-const Review = ({toggleReview}) => {
+const Review = ({ businessID, toggleReview }) => {
   const [reviewFormData, setReviewFormData] = useState({ title: '', description: '' });
   const [validated] = useState(false);
+
+  const [postReview, { error }] = useMutation(POST_REVIEW)
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -21,10 +25,14 @@ const Review = ({toggleReview}) => {
     }
 
     try {
-    //   const { data } = await loginUser({
-    //     variables: { ...userFormData }
-    //   })
-    toggleReview(false)
+      const { data } = await postReview({
+        variables: { businessId: businessID, 
+                     title: reviewFormData.title,
+                     description: reviewFormData.description 
+                    }
+      })
+      console.log(data)
+      toggleReview(false)
      
     } catch (err) {
       console.error(err);
