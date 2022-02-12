@@ -3,7 +3,7 @@ const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 
 //model imports 
-const { User, Business, Tag } = require('../models');
+const { User, Business, Tag, Review } = require('../models');
 
 
 const resolvers = {
@@ -12,22 +12,28 @@ const resolvers = {
         users: async () =>{
             return User.find().populate('myBusiness');
         },
-        user: async (parent, args )=>{
-          return User.findById(args);
+        user: async (parent, args, context )=>{
+          if (context.user){
+            return User.findById(context.user._id).populate('following');
+          }
+          throw new AuthenticationError('You need to be logged in!');
         },
 
         //business querys
         businesses: async() =>{
-            return Business.find();
+            return Business.find().populate('reviews');
         },
-
+        business: async(parent, {businessId}, context) =>{
+            return Business.findById({_id: businessId});
+        },
+/*
         singleBusiness: async(parent, { _id }) => {
           return Business.findOne({ _id: _id });
-        },
+        },*/
 
         myBusiness: async (parent, args, context) => {
           if (context.user) {
-            return User.findOne({ _id: context.user._id }/*.populate('myBusiness')*/);
+            return User.findOne({ _id: context.user._id }.populate('myBusiness'));
           }
           throw new AuthenticationError('You need to be logged in!');
         },
@@ -71,6 +77,49 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
           },
+          followBusiness: async (parent, {businessId}, context) =>{
+            if(context.user){
+              await Business.findOneAndUpdate(
+                {_id: businessId},
+                { $addToSet: { followers: context.user._id }},
+                { new: true}
+               );
+
+               return await User.findOneAndUpdate(
+                {_id: context.user._id},
+                { $addToSet: { following: businessId }},
+                { new: true}
+               );
+            }
+            throw new AuthenticationError('You need to be logged in!');
+          },
+          unfollowBusiness: async (parent, {businessId}, context) =>{
+            if(context.user){
+              await Business.findOneAndUpdate(
+                {_id: businessId},
+                { $pull: { followers: context.user._id }},
+                { new: true}
+               );
+
+               return await User.findOneAndUpdate(
+                {_id: context.user._id},
+                { $pull: { following: businessId }},
+                { new: true}
+               );
+            }
+            throw new AuthenticationError('You need to be logged in!');
+          },
+          leaveReview: async (parent, {businessId, title, description, createdAt}, context) =>{
+            if(context.user){
+                const newReview = await Review.create({title, description, createdAt, username:context.user.username })
+                return await Business.findOneAndUpdate(
+                  {_id: businessId},
+                  { $addToSet: { reviews: newReview }},
+                  { new: true}
+                 );
+            }
+           throw new AuthenticationError('You need to be logged in!');
+          },
 
           //business mutations
           createBusiness: async (parent,{ name, address, description, image, price, tagName }, context) =>{
@@ -91,6 +140,7 @@ const resolvers = {
             }
             throw new AuthenticationError('You need to be logged in!');
           },
+
          /* deleteBusiness: async (parent,args, context) =>{
             if(context.user){
               return await Business.deleteOne({_id:args._id})
