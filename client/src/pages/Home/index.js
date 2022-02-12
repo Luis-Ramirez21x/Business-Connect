@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container, Col, Form, Button } from 'react-bootstrap';
-import "./index.css"
 import { BusinessList } from '../../components/BusinessList';
+import "./index.css"
 
 const Home = () => {
   const [searchInput, setSearchInput] = useState('');

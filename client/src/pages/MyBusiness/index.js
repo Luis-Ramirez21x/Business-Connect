@@ -3,6 +3,7 @@ import { useQuery } from '@apollo/client';
 import { Jumbotron, Container, Col, Form, Button, DropdownButton, Dropdown } from 'react-bootstrap';
 import DropdownItem from 'react-bootstrap/esm/DropdownItem';
 import { ALL_TAGS} from '../../utils/queries'
+import "./index.css"
 
 function MyBusiness() {
   const [nameInput, setNameInput] = useState('');
@@ -25,11 +26,11 @@ function MyBusiness() {
 
   return (
     <>
-    <h2>Enter Your Business's Info Here</h2>
-      <Container className='d-flex'>
-        <Form>
+    <h2 className='business-info-header'>Enter Your Business's Info Here</h2>
+      <Container className='d-flex business-info-main'>
+        <Form className='form-input-main'>
           <Form.Row>
-            <Col xs={12} md={12}>
+            <Col className='form-control-section' xs={12} md={12}>
               <Form.Control
                   name='businessName'
                   value={nameInput}
@@ -89,7 +90,7 @@ function MyBusiness() {
             </Col>
           </Form.Row>
           <Form.Row>
-            <Button type='submit' variant='success' size='md'>Submit</Button>
+            <Button className='bi-submit-btn' type='submit' variant='success' size='md'>Submit</Button>
           </Form.Row>
         </Form>
         <div>
