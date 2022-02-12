@@ -27,6 +27,7 @@ export const BUSINESSES_BY_TAG = gql`
 export const BUSINESS_SEARCH = gql`
   query businessSearch($query: String!) {
     businessSearch(query: $query) {
+      _id
       name
       address
       description
