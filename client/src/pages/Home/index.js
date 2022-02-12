@@ -1,18 +1,13 @@
-<<<<<<< HEAD
-import React, { useState } from "react";
-import { Container, Col, Form, Button } from 'react-bootstrap';
-import { BusinessList } from '../../components/BusinessList';
-import "./index.css"
-=======
 import React, { useEffect, useState } from "react";
 import { Container, Col, Form, Button, Dropdown, DropdownButton } from 'react-bootstrap';
 import DropdownItem from 'react-bootstrap/esm/DropdownItem';
 
 import { ALL_TAGS, BUSINESSES_BY_TAG } from '../../utils/queries'
 import { BusinessList } from '../../components/BusinessList'
->>>>>>> main
 
 import { useQuery, useLazyQuery } from "@apollo/client";
+import image from '../../images/site_img02.png';
+import "./index.css"
 
 const Home = () => {
   const [searchInput, setSearchInput] = useState('');
@@ -39,7 +34,7 @@ const Home = () => {
 
   return (
     <>
-      <div class="parallax"></div>
+      <div className="parallax"></div>
 
       <div className="top-banner-container">
         <div className="top-info-text">
@@ -69,20 +64,9 @@ const Home = () => {
           </Form.Row>
         </Form>
       </Container>
-<<<<<<< HEAD
-      <Container className="category-tag-main">
-        {/* WILL RENDER WITH QUERY AND MAP LATER */}
-        <div className="category-tag-main">
-        <Button className="cat-btn" variant="primary">Category</Button>
-        <Button className="cat-btn" variant="primary">Category</Button>
-        <Button className="cat-btn" variant="primary">Category</Button>
-        <Button className="cat-btn" variant="primary">Category</Button>
-        <Button className="cat-btn" variant="primary">Category</Button>
-        </div>
-=======
 
-      <Container>
-      <h2>Or Choose A Category Here</h2>
+      <Container className="cat-search">
+      <h2 className="cat-header">You May Also Choose A Category Here </h2>
         <DropdownButton size='lg' id="dropdown-basic-button" title={tagInput} value={tagInput} onSelect={(eventKey, event) => setTagInput(eventKey)}>
           {tag_loading ? (<DropdownItem>loading...</DropdownItem>) : 
             tag_data.tags.map((tag)=> {
@@ -91,8 +75,7 @@ const Home = () => {
               )
             })}
         </DropdownButton>
-        <Button onClick={callLoadBusiness}>Search</Button>
->>>>>>> main
+        <Button className='cat-search-btn' onClick={callLoadBusiness}>Search</Button>
       </Container>
 
       <Container>
@@ -108,7 +91,7 @@ const Home = () => {
       </Container>
 
       <Container className="bot-banner-container">
-        <div id="bot-banner-img"></div>
+        <img className="bot-banner-img" src={image}></img>
         <div className="bot-info-text">
           <h1>Banner Title/ placeholder</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
@@ -122,7 +105,7 @@ const Home = () => {
         </div>
       </Container>
 
-      <div class="container-fluid footer-content">
+      <div className="container-fluid footer-content">
       
        <h1>Footer Content</h1>
       </div>
