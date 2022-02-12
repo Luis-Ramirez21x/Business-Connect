@@ -46,6 +46,7 @@ const typeDefs = gql`
         users: [User]
         user(_id: ID): User
         businesses: [Business]
+        business(businessId: ID): Business
         myBusiness: User
         tags: [Tag]
         tag (name: String!): Tag
@@ -71,7 +72,7 @@ const typeDefs = gql`
             image: String,
             tagName: String
             ) : Business
-
+    
 
 
     }

@@ -18,11 +18,14 @@ const resolvers = {
 
         //business querys
         businesses: async() =>{
-            return Business.find();
+            return Business.find().populate('reviews');
+        },
+        business: async(parent, {businessId}, context) =>{
+            return Business.findById({_id: businessId});
         },
         myBusiness: async (parent, args, context) => {
           if (context.user) {
-            return User.findOne({ _id: context.user._id }/*.populate('myBusiness')*/);
+            return User.findOne({ _id: context.user._id }.populate('myBusiness'));
           }
           throw new AuthenticationError('You need to be logged in!');
         },
