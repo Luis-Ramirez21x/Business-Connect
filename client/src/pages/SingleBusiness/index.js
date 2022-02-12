@@ -22,12 +22,12 @@ const SingleBusiness = () => {
         <h2>Loading...</h2>
       ) : (
         <>
-          <Card key={data.singleBusiness._id}>
-            <CardImg width="100%" src={data.singleBusiness.image} alt="Business Image" />
+          <Card key={data.business._id}>
+            <CardImg width="100%" src={data.business.image} alt="Business Image" />
             <Card.Body>
-              <Card.Text>{data.singleBusiness.name}</Card.Text>
-              <Card.Text>{data.singleBusiness.description}</Card.Text>
-              <Card.Text>{data.singleBusiness._id}</Card.Text>
+              <Card.Text>{data.business.name}</Card.Text>
+              <Card.Text>{data.business.description}</Card.Text>
+              <Card.Text>{data.business._id}</Card.Text>
               <Card.Text>Rating:</Card.Text>
               <Card.Text>Owner:</Card.Text>
             </Card.Body>
@@ -36,7 +36,7 @@ const SingleBusiness = () => {
           <Container>
             {showReview 
             ? 
-            (<Review businessID={data.singleBusiness._id} toggleReview={toggleReview}></Review>) 
+            (<Review businessID={data.business._id} toggleReview={toggleReview}></Review>) 
             :
             (<Button onClick={() => toggleReview(true)}>Leave Review</Button>)}
           </Container>

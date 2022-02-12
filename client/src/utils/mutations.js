@@ -47,11 +47,13 @@ mutation createBusiness($name: String!, $address: String!, $description: String!
 `
 
 export const POST_REVIEW = gql`
-mutation leaveReview($businessId: ID, $title: String, $description: String){
+mutation leaveReview($businessId: ID, $title: String!, $description: String!){
     leaveReview(businessId:$businessId, title: $title, description: $description){
           name
-          reviews
-}
-
+          reviews {
+            title
+            description
+          }
+    }   
 }
 `;
