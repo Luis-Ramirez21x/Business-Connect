@@ -25,7 +25,7 @@ const typeDefs = gql`
     }
 
     type Review{
-        _id : ID
+        _id : ID!
         title: String!
         description: String!
         createdAt: String
@@ -46,9 +46,7 @@ const typeDefs = gql`
         users: [User]
         user(_id: ID): User
         businesses: [Business]
-
         business(businessId: ID): Business
-
         myBusiness: User
         tags: [Tag]
         tag (name: String!): Tag
@@ -60,7 +58,7 @@ const typeDefs = gql`
         login(email: String!, password: String!): Auth
         followBusiness(businessId: ID) : User
         unfollowBusiness(businessId: ID) : User
-        leaveReview(businessId, title, description, createdAt) : Business
+        leaveReview(businessId: ID, title: String!, description: String!, createdAt: String) : Business
 
     #for tags    
         createTag(name: String!): Tag
