@@ -36,6 +36,7 @@ type Business{
         users: [User]
         user(_id: ID): User
         businesses: [Business]
+        singleBusiness(_id: ID!): Business
         myBusiness: User
         tags: [Tag]
         tag (name: String!): Tag
