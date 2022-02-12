@@ -52,7 +52,6 @@ const SingleBusiness = () => {
                 )
               })}
             </ul>
-            // className="review-list"
           </Container>
         </>
       )}
