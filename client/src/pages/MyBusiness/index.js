@@ -10,15 +10,19 @@ import "./index.css"
 
 function MyBusiness() {
   //can be refactored to be userFormData
-  const [nameInput, setNameInput] = useState('');
-  const [addressInput, setAddressInput] = useState('');
-  const [descriptionInput, setDescriptionInput] = useState('');
-  const [priceInput, setPriceInput] = useState('');
-  const [imageInput, setImageInput] = useState('');
-  const [tagInput, setTagInput] = useState('Tag Your Business');
+  const [businessFormData, setBusinessFormData] = useState(
+    { name: '', address: '', description: '', 
+    price: '', image: '' }
+  )
+  const [tagInput, setTagInput] = useState('Tag Your Business Here')
 
   const {loading, data} = useQuery(ALL_TAGS);
   const [createBusiness, { error }] = useMutation(CREATE_BUSINESS);
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setBusinessFormData({ ...businessFormData, [name]: value });
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -32,12 +36,8 @@ function MyBusiness() {
      }
 
     const newBusiness = {
-      name: nameInput,
-      address: addressInput,
-      description: descriptionInput,
-      price: priceInput,
-      image: imageInput,
-      tagName: tagInput
+      ...businessFormData,
+      tagInput: tagInput
     }
     
     try {
@@ -56,13 +56,14 @@ function MyBusiness() {
     }
 
     //clearing the form
-    setNameInput('');
-    setAddressInput('');
-    setDescriptionInput('');
-    setPriceInput('');
-    setImageInput('');
-    setTagInput('Tag Your Business');
-
+    setBusinessFormData({
+      name: '',
+      address: '',
+      description: '',
+      price: '',
+      image: ''
+    });
+    setTagInput('Tag Your Business Here')
   };
 
   return (
@@ -73,9 +74,9 @@ function MyBusiness() {
           <Form.Row>
             <Col className='form-control-section' xs={12} md={12}>
               <Form.Control
-                  name='businessName'
-                  value={nameInput}
-                  onChange={(e) => setNameInput(e.target.value)}
+                  name='name'
+                  value={businessFormData.name}
+                  onChange={handleInputChange}
                   type='text'
                   size='md'
                   placeholder='Business name'
@@ -85,9 +86,9 @@ function MyBusiness() {
           <Form.Row>
             <Col xs={12} md={12}>
               <Form.Control
-                  name='businessAddress'
-                  value={addressInput}
-                  onChange={(e) => setAddressInput(e.target.value)}
+                  name='address'
+                  value={businessFormData.address}
+                  onChange={handleInputChange}
                   type='text'
                   size='md'
                   placeholder='Business address'
@@ -97,9 +98,9 @@ function MyBusiness() {
           <Form.Row>
             <Col xs={12} md={12}>
               <Form.Control
-                  name='businessDescription'
-                  value={descriptionInput}
-                  onChange={(e) => setDescriptionInput(e.target.value)}
+                  name='description'
+                  value={businessFormData.description}
+                  onChange={handleInputChange}
                   type='text'
                   size='md'
                   placeholder='Business description'
@@ -109,9 +110,9 @@ function MyBusiness() {
           <Form.Row>
             <Col xs={12} md={12}>
               <Form.Control
-                  name='businessPrice'
-                  value={priceInput}
-                  onChange={(e) => setPriceInput(e.target.value)}
+                  name='price'
+                  value={businessFormData.price}
+                  onChange={handleInputChange}
                   type='text'
                   size='md'
                   placeholder='Business Price (per hour/ per job)'
@@ -121,9 +122,9 @@ function MyBusiness() {
           <Form.Row>
             <Col xs={12} md={12}>
               <Form.Control
-                  name='businessImage'
-                  value={imageInput}
-                  onChange={(e) => setImageInput(e.target.value)}
+                  name='image'
+                  value={businessFormData.image}
+                  onChange={handleInputChange}
                   type='text'
                   size='md'
                   placeholder='Business image url'
