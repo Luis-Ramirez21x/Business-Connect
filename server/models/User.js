@@ -33,6 +33,12 @@ const userSchema = new Schema({
       ref: "Business",
     },
   ],
+  following:[
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Business",
+    },
+  ],
 });
 
 // hash user password
