@@ -1,13 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, Col, Row, Form, Button } from 'react-bootstrap';
+import { MY_FOLLOWS } from '../../utils/queries';
+import { useQuery } from '@apollo/client';
 
 const Connect = () => {
   const [friendInput, setFriendInput] = useState('');
   const [toggle, flipToggle] = useState(true);
+  const {loading, data} = useQuery(MY_FOLLOWS);
+
+ 
+
+  //const myFollows = data.user?.following || {};
+
+ 
 
   function setToggle(val) {
     flipToggle(val)
   };
+ 
   
   return (
     <>
@@ -41,13 +51,15 @@ const Connect = () => {
               <li>follower 2 </li>
               <li>follower 3 </li>
             </div>) 
-            : (
-              <div>
-                <li>following 1 </li>
-                <li>following 2 </li>
-                <li>following 3 </li>
-              </div>
-            )} 
+            : <>
+                {loading? (<div>Loading</div>)
+                :data.user.following.map((businessName) =>{
+                  return(
+                  <li>{businessName}</li>
+                  )
+                })  
+              }
+              </>} 
         </Row>
       </Container>
     </>  
