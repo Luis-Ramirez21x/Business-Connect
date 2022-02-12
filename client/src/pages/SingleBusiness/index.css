@@ -1,0 +1,84 @@
+:root {
+    --primaryA: rgb(38, 38, 87);
+    --primaryB: #4378ce;
+    --secondaryA: rgb(177, 177, 180);
+    --secondaryB: rgb(24, 24, 42);
+    --secondaryC: white;
+  }
+
+.card-img {
+    border: rgb(38, 38, 87) solid 3px;
+    margin: 20px;
+    margin-left: 25px;
+    border-radius: 15px;
+    width: 375px;
+    height: 250px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+.business-card-main {
+    /* border: red solid 3px; */
+    margin: 0 auto;
+    font-size: 1.75em;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: row;
+    width: 1200px;
+    height: 450px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+
+}
+
+.review-heading {
+    /* border: red solid 3px; */
+    background-color: var(--primaryA);
+    color: var(--secondaryC);
+    border-radius: 15px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 25px;
+    font-size: 2.5em;
+    width: 100%;
+    height: max-content;
+    
+}
+
+.review-section {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: var(--secondaryC);
+    margin-top: 45px;
+    height: fit-content;
+    border-radius: 5px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+.list-container{
+    margin: 0;
+    margin-top: 30px;
+    height: fit-content;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: column;
+    font-size: 4em;
+}
+
+.review-list {
+    border: rgb(38, 38, 87) solid 4px;
+    border-radius: 15px;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    width: 800px;
+    height: 200px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}

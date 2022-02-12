@@ -4,9 +4,8 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import Review from "../../components/Review";
 
-
-import { SINGLE_BUSINESS, GET_REVIEWS } from "../../utils/queries";
-
+import "./index.css"
+import { SINGLE_BUSINESS } from "../../utils/queries";
 
 const SingleBusiness = () => {
   const { id } = useParams()
@@ -23,8 +22,8 @@ const SingleBusiness = () => {
         <h2>Loading...</h2>
       ) : (
         <>
-          <Card key={data.business._id}>
-            <CardImg width="100%" src={data.business.image} alt="Business Image" />
+          <Card className="business-card-main" key={data.business._id}>
+            <CardImg className="card-img" width="100%" src={data.business.image} alt="Business Image" />
             <Card.Body>
               <Card.Text>{data.business.name}</Card.Text>
               <Card.Text>{data.business.description}</Card.Text>
@@ -34,7 +33,7 @@ const SingleBusiness = () => {
             </Card.Body>
           </Card>
 
-          <Container>
+          <Container className="review-section">
             {showReview 
             ? 
             (<Review businessID={data.business._id} toggleReview={toggleReview}></Review>) 
@@ -43,11 +42,16 @@ const SingleBusiness = () => {
           </Container>
 
           <Container>
-            <h2>Reviews</h2>
+            <h2 className="review-heading">User Reviews</h2>
             {/* {REVIEWS WILL GO HERE} */}
-            <li>review 1</li>
-            <li>review 2</li>
-            <li>review 3</li>
+            <ul className="list-container">
+            <li className="review-list">review 1</li>
+            <li className="review-list">review 2</li>
+            <li className="review-list">review 3</li>
+            <li className="review-list">review 4</li>
+            <li className="review-list">review 5</li>
+            <li className="review-list">review 6</li>
+            </ul>
           </Container>
         </>
       )}

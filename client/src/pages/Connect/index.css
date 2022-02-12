@@ -1,0 +1,77 @@
+:root {
+    --primaryA: rgb(38, 38, 87);
+    --primaryB: #4378ce;
+    --secondaryA: rgb(230, 230, 243);
+    --secondaryB: rgb(24, 24, 42);
+    --secondaryC: white;
+  }
+
+.connect-main {
+    /* border: red solid 3px; */
+    border-radius: 15px;
+    background-color: var(--secondaryC);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: fit-content;
+    flex-direction: column;
+    margin-top: 45px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+.connects-header {
+    /* border: red solid 3px; */
+    border-radius: 15px;
+    background-color: var(--primaryA);
+    padding: 5px;
+    margin-top: 20px;
+    color: var(--secondaryC);
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: fit-content;
+}
+
+.follow-search {
+    /* border: red solid 3px; */
+    display: flex;
+    justify-content: center;
+    width: fit-content;
+    margin: 0 auto;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.search-friend {
+    width: 600px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+.followers-section-main {
+    /* border: red solid 3px; */
+    margin: 0 auto;
+    display: flex;
+    width: 600px;  
+}
+
+.connect-btns-main {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.connect-list {
+    /* border: red solid 3px; */
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display: flex;
+    height: fit-content;
+    font-size: 2em;
+}
+
+.list-btn:active {
+    background-color: rgb(56, 192, 255);
+}

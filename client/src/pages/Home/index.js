@@ -7,6 +7,8 @@ import { ALL_TAGS, BUSINESSES_BY_TAG } from '../../utils/queries'
 import { BusinessList } from '../../components/BusinessList'
 
 import { useQuery, useLazyQuery } from "@apollo/client";
+import image from '../../images/site_img02.png';
+import "./index.css"
 
 const Home = () => {
   const [searchInput, setSearchInput] = useState('');
@@ -64,8 +66,8 @@ const Home = () => {
         </Form>
       </Container>
 
-      <Container className="category-tag-main">
-      <h2>Or Choose A Category Here</h2>
+      <Container className="cat-search">
+      <h2 className="cat-header">You May Also Choose A Category Here </h2>
         <DropdownButton size='lg' id="dropdown-basic-button" title={tagInput} value={tagInput} onSelect={(eventKey, event) => setTagInput(eventKey)}>
           {tag_loading ? (<DropdownItem>loading...</DropdownItem>) : 
             tag_data.tags.map((tag)=> {
@@ -74,7 +76,7 @@ const Home = () => {
               )
             })}
         </DropdownButton>
-        <Button onClick={callLoadBusiness}>Search</Button>
+        <Button className='cat-search-btn' onClick={callLoadBusiness}>Search</Button>
       </Container>
 
       <Container>
@@ -90,7 +92,7 @@ const Home = () => {
       </Container>
 
       <Container className="bot-banner-container">
-        <div id="bot-banner-img"></div>
+        <img className="bot-banner-img" src={image}></img>
         <div className="bot-info-text">
           <h1>Banner Title/ placeholder</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
