@@ -23,6 +23,7 @@ const SingleBusiness = () => {
               <Card.Text>{data.singleBusiness.description}</Card.Text>
               <Card.Text>{data.singleBusiness._id}</Card.Text>
               <Card.Text>Rating:</Card.Text>
+              <Card.Text>Owner:</Card.Text>
             </Card.Body>
           </Card>
 
