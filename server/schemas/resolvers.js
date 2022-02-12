@@ -8,23 +8,40 @@ const { User, Business, Tag } = require('../models');
 
 const resolvers = {
     Query: {
+        //user querys
         users: async () =>{
-            return User.find();
+            return User.find().populate('myBusiness');
         },
+        user: async (parent, args )=>{
+          return User.findById(args);
+        },
+
+        //business querys
         businesses: async() =>{
             return Business.find();
         },
-        tags: async() =>{
-           return Tag.find();
+
+        singleBusiness: async(parent, { _id }) => {
+          return Business.findOne({ _id: _id });
         },
-        
 
         myBusiness: async (parent, args, context) => {
-            if (context.user) {
-              return User.findOne({ _id: context.user._id }/*.populate('myBusiness')*/);
-            }
-            throw new AuthenticationError('You need to be logged in!');
-          },
+          if (context.user) {
+            return User.findOne({ _id: context.user._id }/*.populate('myBusiness')*/);
+          }
+          throw new AuthenticationError('You need to be logged in!');
+        },
+
+        //tag querys
+        tags: async() =>{
+           return Tag.find().populate('businesses');
+        },
+        tag: async(parent, {name}) =>{
+          return Tag.findOne({name:name}).populate('businesses');
+        }
+        
+
+
     },
 
     Mutation: {
@@ -34,8 +51,7 @@ const resolvers = {
         },
 
         //user mutations
-        addUser: async (parent, { username, email, password }) => {
-          console.log(username, email, password);
+        addUser: async (parent, { username, email, password }) => {         
             const user = await User.create({ username, email, password });
             const token = signToken(user);
             return { token, user };       
@@ -57,18 +73,25 @@ const resolvers = {
           },
 
           //business mutations
-          /*createBusiness: async (parent,args, context) =>{
+          createBusiness: async (parent,{ name, address, description, image, price, tagName }, context) =>{
             if(context.user){
-              const newBusiness = await Business.create(args);
-              return await User.findOneAndUpdate(
-                {_id: context.user._id},
-                { $addToSet: { myBusiness: newBusiness }},
+              const newBusiness = await Business.create({ name, address, description, image, price });
+              await Tag.findOneAndUpdate(
+                { name: tagName},
+                { $addToSet: { businesses: newBusiness._id }},
                 { new: true}
-              );
+               );
+              
+              await User.findOneAndUpdate(
+                {_id: context.user._id},
+                { $addToSet: { myBusiness: newBusiness._id }},
+                { new: true}
+               );
+               return newBusiness;
             }
             throw new AuthenticationError('You need to be logged in!');
           },
-          deleteBusiness: async (parent,args, context) =>{
+         /* deleteBusiness: async (parent,args, context) =>{
             if(context.user){
               return await Business.deleteOne({_id:args._id})
             }

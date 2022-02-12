@@ -1,5 +1,6 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
+//const Business = require('./Business');
 
 const validateEmail = function (email) {
   let re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -25,7 +26,8 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
-  businesses: [
+  //myBusiness: [Business.schema],
+  myBusiness: [
     {
       type: Schema.Types.ObjectId,
       ref: "Business",
@@ -34,8 +36,8 @@ const userSchema = new Schema({
 });
 
 // hash user password
-userSchema.pre('save', async function (next) {
-  if (this.isNew || this.isModified('password')) {
+userSchema.pre("save", async function (next) {
+  if (this.isNew || this.isModified("password")) {
     const saltRounds = 10;
     this.password = await bcrypt.hash(this.password, saltRounds);
   }
@@ -49,6 +51,6 @@ userSchema.methods.isCorrectPassword = async function (password) {
 };
 
 // Initialize our User model
-const User = model("user", userSchema);
+const User = model("User", userSchema);
 
 module.exports = User;

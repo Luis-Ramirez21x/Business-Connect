@@ -2,31 +2,30 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
     
+type Business{
+    _id: ID
+    name: String!
+    address: String!
+    description: String!
+    price: Int
+    quotes: String
+    image: String
+    user: User
+    tags: [Tag]
+}
+
     type User{
         _id: ID!
         username: String!
         email: String!
         password: String!
+        myBusiness: [Business]
     }
 
     type Tag{
         name: String!
         businesses: [Business]
-        
     }
-
-    type Business{
-        name: String!
-        address: String!
-        description: String!
-        price: String
-        quotes: String
-        image: String
-        user: User
-        tags: [Tag]
-    }
-
-      
 
     type Auth {
         token: ID!
@@ -35,10 +34,12 @@ const typeDefs = gql`
 
     type Query{
         users: [User]
+        user(_id: ID): User
         businesses: [Business]
+        singleBusiness(_id: ID!): Business
         myBusiness: User
         tags: [Tag]
-
+        tag (name: String!): Tag
     }
 
     type Mutation{
@@ -46,13 +47,20 @@ const typeDefs = gql`
         addUser(username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
 
+    #for tags    
         createTag(name: String!): Tag
-
     
-
-
+    #for Business
+    createBusiness(_id:ID
+            name: String!,
+            address: String!,
+            description: String!,
+            price: Int,
+            image: String,
+            tagName: String
+            ) : Business
+    
     }
-
 `
 
 module.exports = typeDefs;

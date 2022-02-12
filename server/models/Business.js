@@ -1,4 +1,6 @@
 const { Schema, model, mongoose } = require("mongoose");
+const Review = require("./Review");
+const Tag = require("./Tag");
 
 const validateURL = function (url) {
   let re =
@@ -35,21 +37,29 @@ const businessSchema = new Schema({
   ],
   image: {
     type: String,
-    validate: [validateURL, "Please input a valid URL"],
+    //validate: [validateURL, "Please input a valid URL"],
   },
+
   user: {
     type: Schema.Types.ObjectId,
     ref: "User",
   },
-  tags: [
+  /*tags: [
     {
       type: Schema.Types.ObjectId,
       ref: "Tag",
     },
+  ],*/
+  reviews: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Review",
+    },
   ],
+
 });
 
 // Initialize our Business model
-const Business = model("business", businessSchema);
+const Business = model("Business", businessSchema);
 
 module.exports = Business;
