@@ -1,10 +1,46 @@
 const db = require("./connection");
-const { User, Business, Tag } = require("../models");
+const { User, Business, Tag, Review } = require("../models");
 
 db.once("open", async () => {
   await Business.deleteMany({});
   await User.deleteMany({});
   await Tag.deleteMany({});
+  await Review.deleteMany({});
+
+  const reviews = await Review.insertMany([
+    {
+      title: "Fast and Great Pricing!",
+      description: "adf fasgd gsgdg sgsdfg",
+      userName: "Josh_Allen13"
+    },
+    {
+      title: "Meh..",
+      description: " gfsfdg gdfg sdf gdf gsfd",
+      userName: "Lusil21xs3"
+    },
+    {
+      title: "They gave exceptional customer service!",
+      description: " gfh adfg A HSFGHS" ,
+      userName: "Cheap_Guy"
+    },
+    {
+      title: "Let me tell you something...",
+      description: "&^%^%^$^*&&",
+      userName: "Greg"
+    },
+    {
+      title: "Fantastic work!",
+      description: "hgfdhfgaf fad fasdf",
+      userName: "TinkerBell"
+    },
+    {
+      title: "They did exactly as advertised",
+      description: "hgfdhfgaf fad fasdf adfadfafasdf",
+      userName: "John.Collins89"
+    },
+
+  ])
+  console.log("reviews seeded");
 
   const companies = await Business.insertMany([
     {
@@ -13,6 +49,7 @@ db.once("open", async () => {
       description: "asfasdfasdfas",
       price: 200,
       image: "image url here",
+      reviews: [reviews[0]]
     },
     {
       name: "Steel Construction",
@@ -20,6 +57,7 @@ db.once("open", async () => {
       description: "sjdfnaiufp",
       price: 50,
       image: "image url here",
+      reviews: [reviews[1]]
     },
     {
       name: "Luis's Landscaping",
@@ -27,6 +65,7 @@ db.once("open", async () => {
       description: "asfasdfasdfas",
       price: 100,
       image: "image url here",
+      reviews: [reviews[2]]
     },
     {
       name: "Car Fix Felix",
@@ -34,6 +73,7 @@ db.once("open", async () => {
       description: "jfmfghfghs",
       price: 100,
       image: "image url here",
+      reviews: [reviews[3], reviews[5]]
     },
     {
       name: "Italian Express Catering",
@@ -41,6 +81,7 @@ db.once("open", async () => {
       description: "nhn;osfgnngsf",
       price: 20,
       image: "image url here",
+      reviews: [reviews[4]]
     },
   ]);
   console.log("companies seeded");
@@ -91,65 +132,8 @@ db.once("open", async () => {
       businesses: [companies[1]._id]
     },
   ]);
-/*
-  await Business.findOneAndUpdate(
-    { name: companies[0].name },
-    { tags: tags[2] },
-    { new: true }
-  );
 
-  await Business.findOneAndUpdate(
-    { name: companies[1].name },
-    { tags: tags[3] },
-    { new: true }
-  );
-
-  await Business.findOneAndUpdate(
-    { name: companies[2].name },
-    { tags: tags[2] },
-    { new: true }
-  );
-
-  await Business.findOneAndUpdate(
-    { name: companies[3].name },
-    { tags: tags[1] },
-    { new: true }
-  );
-
-  await Business.findOneAndUpdate(
-    { name: companies[4].name },
-    { tags: tags[0] },
-    { new: true }
-  );
-
-  await Tag.findOneAndUpdate(
-    { name: tags[0].name },
-    { businesses: companies[4]._id },
-    { new: true }
-  );  
-  await Tag.findOneAndUpdate(
-    { name: tags[1].name },
-    { businesses: companies[3]._id },
-    { new: true }
-  );
-  await Tag.findOneAndUpdate(
-    { name: tags[2].name },
-    { businesses: companies[0]._id },
-    { new: true }
-  );
-  await Tag.findOneAndUpdate(
-    { name: tags[3].name },
-    { businesses: companies[1]._id },
-    { new: true }
-  );
-  await Tag.findOneAndUpdate(
-    { name: tags[2].name },
-    { $addToSet: {businesses: companies[2]._id} },
-    { new: true }
-  );
-  */
-  
-    
+      
 
 
 
