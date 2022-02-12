@@ -23,13 +23,8 @@ const resolvers = {
       return Business.find().populate("reviews");
     },
     business: async (parent, { businessId }, context) => {
-      return Business.findById({ _id: businessId });
+      return Business.findById({ _id: businessId }).populate("reviews");
     },
-    /*
-        singleBusiness: async(parent, { _id }) => {
-          return Business.findOne({ _id: _id });
-        },*/
-
     myBusiness: async (parent, args, context) => {
       if (context.user) {
         return User.findOne({ _id: context.user._id }.populate("myBusiness"));
@@ -119,13 +114,13 @@ const resolvers = {
           title,
           description,
           createdAt,
-          username: context.user.username,
+          userName: context.user.username,
         });
         return await Business.findOneAndUpdate(
           { _id: businessId },
-          { $addToSet: { reviews: newReview } },
+          { $addToSet: { reviews: newReview._id } },
           { new: true }
-        );
+        ).populate("reviews");
       }
       throw new AuthenticationError("You need to be logged in!");
     },
