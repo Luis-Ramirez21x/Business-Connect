@@ -1,16 +1,10 @@
-<<<<<<< HEAD
-import React, { useState } from "react";
-import { Container, Col, Form, Button } from 'react-bootstrap';
-import { BusinessList } from '../../components/BusinessList';
-import "./index.css"
-=======
 import React, { useEffect, useState } from "react";
 import { Container, Col, Form, Button, Dropdown, DropdownButton } from 'react-bootstrap';
 import DropdownItem from 'react-bootstrap/esm/DropdownItem';
+import "./index.css"
 
 import { ALL_TAGS, BUSINESSES_BY_TAG } from '../../utils/queries'
 import { BusinessList } from '../../components/BusinessList'
->>>>>>> main
 
 import { useQuery, useLazyQuery } from "@apollo/client";
 
