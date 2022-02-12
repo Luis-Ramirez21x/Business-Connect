@@ -2,17 +2,18 @@ const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
     
-type Business{
-    _id: ID
-    name: String!
-    address: String!
-    description: String!
-    price: Int
-    quotes: String
-    image: String
-    followers: [User]
-    tags: [Tag]
-}
+    type Business{
+        _id: ID
+        name: String!
+        address: String!
+        description: String!
+        price: Int
+        quotes: String
+        image: String
+        followers: [User]
+        tags: [Tag]
+        reviews: [Review]
+    }
 
     type User{
         _id: ID!
@@ -21,6 +22,14 @@ type Business{
         password: String!
         myBusiness: [Business]
         following: [Business]
+    }
+
+    type Review{
+        _id : ID
+        title: String!
+        description: String!
+        createdAt: String
+        userName : String!
     }
 
     type Tag{
@@ -46,6 +55,9 @@ type Business{
     #for login
         addUser(username: String!, email: String!, password: String!): Auth
         login(email: String!, password: String!): Auth
+        followBusiness(businessId: ID) : User
+        unfollowBusiness(businessId: ID) : User
+        leaveReview(businessId, title, description, createdAt) : Business
 
     #for tags    
         createTag(name: String!): Tag
@@ -59,7 +71,9 @@ type Business{
             image: String,
             tagName: String
             ) : Business
-    followBusiness(businessId: ID) : User
+
+
+
     }
 `
 
