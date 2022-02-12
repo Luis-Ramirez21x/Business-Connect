@@ -10,25 +10,25 @@ import { SINGLE_BUSINESS, GET_REVIEWS } from "../../utils/queries";
 
 const SingleBusiness = () => {
   const { id } = useParams()
-  const {loading, data} = useQuery(SINGLE_BUSINESS, { variables: {_id: id} })
+  const {loading: businessLoading, data: businessData} = useQuery(SINGLE_BUSINESS, { variables: {_id: id} })
+  const {data: reviewData} = useQuery(GET_REVIEWS, { variables: {_id: id} })
   const [showReview, toggleShowReview] = useState(false)
 
   function toggleReview(val) {
     toggleShowReview(val)
   };
- console.log(data);
   return (
     <>
-      {loading? (
+      {businessLoading? (
         <h2>Loading...</h2>
       ) : (
         <>
-          <Card key={data.business._id}>
-            <CardImg width="100%" src={data.business.image} alt="Business Image" />
+          <Card key={businessData.business._id}>
+            <CardImg width="100%" src={businessData.business.image} alt="Business Image" />
             <Card.Body>
-              <Card.Text>{data.business.name}</Card.Text>
-              <Card.Text>{data.business.description}</Card.Text>
-              <Card.Text>{data.business._id}</Card.Text>
+              <Card.Text>{businessData.business.name}</Card.Text>
+              <Card.Text>{businessData.business.description}</Card.Text>
+              <Card.Text>{businessData.business._id}</Card.Text>
               <Card.Text>Rating:</Card.Text>
               <Card.Text>Owner:</Card.Text>
             </Card.Body>
@@ -37,7 +37,7 @@ const SingleBusiness = () => {
           <Container>
             {showReview 
             ? 
-            (<ReviewForm businessID={data.business._id} toggleReview={toggleReview}></ReviewForm>) 
+            (<ReviewForm businessID={businessData.business._id} toggleReview={toggleReview}></ReviewForm>) 
             :
             (<Button onClick={() => toggleReview(true)}>Leave Review</Button>)}
           </Container>
