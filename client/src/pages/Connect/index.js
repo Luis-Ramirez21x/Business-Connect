@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Jumbotron, Container, Col, Row, Form, Button } from 'react-bootstrap';
 import { MY_FOLLOWS } from '../../utils/queries';
 import { useQuery } from '@apollo/client';
+import { Link } from 'react-router-dom';
 
 const Connect = () => {
   const {loading, data} = useQuery(MY_FOLLOWS);
@@ -61,7 +62,9 @@ const Connect = () => {
                 {loading? (<div>Loading...</div>)
                 :data.user.following.map((business) =>{
                   return(
-                  <li key={business.name}>{business.name}</li>
+                  <Link to={`/businesses/${business._id}`}>
+                  <li key={business._id}>{business.name}</li>
+                  </Link>
                   )
                 })  
               }

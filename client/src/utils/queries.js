@@ -49,6 +49,7 @@ query user{
         username
         email
         following{
+            _id
             name
         }
         myBusiness{
