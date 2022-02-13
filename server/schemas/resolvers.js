@@ -6,17 +6,22 @@ const { signToken } = require("../utils/auth");
 const { User, Business, Tag, Review } = require("../models");
 
 const resolvers = {
-  Query: {
-    //user querys
-    users: async () => {
-      return User.find().populate("myBusiness");
-    },
-    user: async (parent, args, context) => {
-      if (context.user) {
-        return User.findById(context.user._id).populate("following");
-      }
-      throw new AuthenticationError("You need to be logged in!");
-    },
+
+    Query: {
+        //user querys
+        users: async () =>{
+            return User.find()
+        },
+        user: async (parent, args, context )=>{
+          if (context.user){
+            return User.findById(context.user._id).populate('myBusiness').populate('following').populate({
+              path: 'myBusiness',
+              populate: 'followers'
+            });
+          }
+          throw new AuthenticationError('You need to be logged in!');
+        },
+
 
     //business querys
     businesses: async () => {

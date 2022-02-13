@@ -55,13 +55,37 @@ export const SINGLE_BUSINESS = gql`
 `;
 
 export const MY_FOLLOWS = gql`
-  query user {
-    user {
-      username
-      email
-      following {
-        name
-      }
+
+query user{
+    user{
+        username
+        email
+        following{
+            _id
+            name
+        }
+        myBusiness{
+            name
+            followers{
+                username
+            }
+        }
     }
-  }
+}
 `;
+/*
+export const MY_FOLLOWERS = gql`
+query user{
+    user{
+        username
+        myBusiness{
+            name
+            followers{
+            username
+            }
+        }
+    }
+}
+
+`*/
+
