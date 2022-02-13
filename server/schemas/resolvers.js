@@ -10,11 +10,14 @@ const resolvers = {
     Query: {
         //user querys
         users: async () =>{
-            return User.find().populate('myBusiness');
+            return User.find()
         },
         user: async (parent, args, context )=>{
           if (context.user){
-            return User.findById(context.user._id).populate('following');
+            return User.findById(context.user._id).populate('myBusiness').populate('following').populate({
+              path: 'myBusiness',
+              populate: 'followers'
+            });
           }
           throw new AuthenticationError('You need to be logged in!');
         },
@@ -28,7 +31,10 @@ const resolvers = {
         },
         myBusiness: async (parent, args, context) => {
           if (context.user) {
-            return User.findOne({ _id: context.user._id }.populate('myBusiness'));
+            return User.findOne({ _id: context.user._id }.populate({
+              path: 'myBusiness',
+              populate: 'followers'
+            }));
           }
           throw new AuthenticationError('You need to be logged in!');
         },

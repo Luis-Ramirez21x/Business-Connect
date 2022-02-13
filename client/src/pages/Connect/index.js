@@ -4,11 +4,14 @@ import { MY_FOLLOWS } from '../../utils/queries';
 import { useQuery } from '@apollo/client';
 
 const Connect = () => {
+  const {loading, data} = useQuery(MY_FOLLOWS);
   const [friendInput, setFriendInput] = useState('');
   const [toggle, flipToggle] = useState(true);
-  const {loading, data} = useQuery(MY_FOLLOWS);
+  
+  
 
  console.log(data);
+
 
   
 
@@ -45,17 +48,20 @@ const Connect = () => {
           </Col>   
         </Row>
         <Row>
-        {toggle ? (
-            <div>
-              <li>follower 1 </li>
-              <li>follower 2 </li>
-              <li>follower 3 </li>
-            </div>) 
+        {toggle ? <>
+            {loading? (<div>Loading...</div>)
+              :data.user.myBusiness[0].followers.map((user) =>{
+                return(
+                <li key={user.username}>{user.username}</li>
+                )
+              })  
+            }
+            </> 
             : <>
-                {loading? (<div>Loading</div>)
-                :data.user.following.name.map((businessName) =>{
+                {loading? (<div>Loading...</div>)
+                :data.user.following.map((business) =>{
                   return(
-                  <li>{businessName}</li>
+                  <li key={business.name}>{business.name}</li>
                   )
                 })  
               }

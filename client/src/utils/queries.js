@@ -51,6 +51,27 @@ query user{
         following{
             name
         }
+        myBusiness{
+            name
+            followers{
+                username
+            }
+        }
     }
 }
 `;
+/*
+export const MY_FOLLOWERS = gql`
+query user{
+    user{
+        username
+        myBusiness{
+            name
+            followers{
+            username
+            }
+        }
+    }
+}
+
+`*/
