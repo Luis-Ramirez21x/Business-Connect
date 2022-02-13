@@ -29,6 +29,7 @@ const typeDefs = gql`
     description: String!
     createdAt: String
     userName: String!
+    rating: Int
   }
 
   type Tag {
@@ -63,6 +64,7 @@ const typeDefs = gql`
       title: String!
       description: String!
       createdAt: String
+      rating: Int
     ): Business
 
     #for tags

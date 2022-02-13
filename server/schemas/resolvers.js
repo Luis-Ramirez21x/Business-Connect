@@ -111,7 +111,7 @@ const resolvers = {
     },
     leaveReview: async (
       parent,
-      { businessId, title, description, createdAt },
+      { businessId, title, description, createdAt, rating },
       context
     ) => {
       if (context.user) {
@@ -119,6 +119,7 @@ const resolvers = {
           title,
           description,
           createdAt,
+          rating,
           userName: context.user.username,
         });
         return await Business.findOneAndUpdate(
