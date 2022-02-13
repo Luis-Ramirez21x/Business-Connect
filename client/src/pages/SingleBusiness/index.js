@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { Container, Card, CardImg, Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import Review from "../../components/Review";
+import ReviewForm from "../../components/ReviewForm";
+import Review from "../../components/Review"
 
-
-import { SINGLE_BUSINESS, GET_REVIEWS } from "../../utils/queries";
-
+import "./index.css"
+import { SINGLE_BUSINESS } from "../../utils/queries";
 
 const SingleBusiness = () => {
   const { id } = useParams()
@@ -16,15 +16,16 @@ const SingleBusiness = () => {
   function toggleReview(val) {
     toggleShowReview(val)
   };
- console.log(data);
+
+  console.log(data)
   return (
     <>
       {loading? (
         <h2>Loading...</h2>
       ) : (
         <>
-          <Card key={data.business._id}>
-            <CardImg width="100%" src={data.business.image} alt="Business Image" />
+          <Card className="business-card-main" key={data.business._id}>
+            <CardImg className="card-img" width="100%" src={data.business.image} alt="Business Image" />
             <Card.Body>
               <Card.Text>{data.business.name}</Card.Text>
               <Card.Text>{data.business.description}</Card.Text>
@@ -34,20 +35,23 @@ const SingleBusiness = () => {
             </Card.Body>
           </Card>
 
-          <Container>
+          <Container className="review-section">
             {showReview 
             ? 
-            (<Review businessID={data.business._id} toggleReview={toggleReview}></Review>) 
+            (<ReviewForm businessID={data.business._id} toggleReview={toggleReview}></ReviewForm>) 
             :
             (<Button onClick={() => toggleReview(true)}>Leave Review</Button>)}
           </Container>
 
           <Container>
-            <h2>Reviews</h2>
-            {/* {REVIEWS WILL GO HERE} */}
-            <li>review 1</li>
-            <li>review 2</li>
-            <li>review 3</li>
+            <h2 className="review-heading">User Reviews</h2>
+            <ul className="list-container">
+              {data.business.reviews.map((review) => {
+                return (
+                  <Review review={review}></Review>
+                )
+              })}
+            </ul>
           </Container>
         </>
       )}

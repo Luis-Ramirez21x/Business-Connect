@@ -40,10 +40,10 @@ const businessSchema = new Schema({
     //validate: [validateURL, "Please input a valid URL"],
   },
 
-  followers : [
+  followers: [
     {
-    type: Schema.Types.ObjectId,
-    ref: "User",
+      type: Schema.Types.ObjectId,
+      ref: "User",
     },
   ],
   /*tags: [
@@ -58,8 +58,9 @@ const businessSchema = new Schema({
       ref: "Review",
     },
   ],
-
 });
+
+businessSchema.index({ name: "text", description: "text" });
 
 // Initialize our Business model
 const Business = model("Business", businessSchema);

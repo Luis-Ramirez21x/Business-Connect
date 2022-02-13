@@ -1,5 +1,13 @@
+.modal-content {
+    margin-top: 170px;
+    display: flex;
+    justify-content: center;
+}
 
-.login-signup-main{
-    border: red 2px solid;
-    background-color: wheat;
+.login-body {
+    margin-top: 20px;
+}
+
+.login-submit {
+    margin-top: 20px;
 }
