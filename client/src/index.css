@@ -6,10 +6,15 @@
   --secondaryC: white;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+}
 
 body {
   font-family:Georgia, 'Times New Roman', Times, serif;
-  background-color: rgba(221, 225, 238, 0.397);
+  background-image: url('images/bg_img04.jpg');
+  /* background-color: rgba(221, 225, 238, 0.397); */
 }
 
 h1,
@@ -25,29 +30,3 @@ font-family: Georgia, 'Times New Roman', Times, serif;}
   font-style: italic;
 }
 
-
-
-/* .nav-main {
-  border: red solid 2px;
-  
-}
-
-.nav-brand-main {
-  display: inline-flex;
-  align-content: center;
-  align-items: center;
-  margin-left: 5px;
-  border: red solid 2px;
-}
-
-.nav-logo {
-  height: 100px;
-  width: 100px;
-  background-color: rgb(240, 127, 255);
-  border-radius: 50%;
-  padding-right: 20px;
-}
-
-.nav-logo img {
-  background-image: url('./components/images/bc_logo.png');
-} */

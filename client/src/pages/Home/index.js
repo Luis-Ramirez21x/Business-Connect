@@ -60,7 +60,7 @@ const Home = () => {
               />
             </Col>
             <Col xs={12} md={1}>
-              <Button type='submit' variant='primary' size='lg'>Search</Button>
+              <Button className='search-btn-main' type='submit' variant='primary' size='lg'>Search</Button>
             </Col>
           </Form.Row>
         </Form>
@@ -68,7 +68,7 @@ const Home = () => {
 
       <Container className="cat-search">
       <h2 className="cat-header">You May Also Choose A Category Here </h2>
-        <DropdownButton size='lg' id="dropdown-basic-button" title={tagInput} value={tagInput} onSelect={(eventKey, event) => setTagInput(eventKey)}>
+        <DropdownButton className="drop-down-btn" size='lg' id="dropdown-basic-button" title={tagInput} value={tagInput} onSelect={(eventKey, event) => setTagInput(eventKey)}>
           {tag_loading ? (<DropdownItem>loading...</DropdownItem>) : 
             tag_data.tags.map((tag)=> {
               return (
@@ -94,15 +94,8 @@ const Home = () => {
       <Container className="bot-banner-container">
         <img className="bot-banner-img" src={image}></img>
         <div className="bot-info-text">
-          <h1>Banner Title/ placeholder</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-              Donec mauris erat, dignissim nec bibendum vitae, tincidunt a enim. 
-              Aliquam iaculis justo dolor, sit amet ullamcorper dolor suscipit eu. 
-              Quisque mollis, augue ac tempor congue, tellus elit interdum lorem, interdum congue metus leo id nulla. 
-              Nulla placerat imperdiet molestie. Donec tempor nisl non ullamcorper suscipit. Ut rutrum venenatis enim et dictum. 
-              Duis sed accumsan sapien. 
-              Duis quis aliquet felis, eu aliquet est. Vestibulum varius vehicula congue. 
-              Proin tristique mattis lorem at rhoncus.</p>
+          <h1>Get Connected Today!</h1>
+            <p>Users from all over the US use The Business Connect Network to match with the highest rated services in their area. Signup now to get connected with amazing businesses today.</p>
         </div>
       </Container>
 

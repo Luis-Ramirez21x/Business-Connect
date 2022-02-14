@@ -24,7 +24,7 @@ const SingleBusiness = () => {
         <>
           <Card className="business-card-main" key={data.business._id}>
             <CardImg className="card-img" width="100%" src={data.business.image} alt="Business Image" />
-            <Card.Body>
+            <Card.Body className="card-body-main">
               <Card.Text>{data.business.name}</Card.Text>
               <Card.Text>{data.business.description}</Card.Text>
               <Card.Text>{data.business._id}</Card.Text>
@@ -38,7 +38,7 @@ const SingleBusiness = () => {
             ? 
             (<Review businessID={data.business._id} toggleReview={toggleReview}></Review>) 
             :
-            (<Button onClick={() => toggleReview(true)}>Leave Review</Button>)}
+            (<Button className='leave-review-btn' onClick={() => toggleReview(true)}>Click Here To Leave A Review</Button>)}
           </Container>
 
           <Container>

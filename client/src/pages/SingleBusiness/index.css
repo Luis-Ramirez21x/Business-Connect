@@ -9,10 +9,9 @@
 .card-img {
     border: rgb(38, 38, 87) solid 3px;
     margin: 20px;
-    margin-left: 25px;
     border-radius: 15px;
-    width: 375px;
-    height: 250px;
+    width: 400px;
+    height: 275px;
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
     rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
@@ -25,11 +24,32 @@
     flex-wrap: wrap;
     align-items: center;
     flex-direction: row;
-    width: 1200px;
-    height: 450px;
+    justify-content: center;
+    width: 100vw;
+    height: fit-content;
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
     rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 
+}
+
+.card-body-main {
+    border: red solid 3px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    max-width: max-content;
+}
+
+.leave-review-btn {
+    /* border: red solid 3px; */
+    background-color: transparent;
+    border: transparent;
+    color: var(--primaryA);
+    width: 700px;
+    padding: 5px;
+    font-size: 1.5em;
+    font-weight: bold;
+    border-radius: 15px;
 }
 
 .review-heading {
@@ -38,22 +58,27 @@
     color: var(--secondaryC);
     border-radius: 15px;
     margin: 0 auto;
+    margin-top: 30px;
+    padding: 5px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 25px;
-    font-size: 2.5em;
+    font-size: 2em;
     width: 100%;
     height: max-content;
     
 }
 
 .review-section {
+    margin-bottom: 20px;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     background-color: var(--secondaryC);
     margin-top: 45px;
     height: fit-content;
+    width: 700px;
     border-radius: 5px;
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
     rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
@@ -77,8 +102,14 @@
     display: flex;
     justify-content: center;
     list-style: none;
-    width: 800px;
+    width: 400px;
     height: 200px;
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
     rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+@media (max-width: 800px) {
+    .card-body-main {
+        font-size: .65em;
+    }
 }

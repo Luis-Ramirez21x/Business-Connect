@@ -8,10 +8,20 @@
 
 .nav-main {
     /* border: rgb(0, 255, 34) solid 2px; */
-    background-color: var(--primaryA)
+    background-color: var(--primaryA);
+    display: flex;
+    flex-wrap: wrap;
+    width: 100vw;
     
   }
   
+  .nav-menu {
+    /* border: rgb(0, 255, 34) solid 2px; */
+    display: flex;
+    flex-wrap: wrap;
+
+  }
+
   .nav-brand-main {
     display: inline-flex;
     align-content: center;
@@ -41,3 +51,9 @@
   .nav-menu {
     margin-right: 50px;
   }
+
+  /* @media (max-width: 800px) {
+    .form-main {
+
+    }
+  } */
