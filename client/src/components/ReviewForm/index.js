@@ -3,6 +3,7 @@ import { useMutation } from "@apollo/client";
 import { Container, Col ,Card, CardImg, Button, Form } from "react-bootstrap";
 import { POST_REVIEW } from "../../utils/mutations";
 import Auth from "../../utils/auth";
+import "./index.css";
 
 const ReviewForm = ({ businessID, toggleReview }) => {
   const [reviewFormData, setReviewFormData] = useState({ title: '', description: '' });
@@ -58,6 +59,7 @@ const ReviewForm = ({ businessID, toggleReview }) => {
         <Form.Group>
         <Form.Label>Your Review</Form.Label>  
           <Form.Control
+              className="review-title-section"
               name='title'
               value={reviewFormData.title}
               onChange={handleInputChange}
@@ -66,17 +68,22 @@ const ReviewForm = ({ businessID, toggleReview }) => {
               placeholder='Review Title'
               required 
           /> 
-          <Form.Control
+          <textarea
+              className= 'form-review-section'
               name='description'
+              rows={14}
+              cols={10}
+              wrap="soft"
               value={reviewFormData.description}
               onChange={handleInputChange}
-              type='text'
+              type='textarea'
               size='md'
               placeholder='Review Description'
               required 
-          /> 
+          />  
         </Form.Group>  
         <Button
+          className='review-post-btn'
           disabled={!(reviewFormData.title && reviewFormData.description)}
           type='submit'
           variant='success'>
