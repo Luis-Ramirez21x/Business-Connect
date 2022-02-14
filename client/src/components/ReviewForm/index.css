@@ -1,0 +1,38 @@
+.form-group {
+    /* border: red solid 2px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+    height: 250px;
+}
+
+.form-label {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.review-title-section {
+    border: var(--secondaryA) solid 1px;
+}
+
+.form-review-section {
+    border: var(--secondaryA) solid 1px;
+    padding: 15px 65px 100px 12px;
+    width: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+.review-post-btn {
+    /* border: red solid 2px; */
+    margin-bottom: 20px;
+}
+
+@media (max-width: 575px) {
+    .form-group {
+        width: 400px;
+    }
+}
