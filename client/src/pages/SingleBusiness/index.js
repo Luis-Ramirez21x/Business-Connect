@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Container, Card, CardImg, Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
-import Review from "../../components/Review";
+import ReviewForm from "../../components/ReviewForm";
+import Review from "../../components/Review"
 
 import "./index.css"
 import { SINGLE_BUSINESS } from "../../utils/queries";
@@ -15,7 +16,8 @@ const SingleBusiness = () => {
   function toggleReview(val) {
     toggleShowReview(val)
   };
- console.log(data);
+
+  console.log(data)
   return (
     <>
       {loading? (
@@ -36,21 +38,19 @@ const SingleBusiness = () => {
           <Container className="review-section">
             {showReview 
             ? 
-            (<Review businessID={data.business._id} toggleReview={toggleReview}></Review>) 
+            (<ReviewForm businessID={data.business._id} toggleReview={toggleReview}></ReviewForm>) 
             :
             (<Button className='leave-review-btn' onClick={() => toggleReview(true)}>Click Here To Leave A Review</Button>)}
           </Container>
 
           <Container>
             <h2 className="review-heading">User Reviews</h2>
-            {/* {REVIEWS WILL GO HERE} */}
             <ul className="list-container">
-            <li className="review-list">review 1</li>
-            <li className="review-list">review 2</li>
-            <li className="review-list">review 3</li>
-            <li className="review-list">review 4</li>
-            <li className="review-list">review 5</li>
-            <li className="review-list">review 6</li>
+              {data.business.reviews.map((review) => {
+                return (
+                  <Review review={review}></Review>
+                )
+              })}
             </ul>
           </Container>
         </>

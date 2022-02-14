@@ -117,6 +117,7 @@ db.once("open", async () => {
     username: "test",
     email: "test@test.com",
     password: "password123",
+    myBusiness: [companies[4]._id],
     following: [companies[0]._id,companies[1]._id,companies[2]._id]
   }),
   console.log("users seeded");
@@ -140,7 +141,11 @@ db.once("open", async () => {
     },
   ]);
 
-      
+  await Business.findOneAndUpdate(
+    {_id: companies[4]._id},
+    { $addToSet: {followers: [ users[0]._id, users[1]._id],}},
+    { new:true}
+  );
 
 
 
