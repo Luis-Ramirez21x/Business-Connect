@@ -35,13 +35,15 @@ const SingleBusiness = () => {
             </Card.Body>
           </Card>
 
+          
+          {showReview 
+          ? (
           <Container className="review-section">
-            {showReview 
-            ? 
-            (<ReviewForm businessID={data.business._id} toggleReview={toggleReview}></ReviewForm>) 
-            :
-            (<Button className='leave-review-btn' onClick={() => toggleReview(true)}>Click Here To Leave A Review</Button>)}
-          </Container>
+          <ReviewForm businessID={data.business._id} toggleReview={toggleReview}></ReviewForm>
+          </Container>)
+          :
+          (<Button className='leave-review-btn' onClick={() => toggleReview(true)}>Click Here To Leave A Review</Button>)}
+          
 
           <Container>
             <h2 className="review-heading">User Reviews</h2>
