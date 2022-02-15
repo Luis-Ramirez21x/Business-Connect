@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Card, CardImg, Button } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import ReviewForm from "../../components/ReviewForm";
 import Review from "../../components/Review"
@@ -18,7 +18,6 @@ const SingleBusiness = () => {
     toggleShowReview(val)
   };
 
-  console.log(data)
   return (
     <>
       {loading? (
@@ -34,7 +33,7 @@ const SingleBusiness = () => {
               <Card.Text>Rating:</Card.Text>
               <Card.Text>Owner:</Card.Text>
             </Card.Body>
-
+            {userData?.user.myBusiness[0]._id == id? <Button as={Link} to={`/update/${id}`} >Edit</Button> : null}
           </Card>
 
           
