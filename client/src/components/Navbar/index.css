@@ -8,19 +8,30 @@
 
 .nav-main {
     /* border: rgb(0, 255, 34) solid 2px; */
-    background-color: var(--primaryA)
+    background-color: var(--primaryA);
+    display: flex;
+    flex-wrap: wrap;
+    width: 100vw;
     
   }
   
+  .nav-menu {
+    /* border: rgb(0, 255, 34) solid 2px; */
+    display: flex;
+    flex-wrap: wrap;
+  }
+
   .nav-brand-main {
+    /* border: rgb(0, 255, 34) solid 2px; */
     display: inline-flex;
     align-content: center;
     align-items: center;
-    margin-left: 5px;
+    margin-left: 25px;
     /* padding: 7px; */
     /* border: red solid 2px; */
   }
   .nav-logo {
+    margin-left: 20px;
     height: 75px;
     width: 75px;
     background-image: url('../../images/bc_logo2.png');
@@ -41,3 +52,9 @@
   .nav-menu {
     margin-right: 50px;
   }
+
+  /* @media (max-width: 800px) {
+    .form-main {
+
+    }
+  } */

@@ -7,12 +7,11 @@
   }
 
 .card-img {
-    border: rgb(38, 38, 87) solid 3px;
+    border: rgb(38, 38, 87) solid 2px;
     margin: 20px;
-    margin-left: 25px;
     border-radius: 15px;
-    width: 375px;
-    height: 250px;
+    width: 400px;
+    height: 275px;
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
     rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 }
@@ -20,16 +19,46 @@
 .business-card-main {
     /* border: red solid 3px; */
     margin: 0 auto;
-    font-size: 1.75em;
+    font-size: 1.50em;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     flex-direction: row;
-    width: 1200px;
-    height: 450px;
+    justify-content: center;
+    width: 100vw;
+    height: fit-content;
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
     rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 
+}
+
+.card-body-main {
+    /* border: red solid 3px; */
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    max-width: max-content;
+}
+
+.leave-review-btn {
+    border: var(--primaryA) solid 3px;
+    background-color: var(--secondaryC);
+    color: var(--primaryA);
+    margin: 0 auto;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    width: 400px;
+    padding: 5px;
+    font-size: 1.5em;
+    font-weight: bold;
+    border-radius: 15px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+.leave-review-btn:hover {
+    background-color: var(--primaryB);
 }
 
 .review-heading {
@@ -38,22 +67,28 @@
     color: var(--secondaryC);
     border-radius: 15px;
     margin: 0 auto;
+    margin-top: 30px;
+    padding: 5px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     margin-top: 25px;
-    font-size: 2.5em;
+    font-size: 2em;
     width: 100%;
     height: max-content;
     
 }
 
 .review-section {
+    border: var(--primaryA) solid 2px;
+    margin-bottom: 20px;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     background-color: var(--secondaryC);
     margin-top: 45px;
     height: fit-content;
+    width: 700px;
     border-radius: 5px;
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
     rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
@@ -71,14 +106,53 @@
 }
 
 .review-list {
-    border: rgb(38, 38, 87) solid 4px;
+    border: solid 2px var(--primaryA);
+    background-color: var(--secondaryC);
     border-radius: 15px;
     margin-top: 50px;
     display: flex;
     justify-content: center;
     list-style: none;
-    width: 800px;
-    height: 200px;
+    width: fit-content;
+    height: fit-content;
+    padding: 25px;
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
     rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+.review-list .card-title {
+    font-size: .5em;
+    text-decoration: underline;
+    color: var(--primaryA);
+}
+
+.review-list p {
+    font-size: .35em;
+    color: var(--primaryA);
+}
+
+@media (max-width: 800px) {
+    .card-body-main {
+        font-size: .75em;
+    }
+}
+
+@media (max-width: 834px) {
+    .card-img{
+        width: 350px;
+        height: 250px;
+    }
+}
+
+@media (max-width: 756px) {
+    .card-img{
+        width: 300px;
+        height: 200px;
+    }
+}
+
+@media (max-width: 575px) {
+    .review-section {
+        width: 500px;
+    }
 }

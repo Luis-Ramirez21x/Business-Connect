@@ -3,8 +3,10 @@ import { useMutation } from "@apollo/client";
 import { Container, Col ,Card, CardImg, Button, Form } from "react-bootstrap";
 import { POST_REVIEW } from "../../utils/mutations";
 import Auth from "../../utils/auth";
-import "./style.css";
+//possibly './style.css'
+import "./index.css";
 import { FaStar } from "react-icons/fa";
+
 
 const ReviewForm = ({ businessID, toggleReview }) => {
 //state 
@@ -89,8 +91,8 @@ const ReviewForm = ({ businessID, toggleReview }) => {
   return (
     <>
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
-        <Form.Group>
-        <Form.Label>Your Review</Form.Label>  
+        <Form.Group className="review-form-group">
+        <Form.Label className="review-form-label">Your Review</Form.Label>  
           <Form.Control
               className="review-title-section"
               name='title'

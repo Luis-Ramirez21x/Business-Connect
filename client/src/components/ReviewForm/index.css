@@ -1,0 +1,47 @@
+:root {
+    --primaryA: rgb(38, 38, 87);
+    --primaryB: #4378ce;
+    --secondaryA: rgb(177, 177, 180);
+    --secondaryB: rgb(24, 24, 42);
+    --secondaryC: white;
+  }
+
+.review-form-group {
+    /* border: red solid 2px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+    height: 250px;
+}
+
+.review-form-label {
+    font-weight: bold;
+    margin-top: 10px;
+    color: var(--primaryA);
+}
+
+.review-title-section {
+    border: var(--secondaryA) solid 1px;
+}
+
+.form-review-section {
+    border: var(--secondaryA) solid 1px;
+    padding: 15px 65px 100px 12px;
+    width: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+.review-post-btn {
+    /* border: red solid 2px; */
+    margin-bottom: 20px;
+}
+
+@media (max-width: 575px) {
+    .review-form-group {
+        width: 400px;
+    }
+}
