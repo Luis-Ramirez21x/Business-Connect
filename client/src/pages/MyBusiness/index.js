@@ -1,15 +1,23 @@
 import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import {useMutation} from '@apollo/client';
 import { Jumbotron, Container, Col, Form, Button, DropdownButton, Dropdown } from 'react-bootstrap';
 import DropdownItem from 'react-bootstrap/esm/DropdownItem';
-import { ALL_TAGS } from '../../utils/queries'
+import { ALL_TAGS, MY_BUSINESS } from '../../utils/queries'
 import { CREATE_BUSINESS } from '../../utils/mutations';
 import Auth from '../../utils/auth';
 import "./index.css"
 
 function MyBusiness() {
-  //can be refactored to be userFormData
+  const {loading: businessLoading, data: businessData} = useQuery(MY_BUSINESS)
+  
+  console.log(businessData)
+
+  if (!businessLoading) {
+    console.log(businessData.user.myBusiness[0]._id)
+  }
+
   const [businessFormData, setBusinessFormData] = useState(
     { name: '', address: '', description: '', 
     price: '', image: '' }
@@ -68,6 +76,7 @@ function MyBusiness() {
 
   return (
     <>
+    {businessData?.user?.myBusiness.length? <Redirect to={`/businesses/${businessData.user.myBusiness[0]._id}`} /> : null}
     <h2 className='business-info-header'>Enter Your Business's Info Here</h2>
       <Container className='bi-background'>
         <div className='business-info-main'>

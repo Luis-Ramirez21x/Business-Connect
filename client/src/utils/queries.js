@@ -80,6 +80,7 @@ export const MY_BUSINESS = gql`
         username
         email
         myBusiness{
+          _id
           name
           address
           description
