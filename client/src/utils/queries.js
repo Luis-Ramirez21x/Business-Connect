@@ -73,6 +73,22 @@ query user{
     }
 }
 `;
+
+export const MY_BUSINESS = gql`
+  query user{
+    user{
+        username
+        email
+        myBusiness{
+          name
+          address
+          description
+          price
+          image
+        }
+    }
+  }
+`;
 /*
 export const MY_FOLLOWERS = gql`
 query user{
