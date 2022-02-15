@@ -48,6 +48,9 @@ const resolvers = {
     tag: async (parent, { name }) => {
       return Tag.findOne({ name: name }).populate("businesses");
     },
+    tagged: async (parent, { _id }) => {
+      return Tag.findOne({businesses: _id}).populate("businesses");
+    }
   },
 
   Mutation: {

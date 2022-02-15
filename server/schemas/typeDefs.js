@@ -32,6 +32,7 @@ const typeDefs = gql`
   }
 
   type Tag {
+    _id: ID!
     name: String!
     businesses: [Business]
   }
@@ -49,6 +50,7 @@ const typeDefs = gql`
     myBusiness: User
     tags: [Tag]
     tag(name: String!): Tag
+    tagged(_id: ID): Tag
     businessSearch(query: String!): [Business]
   }
 

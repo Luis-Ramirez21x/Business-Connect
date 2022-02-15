@@ -47,7 +47,7 @@ function App() {
           <Switch>
             <Route exact path='/' component={Home} />
             <Route exact path='/mybusiness' component={MyBusiness} />
-            <Route exact path='/update' component={UpdateBusines} />
+            <Route exact path='/update/:id' component={UpdateBusines} />
             <Route exact path='/businesses/:id' component={SingleBusiness} />
             <Route exact path='/connect' component={Connect} />
             <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />

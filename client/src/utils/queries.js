@@ -8,6 +8,14 @@ export const ALL_TAGS = gql`
   }
 `;
 
+export const TAGGED = gql`
+  query tagged($_id: ID) {
+    tagged(_id:$_id) {
+      name
+    }
+  }
+`
+
 export const BUSINESSES_BY_TAG = gql`
   query tag($name: String!) {
     tag(name: $name) {
