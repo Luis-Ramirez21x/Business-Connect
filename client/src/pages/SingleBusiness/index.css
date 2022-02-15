@@ -7,7 +7,7 @@
   }
 
 .card-img {
-    border: rgb(38, 38, 87) solid 3px;
+    border: rgb(38, 38, 87) solid 2px;
     margin: 20px;
     border-radius: 15px;
     width: 400px;
@@ -41,15 +41,24 @@
 }
 
 .leave-review-btn {
-    /* border: red solid 3px; */
-    background-color: transparent;
-    border: transparent;
+    border: var(--primaryA) solid 3px;
+    background-color: var(--secondaryC);
     color: var(--primaryA);
-    width: 700px;
+    margin: 0 auto;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    width: 400px;
     padding: 5px;
     font-size: 1.5em;
     font-weight: bold;
     border-radius: 15px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+.leave-review-btn:hover {
+    background-color: var(--primaryB);
 }
 
 .review-heading {
@@ -71,7 +80,7 @@
 }
 
 .review-section {
-    /* border: red solid 2px; */
+    border: var(--primaryA) solid 2px;
     margin-bottom: 20px;
     display: flex;
     flex-wrap: wrap;
@@ -97,16 +106,29 @@
 }
 
 .review-list {
-    border: rgb(38, 38, 87) solid 4px;
+    border: solid 2px var(--primaryA);
+    background-color: var(--secondaryC);
     border-radius: 15px;
     margin-top: 50px;
     display: flex;
     justify-content: center;
     list-style: none;
-    width: 400px;
-    height: 200px;
+    width: fit-content;
+    height: fit-content;
+    padding: 25px;
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
     rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+.review-list .card-title {
+    font-size: .5em;
+    text-decoration: underline;
+    color: var(--primaryA);
+}
+
+.review-list p {
+    font-size: .35em;
+    color: var(--primaryA);
 }
 
 @media (max-width: 800px) {

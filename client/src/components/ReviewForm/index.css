@@ -1,4 +1,12 @@
-.form-group {
+:root {
+    --primaryA: rgb(38, 38, 87);
+    --primaryB: #4378ce;
+    --secondaryA: rgb(177, 177, 180);
+    --secondaryB: rgb(24, 24, 42);
+    --secondaryC: white;
+  }
+
+.review-form-group {
     /* border: red solid 2px; */
     display: flex;
     flex-direction: column;
@@ -8,9 +16,10 @@
     height: 250px;
 }
 
-.form-label {
+.review-form-label {
     font-weight: bold;
     margin-top: 10px;
+    color: var(--primaryA);
 }
 
 .review-title-section {
@@ -32,7 +41,7 @@
 }
 
 @media (max-width: 575px) {
-    .form-group {
+    .review-form-group {
         width: 400px;
     }
 }
