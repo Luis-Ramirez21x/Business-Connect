@@ -137,6 +137,7 @@ const resolvers = {
       context
     ) => {
       if (context.user) {
+        console.log(context.user)
         const newBusiness = await Business.create({
           name,
           address,

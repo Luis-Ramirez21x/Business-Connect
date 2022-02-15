@@ -77,8 +77,6 @@ query user{
 export const MY_BUSINESS = gql`
   query user{
     user{
-        username
-        email
         myBusiness{
           _id
           name

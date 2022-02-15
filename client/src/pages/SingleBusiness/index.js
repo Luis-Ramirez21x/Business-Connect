@@ -6,11 +6,12 @@ import ReviewForm from "../../components/ReviewForm";
 import Review from "../../components/Review"
 
 import "./index.css"
-import { SINGLE_BUSINESS } from "../../utils/queries";
+import { SINGLE_BUSINESS, MY_BUSINESS } from "../../utils/queries";
 
 const SingleBusiness = () => {
   const { id } = useParams()
   const {loading, data} = useQuery(SINGLE_BUSINESS, { variables: {_id: id} })
+  const {data: userData} = useQuery(MY_BUSINESS)
   const [showReview, toggleShowReview] = useState(false)
 
   function toggleReview(val) {
@@ -33,6 +34,7 @@ const SingleBusiness = () => {
               <Card.Text>Rating:</Card.Text>
               <Card.Text>Owner:</Card.Text>
             </Card.Body>
+
           </Card>
 
           
