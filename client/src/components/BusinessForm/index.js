@@ -10,15 +10,13 @@ import Auth from '../../utils/auth';
 import "./index.css"
 
 function BusinessForm({ businessFormData, 
-    setBusinessFormData, tagInput, setTagInput }) {
+    setBusinessFormData, createBusiness, tagInput, setTagInput }) {
   const {loading: tagLoading, data: tagData} = useQuery(ALL_TAGS);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setBusinessFormData({ ...businessFormData, [name]: value });
   };
-
-  const [createBusiness, { error }] = useMutation(CREATE_BUSINESS)
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -32,7 +30,7 @@ function BusinessForm({ businessFormData,
 
     const newBusiness = {
       ...businessFormData,
-      tagInput: tagInput
+      tagName: tagInput
     }
 
     console.log(newBusiness)
@@ -46,7 +44,7 @@ function BusinessForm({ businessFormData,
         variables: { ...newBusiness }
       })
       
-      Auth.login(data.login.token);
+      // Auth.login(data.login.token);
     } catch (err) {
       console.error(err);
       //this code can be used to show an alert on the form
