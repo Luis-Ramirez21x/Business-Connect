@@ -13,8 +13,9 @@ import "./index.css"
 
 function UpdateBusines() {
     const { id } = useParams()
-    const {loading: businessLoading, data: businessData} = useQuery(MY_BUSINESS)
     const {data:taggedData} = useQuery(TAGGED, {variables: { _id: id } })
+    const {loading: businessLoading, data: businessData} = useQuery(MY_BUSINESS)
+    
 
     const [businessFormData, setBusinessFormData] = useState(
         { name: '', address: '', description: '', 
@@ -35,7 +36,7 @@ function UpdateBusines() {
             image: businessData?.user.myBusiness[0].image
         })
         setTagInput(taggedData?.tagged.name)
-    }, [businessData])
+    }, [businessData,taggedData])
         
     return (
         <BusinessForm 
