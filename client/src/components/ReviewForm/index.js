@@ -56,8 +56,8 @@ const ReviewForm = ({ businessID, toggleReview }) => {
   return (
     <>
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
-        <Form.Group>
-        <Form.Label>Your Review</Form.Label>  
+        <Form.Group className="review-form-group">
+        <Form.Label className="review-form-label">Your Review</Form.Label>  
           <Form.Control
               className="review-title-section"
               name='title'
