@@ -4,20 +4,38 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import ReviewForm from "../../components/ReviewForm";
 import Review from "../../components/Review"
+import { FaStar } from "react-icons/fa";
 
 import "./index.css"
 import { SINGLE_BUSINESS } from "../../utils/queries";
 
 const SingleBusiness = () => {
+  //form state
   const { id } = useParams()
   const {loading, data} = useQuery(SINGLE_BUSINESS, { variables: {_id: id} })
   const [showReview, toggleShowReview] = useState(false)
+  //star rating state
+  const [currentValue, setCurrentValue] = useState(3);
+  const stars = Array(5).fill(0)
 
+  //logic for calculating average
+  let sumRatings = 0;
+  let averageRating = 0;
+  if(data){
+    console.log(data);
+    let reviewsArr = data.business.reviews;
+    for (let i=0; i< reviewsArr.length; i++){
+        sumRatings += reviewsArr[i].rating;
+    }
+    averageRating = sumRatings/reviewsArr.length;
+  }
+
+  
   function toggleReview(val) {
     toggleShowReview(val)
   };
 
-  console.log(data)
+  
   return (
     <>
       {loading? (
@@ -29,9 +47,14 @@ const SingleBusiness = () => {
             <Card.Body className="card-body-main">
               <Card.Text>{data.business.name}</Card.Text>
               <Card.Text>{data.business.description}</Card.Text>
-              <Card.Text>{data.business._id}</Card.Text>
-              <Card.Text>Rating:</Card.Text>
-              <Card.Text>Owner:</Card.Text>
+              <Card.Text>{stars.map((_, index) => {
+              return (
+                <FaStar key={index} 
+                  size={24} color={(averageRating) > index ? "#FFBA5A" : "#a9a9a9"} 
+                  style={{marginRight: 10,}}/>
+                )
+              })}</Card.Text>
+
             </Card.Body>
           </Card>
 

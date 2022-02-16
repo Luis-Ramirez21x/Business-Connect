@@ -8,7 +8,8 @@ const validateURL = function (url) {
   return re.test(url);
 };
 
-const businessSchema = new Schema({
+const businessSchema = new Schema(
+  {
   name: {
     type: String,
     unique: true,
@@ -46,21 +47,35 @@ const businessSchema = new Schema({
       ref: "User",
     },
   ],
-  /*tags: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Tag",
-    },
-  ],*/
+
   reviews: [
     {
       type: Schema.Types.ObjectId,
       ref: "Review",
     },
   ],
-});
+},
+/*{
+  toJSON: {
+    virtuals: true,
+  },
+  id: false,
+}*/
+
+);
 
 businessSchema.index({ name: "text", description: "text" });
+
+businessSchema.virtual('ratingAverage').get(function(){
+    const sumRatings = 0;
+    const numReviews = this.reviews.length;
+    this.reviews.map((review) =>{
+         sumRatings += review.rating;
+    });
+    console.log(sumRatings/numReviews);
+    return sumRatings/numReviews;
+})
+
 
 // Initialize our Business model
 const Business = model("Business", businessSchema);
