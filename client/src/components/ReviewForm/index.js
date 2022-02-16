@@ -1,17 +1,13 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { Container, Col ,Card, CardImg, Button, Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { POST_REVIEW } from "../../utils/mutations";
 import Auth from "../../utils/auth";
-//possibly './style.css'
 import "./index.css";
 import { FaStar } from "react-icons/fa";
 
 
 const ReviewForm = ({ businessID, toggleReview }) => {
-//state 
-
-  //form state
   const [reviewFormData, setReviewFormData] = useState({ title: '', description: '' });
   const [validated] = useState(false);
   const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -20,25 +16,26 @@ const ReviewForm = ({ businessID, toggleReview }) => {
   const [hoverValue, setHoverValue] = useState(undefined);
   const stars = Array(5).fill(0)
   
-//logic/functions
+  const [postReview] = useMutation(POST_REVIEW)
 
-  //form functions
-  const [postReview, { error }] = useMutation(POST_REVIEW)
+  //logic/functions
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setReviewFormData({ ...reviewFormData, [name]: value });
   };
 
+  function refreshPage() {
+    window.location.reload(false);
+  }
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(reviewFormData.title);
 
     if (!token) {
       alert('You must be logged in to leave a review!')
       return false;
     }
 
-    // check if form has everything (as per react-bootstrap docs)
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
@@ -53,9 +50,7 @@ const ReviewForm = ({ businessID, toggleReview }) => {
                      rating: currentValue 
                     }
       })
-      console.log(data)
       toggleReview(false)
-     
     } catch (err) {
       console.error(err);
     }
@@ -64,6 +59,8 @@ const ReviewForm = ({ businessID, toggleReview }) => {
       title: '',
       description: '',
     });
+
+    refreshPage();
   };
 
   //star rating functions
@@ -81,12 +78,8 @@ const ReviewForm = ({ businessID, toggleReview }) => {
   //star colors
   const colors = {
     orange: "#FFBA5A",
-    grey: "#a9a9a9"
-    
+    grey: "#a9a9a9"  
 };
-
-
-  
 
   return (
     <>
@@ -117,7 +110,6 @@ const ReviewForm = ({ businessID, toggleReview }) => {
               required 
           />  
         </Form.Group>  
-
         <div style={styles.stars}>
         {stars.map((_, index) => {
           return (
@@ -136,7 +128,6 @@ const ReviewForm = ({ businessID, toggleReview }) => {
             )
           })}
         </div>
-
         <Button
           className='review-post-btn'
           disabled={!(reviewFormData.title && reviewFormData.description)}
