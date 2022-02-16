@@ -5,6 +5,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import ReviewForm from "../../components/ReviewForm";
 import Review from "../../components/Review"
 import { FaStar } from "react-icons/fa";
+//import image from '../../images/'
 
 import "./index.css"
 import { SINGLE_BUSINESS, MY_BUSINESS, MY_FOLLOWING } from "../../utils/queries";
@@ -49,7 +50,7 @@ const SingleBusiness = () => {
         sumRatings += reviewsArr[i].rating;
     }
     averageRating = sumRatings/reviewsArr.length;
-  
+    console.log(data.business.image);
     averageRating = Math.floor(averageRating);
     
   }
@@ -80,7 +81,7 @@ const SingleBusiness = () => {
       ) : (
         <>
           <Card className="business-card-main" key={data.business._id}>
-            <CardImg className="card-img" width="100%" src={data.business.image} alt="Business Image" />
+            <CardImg className="card-img" width="100%" src={`/images/${data.business.image}`} alt="Business Image" />
             <Card.Body className="card-body-main">
               <Card.Text>{data.business.name}</Card.Text>
               <Card.Text>{data.business.description}</Card.Text>
