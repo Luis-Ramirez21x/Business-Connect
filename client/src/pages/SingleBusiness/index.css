@@ -6,38 +6,94 @@
     --secondaryC: white;
   }
 
+.card-body-header {
+    /* border: red solid 2px; */
+    display: flex;
+    margin-top: 25px;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    overflow-x: auto;
+}
+
 .card-img {
     border: rgb(38, 38, 87) solid 2px;
-    margin: 20px;
+    display: flex;
+    margin: 0 auto;
     border-radius: 15px;
     width: 400px;
     height: 275px;
+    overflow-x: auto;
+    overflow-y: auto;
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
     rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+.business-description {
+    /* border: red solid 2px; */
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 25px;
+    margin-bottom: 45px;
+    width: 450px;
+    font-size: .75em;
 }
 
 .business-card-main {
     /* border: red solid 3px; */
-    margin: 0 auto;
+    background-color: var(--secondaryC);
     font-size: 1.50em;
+    margin: 0 auto;
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
     flex-direction: row;
     justify-content: center;
     width: 100vw;
-    height: fit-content;
+    height: 400px;
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
     rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 
 }
 
-.card-body-main {
-    /* border: red solid 3px; */
-    margin: 20px;
+.card-info-main {
+    /* border: red solid 3px;     */
     display: flex;
+    margin-top: 45px;
     flex-direction: column;
     max-width: max-content;
+}
+
+.follow-unfollow-btn {
+    /* border: red solid 3px; */
+    border: transparent;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+    width: 100px;
+    color: var(--secondaryC);
+    background-color: var(--primaryA);
+    margin-left: 10px;
+}
+
+.follow-unfollow-btn:hover {
+    background-color: var(--primaryB);
+}
+
+.sb-edit-btn {
+    /* border: red solid 3px; */
+    border: transparent;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+    width: 100px;
+    color: var(--secondaryC);
+    background-color: var(--primaryA);
+    margin-left: 10px;
+}
+
+.sb-edit-btn:hover {
+    background-color: var(--primaryB);
 }
 
 .leave-review-btn {
@@ -106,14 +162,16 @@
 }
 
 .review-list {
+    border: red solid 2px;
     border: solid 2px var(--primaryA);
-    background-color: var(--secondaryC);
+    background-color: rgba(100, 148, 237, 0.096);
     border-radius: 15px;
     margin-top: 50px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     list-style: none;
-    width: fit-content;
+    width: 100%;
     height: fit-content;
     padding: 25px;
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
@@ -131,23 +189,31 @@
     color: var(--primaryA);
 }
 
-@media (max-width: 800px) {
-    .card-body-main {
-        font-size: .75em;
-    }
-}
-
 @media (max-width: 834px) {
     .card-img{
         width: 350px;
         height: 250px;
     }
+    .card-info-main {
+        font-size: .75em;
+    }
+
 }
+
+@media (max-width: 800px) {
+    .card-body-main {
+        font-size: .85em;
+    }
+}
+
 
 @media (max-width: 756px) {
     .card-img{
         width: 300px;
         height: 200px;
+    }
+    .card-info-main {
+        font-size: .70em;
     }
 }
 

@@ -160,10 +160,10 @@ const Home = () => {
       <div className="container-fluid footer-content">
         <h3 className="footer-header">Resource Links</h3>
           <ul className="footer-resource-section">
-          <a href="#" alt="link1"><li className="resource-link"> About Us</li></a>
-          <a href="#" alt="link2"><li className="resource-link"> Meet our Team</li></a>
-          <a href="#" alt="link3"><li className="resource-link"> Contact Us</li></a>
-          <a href="#" alt="link4"><li className="resource-link"> FAQs</li></a>
+          <a className="active-resource-link" href="#" alt="link1"><li className="resource-link"> About Us</li></a>
+          <a className="active-resource-link" href="#" alt="link2"><li className="resource-link"> Meet our Team</li></a>
+          <a className="active-resource-link" href="#" alt="link3"><li className="resource-link"> Contact Us</li></a>
+          <a className="active-resource-link" href="#" alt="link4"><li className="resource-link"> FAQs</li></a>
           </ul>
 
           <div className="footer-icon-main">
