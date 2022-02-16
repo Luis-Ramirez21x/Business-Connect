@@ -6,12 +6,14 @@ const typeDefs = gql`
     name: String!
     address: String!
     description: String!
-    price: Int
+    price: String!
     quotes: String
     image: String
     followers: [User]
     tags: [Tag]
     reviews: [Review]
+    businessEmail: String!
+    phoneNumber: String
   }
 
   type User {
@@ -78,10 +80,12 @@ const typeDefs = gql`
       name: String!
       address: String!
       description: String!
-      price: Int
+      price: String!
       image: String
       tagName: String
-      ): Business
+      businessEmail: String!
+      phoneNumber: String!): Business
+
     updateBusiness(
       _id : ID
       name: String!
@@ -89,7 +93,9 @@ const typeDefs = gql`
       description: String!
       price: Int
       image: String
-      tagName: String) : Business
+      tagName: String
+      businessEmail: String!
+      phoneNumber: String!) : Business
   }
 `;
 
