@@ -29,6 +29,10 @@ const ReviewForm = ({ businessID, toggleReview }) => {
     setReviewFormData({ ...reviewFormData, [name]: value });
   };
 
+  function refreshPage() {
+    window.location.reload(false);
+  }
+
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     console.log(reviewFormData.title);
@@ -64,6 +68,8 @@ const ReviewForm = ({ businessID, toggleReview }) => {
       title: '',
       description: '',
     });
+
+    refreshPage();
   };
 
   //star rating functions

@@ -94,14 +94,12 @@ const SingleBusiness = () => {
               <Card.Text>{data.business.phoneNumber}</Card.Text>
 
             </Card.Body>
-            {userData?.user.myBusiness[0]?._id == id? <Button as={Link} to={`/update/${id}`} >Edit</Button> : null}
+            {userData?.user?.myBusiness[0]?._id == id? <Button as={Link} to={`/update/${id}`} >Edit</Button> : null}
             {following? 
               <Button onClick={() => followBusiness(id)}>Unfollow</Button> 
                 : 
               <Button onClick={() => followBusiness(id)}>Follow</Button>}
-              
           </Card>
-
           
           {showReview 
           ? (
