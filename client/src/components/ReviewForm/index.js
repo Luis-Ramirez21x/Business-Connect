@@ -34,8 +34,8 @@ const ReviewForm = ({ businessID, toggleReview }) => {
     console.log(reviewFormData.title);
 
     if (!token) {
-        return false;
-        alert('You must be logged in to leave a review!')
+      alert('You must be logged in to leave a review!')
+      return false;
     }
 
     // check if form has everything (as per react-bootstrap docs)

@@ -1,0 +1,49 @@
+:root {
+    --primaryA: rgb(38, 38, 87);
+    --primaryB: #4378ce;
+    --secondaryA: rgb(230, 230, 243);
+    --secondaryB: rgb(24, 24, 42);
+    --secondaryC: white;
+  }
+
+.business-info-header {
+    /* border: red solid 3px; */
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+.bi-background {
+    background-color: var(--primaryA);
+    width: 700px;
+    height: 700px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.business-info-main {
+    /* border: rgb(255, 0, 0) solid 3px; */
+    background-color: var(--secondaryC);
+    margin: 0 auto;
+    margin-top: 30px;
+    padding: 35px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: column;
+    width: 500px;
+    height: 600px;
+    border-radius: 15px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+.bi-submit-btn {
+    margin: 10px 5px;
+    display: flex;
+}
+
+.form-control-section {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}

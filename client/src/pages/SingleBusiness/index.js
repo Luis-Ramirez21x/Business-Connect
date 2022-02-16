@@ -1,18 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Card, CardImg, Button } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import ReviewForm from "../../components/ReviewForm";
 import Review from "../../components/Review"
 import { FaStar } from "react-icons/fa";
 
 import "./index.css"
-import { SINGLE_BUSINESS } from "../../utils/queries";
+import { SINGLE_BUSINESS, MY_BUSINESS } from "../../utils/queries";
 
 const SingleBusiness = () => {
   //form state
   const { id } = useParams()
   const {loading, data} = useQuery(SINGLE_BUSINESS, { variables: {_id: id} })
+  const {data: userData} = useQuery(MY_BUSINESS)
   const [showReview, toggleShowReview] = useState(false)
   //star rating state
   const [currentValue, setCurrentValue] = useState(3);
@@ -35,7 +36,7 @@ const SingleBusiness = () => {
     toggleShowReview(val)
   };
 
-  
+
   return (
     <>
       {loading? (
@@ -56,6 +57,7 @@ const SingleBusiness = () => {
               })}</Card.Text>
 
             </Card.Body>
+            {userData?.user.myBusiness[0]._id == id? <Button as={Link} to={`/update/${id}`} >Edit</Button> : null}
           </Card>
 
           
