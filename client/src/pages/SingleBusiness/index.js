@@ -14,13 +14,15 @@ const SingleBusiness = () => {
   const { id } = useParams()
 
   const {loading, data} = useQuery(SINGLE_BUSINESS, { variables: {_id: id} })
-  //this is pulling your business not the business of the page we are on
   const {data: userData} = useQuery(MY_BUSINESS)
-  // query to get "following" array
   const {data: followData} = useQuery(MY_FOLLOWING)
+  console.log(data?.business.reviews)
 
   const [showReview, toggleShowReview] = useState(false)
   const [following, setFollowing] = useState(false)
+  //star rating state
+  const [currentValue, setCurrentValue] = useState(3);
+  const stars = Array(5).fill(0)
 
   const [follow] = useMutation(FOLLOW_BUSINESS)
   const [unfollow] = useMutation(UNFOLLOW_BUSINESS)
@@ -34,15 +36,11 @@ const SingleBusiness = () => {
     }
   }, [followData])
 
-  //star rating state
-  const [currentValue, setCurrentValue] = useState(3);
-  const stars = Array(5).fill(0)
-
-  //logic for calculating average
+  //logic for calculating rating average
   let sumRatings = 0;
   let averageRating = 0;
+
   if(data){
- 
     let reviewsArr = data.business.reviews;
     for (let i=0; i< reviewsArr.length; i++){
         sumRatings += reviewsArr[i].rating;
@@ -50,7 +48,6 @@ const SingleBusiness = () => {
     averageRating = sumRatings/reviewsArr.length;
   
     averageRating = Math.floor(averageRating);
-    
   }
 
   function toggleReview(val) {
@@ -87,25 +84,23 @@ const SingleBusiness = () => {
               <Card.Text>{data.business.name}</Card.Text>
               
               <Card.Text>{stars.map((_, index) => {
-              return (
-                <FaStar key={index} 
-                  size={24} color={(averageRating) > index ? "#FFBA5A" : "#a9a9a9"} 
-                  style={{marginRight: 10,}}/>
-                )
-              })}</Card.Text>
+                return (
+                  <FaStar key={index} 
+                    size={24} color={(averageRating) > index ? "#FFBA5A" : "#a9a9a9"} 
+                    style={{marginRight: 10,}}/>
+                  )
+                })}
+              </Card.Text>
               <Card.Text>{data.business.businessEmail}</Card.Text>
               <Card.Text>{data.business.phoneNumber}</Card.Text>
+            </Card.Body>
 
-                {userData?.user.myBusiness[0]._id == id? <Button className="sb-edit-btn" as={Link} to={`/update/${id}`} >Edit</Button> : null}
-                {following? 
-                <Button className="follow-unfollow-btn" onClick={() => followBusiness(id)}>Unfollow</Button> 
-                  : 
-                <Button className="follow-unfollow-btn" onClick={() => followBusiness(id)}>Follow</Button>}
-
-            </div>
-              
+            {userData?.user?.myBusiness[0]?._id == id? <Button className="sb-edit-btn" as={Link} to={`/update/${id}`} >Edit</Button> : null}
+            {following? 
+              <Button className="follow-unfollow-btn" onClick={() => followBusiness(id)}>Unfollow</Button> 
+                : 
+              <Button className="follow-unfollow-btn" onClick={() => followBusiness(id)}>Follow</Button>}
           </Card>
-
           
           {showReview 
           ? (
@@ -115,13 +110,12 @@ const SingleBusiness = () => {
           :
           (<Button className='leave-review-btn' onClick={() => toggleReview(true)}>Click Here To Leave A Review</Button>)}
           
-
           <Container>
             <h2 className="review-heading">User Reviews</h2>
             <ul className="list-container">
               {data.business.reviews.map((review) => {
                 return (
-                  <Review key={review._id} review={review}></Review>
+                  <Review key={review.title} review={review}></Review>
                 )
               })}
             </ul>
