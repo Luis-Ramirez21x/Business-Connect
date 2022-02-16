@@ -93,7 +93,7 @@ const SingleBusiness = () => {
               </Card.Text>
               <Card.Text>{data.business.businessEmail}</Card.Text>
               <Card.Text>{data.business.phoneNumber}</Card.Text>
-            </Card.Body>
+            </div>
 
             {userData?.user?.myBusiness[0]?._id == id? <Button className="sb-edit-btn" as={Link} to={`/update/${id}`} >Edit</Button> : null}
             {following? 
