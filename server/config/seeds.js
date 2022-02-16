@@ -55,7 +55,9 @@ db.once("open", async () => {
       description: "asfasdfasdfas",
       price: 200,
       image: "image url here",
-      reviews: [reviews[0]]
+      reviews: [reviews[0]],
+      businessEmail: 'green_scape@gmail.com',
+      phoneNumber: '470-282-9696'
     },
     {
       name: "Steel Construction",
@@ -63,7 +65,9 @@ db.once("open", async () => {
       description: "sjdfnaiufp",
       price: 50,
       image: "image url here",
-      reviews: [reviews[1]]
+      reviews: [reviews[1]],
+      businessEmail: 'steel.boys@gmail.com',
+      phoneNumber: '678-455-5254'
     },
     {
       name: "Luis's Landscaping",
@@ -71,7 +75,9 @@ db.once("open", async () => {
       description: "asfasdfasdfas",
       price: 100,
       image: "image url here",
-      reviews: [reviews[2]]
+      reviews: [reviews[2]],
+      businessEmail: 'lawncare_luis@hotmail.com',
+      phoneNumber: '505-986-5689'
     },
     {
       name: "Car Fix Felix",
@@ -79,7 +85,9 @@ db.once("open", async () => {
       description: "jfmfghfghs",
       price: 100,
       image: "image url here",
-      reviews: [reviews[3], reviews[5]]
+      reviews: [reviews[3], reviews[5]],
+      businessEmail: 'car.felix.89@cars.net',
+      phoneNumber: '469-952-9641'
     },
     {
       name: "Italian Express Catering",
@@ -87,7 +95,9 @@ db.once("open", async () => {
       description: "nhn;osfgnngsf",
       price: 20,
       image: "image url here",
-      reviews: [reviews[4]]
+      reviews: [reviews[4]],
+      businessEmail: 'italy__eats.9698@outlook.com',
+      phoneNumber: '986-526-9823'
     },
   ]);
   console.log("companies seeded");

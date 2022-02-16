@@ -16,7 +16,7 @@ function MyBusiness() {
   const [tagInput, setTagInput] = useState('Tag Your Business Here')
   const [businessFormData, setBusinessFormData] = useState(
     { name: '', address: '', description: '', 
-    price: '', image: '' }
+    price: '', image: '',  businessEmail: '', phoneNumber: '' }
   )
   
   const [businessMutation, { error }] = useMutation(CREATE_BUSINESS)

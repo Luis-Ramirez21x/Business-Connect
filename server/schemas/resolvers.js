@@ -137,17 +137,19 @@ const resolvers = {
     //business mutations
     createBusiness: async (
       parent,
-      { name, address, description, image, price, tagName },
+      { name, address, description, image, price, tagName,businessEmail, phoneNumber},
       context
     ) => {
       if (context.user) {
-        console.log(context.user)
+        
         const newBusiness = await Business.create({
           name,
           address,
           description,
           image,
           price,
+          businessEmail,
+          phoneNumber,
         });
         await Tag.findOneAndUpdate(
           { name: tagName },
@@ -164,7 +166,7 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
-    updateBusiness: async (parent,{_id, name, address, description, image, price, tagName }, context) =>{
+    updateBusiness: async (parent,{_id, name, address, description, image, price, tagName,businessEmail, phoneNumber }, context) =>{
       if(context.user){
         return await Business.findOneAndUpdate(
           {_id: _id},
@@ -174,7 +176,9 @@ const resolvers = {
             description: description,
             image: image,
             price: price,
-            tagName: tagName
+            tagName: tagName,
+            businessEmail: businessEmail, 
+            phoneNumber: phoneNumber
           },
           {new:true}
         )

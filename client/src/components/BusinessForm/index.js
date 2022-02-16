@@ -31,20 +31,20 @@ function BusinessForm({ businessFormData,
        event.preventDefault();
        event.stopPropagation();
      }
-
+     console.log(businessFormData)
     const newBusiness = {
       ...businessFormData,
       tagName: tagInput
     }
+    console.log(newBusiness);
 
-    console.log(newBusiness)
     
     try {
       //changing price to an Int to meet model validation
-      newBusiness.price = parseInt(newBusiness.price);
-      console.log(typeof newBusiness.price)
-      console.log(tagInput);
+
+
       const { data } = await businessMutation({
+
         variables: { ...newBusiness }
       })
       
@@ -61,7 +61,9 @@ function BusinessForm({ businessFormData,
       address: '',
       description: '',
       price: '',
-      image: ''
+      image: '',
+      businessEmail: '',
+      phoneNumber: ''
     });
     setTagInput('Tag Your Business Here')
 
@@ -122,7 +124,7 @@ function BusinessForm({ businessFormData,
                     onChange={handleInputChange}
                     type='text'
                     size='md'
-                    placeholder='Business Price (per hour/ per job)'
+                    placeholder='$Rate(specify per hour/ per job)'
                 />
               </Col>
             </Form.Row>
@@ -136,6 +138,32 @@ function BusinessForm({ businessFormData,
                     type='text'
                     size='md'
                     placeholder='Business image url'
+                />
+              </Col>
+            </Form.Row>
+            <Form.Row>
+              <Col xs={12} md={12}>
+                <Form.Control
+                    className='form-control-section'
+                    name='businessEmail'
+                    value={businessFormData.businessEmail}
+                    onChange={handleInputChange}
+                    type='text'
+                    size='md'
+                    placeholder='Business Email'
+                />
+              </Col>
+            </Form.Row>
+            <Form.Row>
+              <Col xs={12} md={12}>
+                <Form.Control
+                    className='form-control-section'
+                    name='phoneNumber'
+                    value={businessFormData.phoneNumber}
+                    onChange={handleInputChange}
+                    type='text'
+                    size='md'
+                    placeholder='Business phone number'
                 />
               </Col>
             </Form.Row>
