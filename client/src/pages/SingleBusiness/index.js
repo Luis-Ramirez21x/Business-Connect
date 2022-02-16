@@ -40,7 +40,7 @@ const SingleBusiness = () => {
   let sumRatings = 0;
   let averageRating = 0;
   if(data){
-    console.log(data);
+ 
     let reviewsArr = data.business.reviews;
     for (let i=0; i< reviewsArr.length; i++){
         sumRatings += reviewsArr[i].rating;
@@ -57,6 +57,7 @@ const SingleBusiness = () => {
   }
 
   const followBusiness = async (id)  => {
+    console.log(following);
     if (following) {
       await unfollow({variables: { businessId: id } })
       refreshPage()
