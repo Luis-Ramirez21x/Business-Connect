@@ -16,6 +16,7 @@ const SingleBusiness = () => {
   const {loading, data} = useQuery(SINGLE_BUSINESS, { variables: {_id: id} })
   //this is pulling your business not the business of the page we are on
   const {data: userData} = useQuery(MY_BUSINESS)
+  // query to get "following" array
   const {data: followData} = useQuery(MY_FOLLOWING)
 
   const [showReview, toggleShowReview] = useState(false)
@@ -25,13 +26,10 @@ const SingleBusiness = () => {
   const [unfollow] = useMutation(UNFOLLOW_BUSINESS)
 
   useEffect(() => {
-    console.log('logged in user following' + followData?.user?.following);
-    console.log('current business:' + id);
-    console.log(followData?.user?.following.some(item => item._id === id));
-
     if (followData?.user?.following.some(item => item._id === id)) {
       setFollowing(true)
     } else {
+      // else set "following" to false
       setFollowing(false)
     }
   }, [followData])
@@ -50,6 +48,9 @@ const SingleBusiness = () => {
         sumRatings += reviewsArr[i].rating;
     }
     averageRating = sumRatings/reviewsArr.length;
+  
+    averageRating = Math.floor(averageRating);
+    
   }
 
   function toggleReview(val) {
@@ -102,7 +103,6 @@ const SingleBusiness = () => {
                 <Button className="follow-unfollow-btn" onClick={() => followBusiness(id)}>Follow</Button>}
 
             </div>
-
               
           </Card>
 
@@ -121,7 +121,7 @@ const SingleBusiness = () => {
             <ul className="list-container">
               {data.business.reviews.map((review) => {
                 return (
-                  <Review review={review}></Review>
+                  <Review key={review._id} review={review}></Review>
                 )
               })}
             </ul>
