@@ -42,7 +42,7 @@ db.once("open", async () => {
       title: "They did exactly as advertised",
       description: "I cannot say enough positive things about this business! I was in great need of this service, so I went online and found this business. From the very beginning, this business was punctual, attentive, and showed plenty effort of care with my service order. The this business associate walked me through each and every detail, time frame, and explained everything in a way that was easy to understand. Their employees are the best there are! I am truly satisfied this business.",
       userName: "John.Collins89",
-      rating:3
+      rating:2
     },
 
   ])

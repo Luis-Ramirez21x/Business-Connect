@@ -25,9 +25,8 @@ const SingleBusiness = () => {
   const [unfollow] = useMutation(UNFOLLOW_BUSINESS)
 
   useEffect(() => {
-    console.log('logged in user following' + followData?.user?.following);
-    console.log('current business:' + id);
-    console.log(followData?.user?.following.some(item => item._id === id));
+
+
 
     if (followData?.user?.following.some(item => item._id === id)) {
       setFollowing(true)
@@ -50,6 +49,9 @@ const SingleBusiness = () => {
         sumRatings += reviewsArr[i].rating;
     }
     averageRating = sumRatings/reviewsArr.length;
+  
+    averageRating = Math.floor(averageRating);
+    
   }
 
   function toggleReview(val) {
