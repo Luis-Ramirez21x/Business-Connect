@@ -78,19 +78,22 @@ mutation leaveReview($businessId: ID, $title: String!, $description: String!, $r
 `;
 
 export const FOLLOW_BUSINESS = gql`
-  mutation followBusiness($businessId: ID) {
-    followBusiness(businessId: $businessId)
-        following {
-            _id
-        }
-  }
+mutation followBusiness($businessId: ID) {
+  followBusiness(businessId: $businessId){
+      username
+      following{
+        _id
+      }
+  }	
+}
 `;
 
 export const UNFOLLOW_BUSINESS = gql`
   mutation unfollowBusiness($businessId: ID) {
-    unfollowBusiness(businessId: $businessId)
-        following {
-            _id
-        }
+      unfollowBusiness(businessId: $businessId){
+          following {
+              _id
+          }
+      }
   }
 `;
