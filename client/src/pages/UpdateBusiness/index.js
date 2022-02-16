@@ -23,7 +23,7 @@ function UpdateBusines() {
         price: '', image: '', _id:'' }
     )
 
-    const [createBusiness, { error }] = useMutation(UPDATE_BUSINESS);
+    const [businessMutation, { error }] = useMutation(UPDATE_BUSINESS);
     const [tagInput, setTagInput] = useState('Tag Your Business Here');
 
     console.log(businessData)
@@ -44,7 +44,7 @@ function UpdateBusines() {
         <BusinessForm 
           businessFormData={businessFormData}
           setBusinessFormData={setBusinessFormData}
-          createBusiness={createBusiness}
+          businessMutation={businessMutation}
           tagInput={tagInput} 
           setTagInput={setTagInput} 
         ></BusinessForm>
