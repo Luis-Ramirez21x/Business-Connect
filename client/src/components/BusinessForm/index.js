@@ -6,8 +6,7 @@ import { ALL_TAGS } from '../../utils/queries'
 import Auth from '../../utils/auth';
 import "./index.css"
 
-function BusinessForm({ businessFormData, 
-    setBusinessFormData, businessMutation, tagInput, setTagInput }) {
+function BusinessForm({ businessFormData, setBusinessFormData, businessMutation, tagInput, setTagInput }) {
   const {loading: tagLoading, data: tagData} = useQuery(ALL_TAGS);
 
   const [validated] = useState(false);
