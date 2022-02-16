@@ -12,18 +12,18 @@ import "./index.css"
 
 function MyBusiness() {
   const {data: businessData} = useQuery(MY_BUSINESS)
+
+  const [tagInput, setTagInput] = useState('Tag Your Business Here')
   const [businessFormData, setBusinessFormData] = useState(
     { name: '', address: '', description: '', 
     price: '', image: '' }
   )
-  const [businessMutation, { error }] = useMutation(CREATE_BUSINESS)
   
-  const [tagInput, setTagInput] = useState('Tag Your Business Here')
-
+  const [businessMutation, { error }] = useMutation(CREATE_BUSINESS)
 
   return (
     <>
-      {businessData?.user.myBusiness.length? (<Redirect to={`/businesses/${businessData.user.myBusiness[0]._id}`} />) : 
+      {businessData?.user?.myBusiness.length? (<Redirect to={`/businesses/${businessData?.user?.myBusiness[0]._id}`} />) : 
       (
         <BusinessForm 
       businessFormData={businessFormData}

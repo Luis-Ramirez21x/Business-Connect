@@ -18,6 +18,10 @@ function BusinessForm({ businessFormData,
     setBusinessFormData({ ...businessFormData, [name]: value });
   };
 
+  function refreshPage() {
+    window.location.reload(false);
+  }
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     
@@ -36,10 +40,13 @@ function BusinessForm({ businessFormData,
     console.log(newBusiness)
     
     try {
+      //changing price to an Int to meet model validation
+      newBusiness.price = parseInt(newBusiness.price);
+      console.log(typeof newBusiness.price)
+      console.log(tagInput);
       const { data } = await businessMutation({
         variables: { ...newBusiness }
       })
-      console.log(data)
       
       // Auth.login(data.login.token);
     } catch (err) {
@@ -57,6 +64,8 @@ function BusinessForm({ businessFormData,
       image: ''
     });
     setTagInput('Tag Your Business Here')
+
+    refreshPage();
   };
 
   return (
