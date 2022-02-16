@@ -38,6 +38,7 @@
 .review-post-btn {
     /* border: red solid 2px; */
     margin-bottom: 20px;
+    margin-top: 15px;
 }
 
 @media (max-width: 575px) {
