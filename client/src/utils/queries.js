@@ -27,6 +27,8 @@ export const BUSINESSES_BY_TAG = gql`
         description
         price
         image
+        businessEmail
+        phoneNumber
       }
     }
   }
@@ -41,6 +43,8 @@ export const BUSINESS_SEARCH = gql`
       description
       price
       image
+      businessEmail
+      phoneNumber
     }
   }
 `;
@@ -54,6 +58,8 @@ export const SINGLE_BUSINESS = gql`
       description
       price
       image
+      businessEmail
+      phoneNumber
       reviews {
         title
         description
@@ -93,6 +99,8 @@ export const MY_BUSINESS = gql`
           description
           price
           image
+          businessEmail
+          phoneNumber
         }
     }
   }

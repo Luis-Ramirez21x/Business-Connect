@@ -14,7 +14,7 @@ function MyBusiness() {
   const {data: businessData} = useQuery(MY_BUSINESS)
   const [businessFormData, setBusinessFormData] = useState(
     { name: '', address: '', description: '', 
-    price: '', image: '' }
+    price: '', image: '',  businessEmail: '', phoneNumber: '' }
   )
   const [createBusiness, { error }] = useMutation(CREATE_BUSINESS)
   

@@ -60,8 +60,7 @@ const businessSchema = new Schema(
   },
 
   phoneNumber:{
-    type: String,
-    required: true,
+    type: String
   }
 
 },
