@@ -20,7 +20,7 @@ function UpdateBusines() {
 
     const [businessFormData, setBusinessFormData] = useState(
         { name: '', address: '', description: '', 
-        price: '', image: '', _id:'' }
+        price: '', image: '', _id:'',businessEmail: '', phoneNumber: ''  }
     )
 
     const [businessMutation, { error }] = useMutation(UPDATE_BUSINESS);
@@ -35,7 +35,9 @@ function UpdateBusines() {
             description: businessData?.user.myBusiness[0].description,
             price: businessData?.user.myBusiness[0].price,
             image: businessData?.user.myBusiness[0].image,
-            _id: id
+            _id: id,
+            businessEmail: businessData?.user.myBusiness[0].businessEmail,
+            phoneNumber: businessData?.user.myBusiness[0].phoneNumber
         })
         setTagInput(taggedData?.tagged.name)
     }, [businessData,taggedData])

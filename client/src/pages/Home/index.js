@@ -10,6 +10,14 @@ import {
 import DropdownItem from "react-bootstrap/esm/DropdownItem";
 import "./index.css";
 
+// IMAGE IMPORTS
+import image from '../../images/site_img02.png';
+import footerLogo from '../../images/bc_logo_w.png';
+import icon1 from "../../images/twitter.png";
+import icon2 from "../../images/instagram.png";
+import icon3 from "../../images/facebook.png";
+import icon4 from "../../images/linkedin.png";
+
 import {
   ALL_TAGS,
   BUSINESSES_BY_TAG,
@@ -18,8 +26,7 @@ import {
 import { BusinessList } from "../../components/BusinessList";
 
 import { useQuery, useLazyQuery } from "@apollo/client";
-import image from '../../images/site_img02.png';
-import "./index.css"
+
 
 const Home = () => {
   const [searchInput, setSearchInput] = useState("");
@@ -151,7 +158,24 @@ const Home = () => {
       </Container>
 
       <div className="container-fluid footer-content">
-        <h1>Footer Content</h1>
+        <h3 className="footer-header">Resource Links</h3>
+          <ul className="footer-resource-section">
+          <a href="#" alt="link1"><li className="resource-link"> About Us</li></a>
+          <a href="#" alt="link2"><li className="resource-link"> Meet our Team</li></a>
+          <a href="#" alt="link3"><li className="resource-link"> Contact Us</li></a>
+          <a href="#" alt="link4"><li className="resource-link"> FAQs</li></a>
+          </ul>
+
+          <div className="footer-icon-main">
+          <a href="#" alt="icon-link1"><img className="footer-icon" src={icon1}></img></a>
+          <a href="#" alt="icon-link2"><img className="footer-icon" src={icon2}></img></a>
+          <a href="#" alt="icon-link3"><img className="footer-icon" src={icon3}></img></a>
+          <a href="#" alt="icon-link4"><img className="footer-icon" src={icon4}></img></a>
+          </div>
+
+          <div>
+            <img className="footer-logo" src={footerLogo}></img>
+          </div>
       </div>
 
       {/* <Container className="container-fluid">

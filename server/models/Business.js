@@ -27,8 +27,7 @@ const businessSchema = new Schema(
     required: true,
   },
   price: {
-    type: Number,
-    min: [0, "Price cannot be less than zero"], // Price must be non-negative
+    type: String,
     required: true,
   },
   quotes: [
@@ -54,13 +53,19 @@ const businessSchema = new Schema(
       ref: "Review",
     },
   ],
-},
-/*{
-  toJSON: {
-    virtuals: true,
+
+  businessEmail:{
+    type: String,
+    required: true,
   },
-  id: false,
-}*/
+
+  phoneNumber:{
+    type: String
+  }
+
+},
+
+
 
 );
 

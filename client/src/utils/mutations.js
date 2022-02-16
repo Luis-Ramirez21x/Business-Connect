@@ -14,7 +14,7 @@ mutation login($email: String!, $password: String!) {
 `;
 
 export const ADD_USER = gql`
-mutation addUser ($username : String!, $email,: String! $password: String!){
+mutation addUser ($username : String!, $email: String! $password: String!){
     addUser(username :$username , email:$email, password:$password){
         token
         user{
@@ -37,23 +37,32 @@ mutation createTag($name: String!){
 `;
 //business mutations
 export const CREATE_BUSINESS = gql`
-mutation createBusiness($name: String!, $address: String!, $description: String!, $price: Int, $image: String, $tagName: String!){
-    createBusiness(name :$name, address: $address, description:$description, price: $price, image: $image, tagName: $tagName){
+mutation createBusiness($name: String!, $address: String!, 
+    $description: String!, $price: String!, $image: String, 
+    $tagName: String!, $businessEmail: String!, $phoneNumber: String){
+    createBusiness(name :$name, address: $address, description:$description, 
+        price: $price, image: $image, tagName: $tagName, 
+        businessEmail: $businessEmail, phoneNumber: $phoneNumber){
         name
         address
         description
+        
     }
 }
 `;
 
 export const UPDATE_BUSINESS =gql`
-mutation updateBusiness($_id: ID, $name: String!, $address: String!, $description: String!, $price: Int, $image: String, $tagName: String!){
-    updateBusiness(_id: $_id, name :$name, address: $address, description:$description, price: $price, image: $image, tagName: $tagName){
-        name
-        address
-        description
-    }
-}
+mutation updateBusiness($_id: ID, $name: String!, $address: String!, 
+    $description: String!, $price: String!, $image: String, $tagName: String, 
+    $businessEmail: String!, $phoneNumber: String){
+      updateBusiness(_id: $_id, name :$name, address: $address, 
+        description:$description, price: $price, image: $image, tagName: $tagName, 
+        businessEmail: $businessEmail, phoneNumber: $phoneNumber){
+          name
+          address
+          description
+      }
+  }
 `;
 
 export const POST_REVIEW = gql`
@@ -69,19 +78,22 @@ mutation leaveReview($businessId: ID, $title: String!, $description: String!, $r
 `;
 
 export const FOLLOW_BUSINESS = gql`
-  mutation followBusiness($businessId: ID) {
-    followBusiness(businessId: $businessId)
-        following {
-            _id
-        }
-  }
+mutation followBusiness($businessId: ID) {
+  followBusiness(businessId: $businessId){
+      username
+      following{
+        _id
+      }
+  }	
+}
 `;
 
 export const UNFOLLOW_BUSINESS = gql`
   mutation unfollowBusiness($businessId: ID) {
-    unfollowBusiness(businessId: $businessId)
-        following {
-            _id
-        }
+      unfollowBusiness(businessId: $businessId){
+          following {
+              _id
+          }
+      }
   }
 `;

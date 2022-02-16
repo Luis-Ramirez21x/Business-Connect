@@ -14,6 +14,7 @@ const SingleBusiness = () => {
   const { id } = useParams()
 
   const {loading, data} = useQuery(SINGLE_BUSINESS, { variables: {_id: id} })
+  //this is pulling your business not the business of the page we are on
   const {data: userData} = useQuery(MY_BUSINESS)
   // query to get "following" array
   const {data: followData} = useQuery(MY_FOLLOWING)
@@ -25,9 +26,7 @@ const SingleBusiness = () => {
   const [unfollow] = useMutation(UNFOLLOW_BUSINESS)
 
   useEffect(() => {
-    console.log(followData?.user?.following)
-    // if business Id is in following array, set the state of "following" to true
-    if (followData?.user.following.includes(userData?.user.myBusiness[0]?._id)) {
+    if (followData?.user?.following.some(item => item._id === id)) {
       setFollowing(true)
     } else {
       // else set "following" to false
@@ -43,12 +42,15 @@ const SingleBusiness = () => {
   let sumRatings = 0;
   let averageRating = 0;
   if(data){
-    console.log(data);
+ 
     let reviewsArr = data.business.reviews;
     for (let i=0; i< reviewsArr.length; i++){
         sumRatings += reviewsArr[i].rating;
     }
     averageRating = sumRatings/reviewsArr.length;
+  
+    averageRating = Math.floor(averageRating);
+    
   }
 
   function toggleReview(val) {
@@ -60,6 +62,7 @@ const SingleBusiness = () => {
   }
 
   const followBusiness = async (id)  => {
+    console.log(following);
     if (following) {
       await unfollow({variables: { businessId: id } })
       refreshPage()
@@ -87,13 +90,15 @@ const SingleBusiness = () => {
                   style={{marginRight: 10,}}/>
                 )
               })}</Card.Text>
+              <Card.Text>{data.business.businessEmail}</Card.Text>
+              <Card.Text>{data.business.phoneNumber}</Card.Text>
 
             </Card.Body>
             {userData?.user.myBusiness[0]?._id == id? <Button as={Link} to={`/update/${id}`} >Edit</Button> : null}
             {following? 
-              <Button onClick={() => followBusiness(userData?.user.myBusiness[0]?._id)}>Unfollow</Button> 
+              <Button onClick={() => followBusiness(id)}>Unfollow</Button> 
                 : 
-              <Button onClick={() => followBusiness(userData?.user.myBusiness[0]?._id)}>Follow</Button>}
+              <Button onClick={() => followBusiness(id)}>Follow</Button>}
               
           </Card>
 
