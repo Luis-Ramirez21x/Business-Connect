@@ -44,7 +44,17 @@ mutation createBusiness($name: String!, $address: String!, $description: String!
         description
     }
 }
-`
+`;
+
+export const UPDATE_BUSINESS =gql`
+mutation updateBusiness($_id: ID, $name: String!, $address: String!, $description: String!, $price: Int, $image: String, $tagName: String!){
+    updateBusiness(_id: $_id, name :$name, address: $address, description:$description, price: $price, image: $image, tagName: $tagName){
+        name
+        address
+        description
+    }
+}
+`;
 
 export const POST_REVIEW = gql`
 mutation leaveReview($businessId: ID, $title: String!, $description: String!, $rating: Int){
