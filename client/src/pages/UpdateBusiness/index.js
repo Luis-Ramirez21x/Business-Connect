@@ -6,10 +6,11 @@ import {useMutation} from '@apollo/client';
 import { Jumbotron, Container, Col, Form, Button, DropdownButton, Dropdown } from 'react-bootstrap';
 import DropdownItem from 'react-bootstrap/esm/DropdownItem';
 import { ALL_TAGS, MY_BUSINESS, TAGGED } from '../../utils/queries'
-import { CREATE_BUSINESS } from '../../utils/mutations';
+import { UPDATE_BUSINESS } from '../../utils/mutations';
 import BusinessForm from '../../components/BusinessForm';
 import Auth from '../../utils/auth';
 import "./index.css"
+
 
 function UpdateBusines() {
     const { id } = useParams()
@@ -19,11 +20,11 @@ function UpdateBusines() {
 
     const [businessFormData, setBusinessFormData] = useState(
         { name: '', address: '', description: '', 
-        price: '', image: '' }
+        price: '', image: '', _id:'' }
     )
 
-    const [createBusiness, { error }] = useMutation(CREATE_BUSINESS)
-    const [tagInput, setTagInput] = useState('Tag Your Business Here')
+    const [createBusiness, { error }] = useMutation(UPDATE_BUSINESS);
+    const [tagInput, setTagInput] = useState('Tag Your Business Here');
 
     console.log(businessData)
 
@@ -33,7 +34,8 @@ function UpdateBusines() {
             address: businessData?.user.myBusiness[0].address,
             description: businessData?.user.myBusiness[0].description,
             price: businessData?.user.myBusiness[0].price,
-            image: businessData?.user.myBusiness[0].image
+            image: businessData?.user.myBusiness[0].image,
+            _id: id
         })
         setTagInput(taggedData?.tagged.name)
     }, [businessData,taggedData])

@@ -66,15 +66,7 @@ const businessSchema = new Schema(
 
 businessSchema.index({ name: "text", description: "text" });
 
-businessSchema.virtual('ratingAverage').get(function(){
-    const sumRatings = 0;
-    const numReviews = this.reviews.length;
-    this.reviews.map((review) =>{
-         sumRatings += review.rating;
-    });
-    console.log(sumRatings/numReviews);
-    return sumRatings/numReviews;
-})
+
 
 
 // Initialize our Business model

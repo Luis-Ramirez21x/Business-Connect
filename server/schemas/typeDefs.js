@@ -81,7 +81,15 @@ const typeDefs = gql`
       price: Int
       image: String
       tagName: String
-    ): Business
+      ): Business
+    updateBusiness(
+      _id : ID
+      name: String!
+      address: String!
+      description: String!
+      price: Int
+      image: String
+      tagName: String) : Business
   }
 `;
 

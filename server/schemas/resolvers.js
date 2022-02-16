@@ -25,7 +25,7 @@ const resolvers = {
 
     //business querys
     businesses: async () => {
-      return Business.find().populate("reviews").populate('ratingAverage');
+      return Business.find().populate("reviews");
     },
     business: async (parent, { businessId }, context) => {
       return Business.findById({ _id: businessId }).populate("reviews");
@@ -164,6 +164,23 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
+    updateBusiness: async (parent,{_id, name, address, description, image, price, tagName }, context) =>{
+      if(context.user){
+        return await Business.findOneAndUpdate(
+          {_id: _id},
+          {
+            name: name,
+            address: address,
+            description: description,
+            image: image,
+            price: price,
+            tagName: tagName
+          },
+          {new:true}
+        )
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
 
     /* deleteBusiness: async (parent,args, context) =>{
             if(context.user){
@@ -171,16 +188,7 @@ const resolvers = {
             }
             throw new AuthenticationError('You need to be logged in!');
           },
-          updateBusiness: async (parent,args, context) =>{
-            if(context.user){
-              return await Business.finOneAndUpdate(
-                {_id: id},
-                {args},
-                {new:true}
-              )
-            }
-            throw new AuthenticationError('You need to be logged in!');
-          },
+
 
           //client mutations
           requestQuote: async (parent, {businessId, quoteText}, context) =>{
