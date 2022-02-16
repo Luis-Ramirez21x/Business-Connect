@@ -78,10 +78,13 @@ const SingleBusiness = () => {
       ) : (
         <>
           <Card className="business-card-main" key={data.business._id}>
-            <CardImg className="card-img" width="100%" src={data.business.image} alt="Business Image" />
-            <Card.Body className="card-body-main">
+            <div className="card-body-header">
+              <CardImg className="card-img" width="100%" src={data.business.image} alt="Business Image" />
+              <Card.Text className="business-description">{data.business.description}</Card.Text>
+            </div>
+            <div className="card-info-main">
               <Card.Text>{data.business.name}</Card.Text>
-              <Card.Text>{data.business.description}</Card.Text>
+              
               <Card.Text>{stars.map((_, index) => {
               return (
                 <FaStar key={index} 
@@ -92,12 +95,14 @@ const SingleBusiness = () => {
               <Card.Text>{data.business.businessEmail}</Card.Text>
               <Card.Text>{data.business.phoneNumber}</Card.Text>
 
-            </Card.Body>
-            {userData?.user.myBusiness[0]._id == id? <Button as={Link} to={`/update/${id}`} >Edit</Button> : null}
-            {following? 
-              <Button onClick={() => followBusiness(id)}>Unfollow</Button> 
-                : 
-              <Button onClick={() => followBusiness(id)}>Follow</Button>}
+                {userData?.user.myBusiness[0]._id == id? <Button className="sb-edit-btn" as={Link} to={`/update/${id}`} >Edit</Button> : null}
+                {following? 
+                <Button className="follow-unfollow-btn" onClick={() => followBusiness(id)}>Unfollow</Button> 
+                  : 
+                <Button className="follow-unfollow-btn" onClick={() => followBusiness(id)}>Follow</Button>}
+
+            </div>
+
               
           </Card>
 
