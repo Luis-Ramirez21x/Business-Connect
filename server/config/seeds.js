@@ -11,32 +11,38 @@ db.once("open", async () => {
     {
       title: "Fast and Great Pricing!",
       description: "I cannot say enough positive things about This business! I was in great need of this service, so I went online and found this business. From the very beginning, this business was punctual, attentive, and showed plenty effort of care with my service order. The this business associate walked me through each and every detail, time frame, and explained everything in a way that was easy to understand. Their employees are the best there are! I am truly satisfied this business.",
-      userName: "Josh_Allen13"
+      userName: "Josh_Allen13",
+      rating: 5
     },
     {
       title: "Meh..",
       description: "I honesty could have done the work myself.",
-      userName: "Lusil21xs3"
+      userName: "Lusil21xs3",
+      rating:2
     },
     {
       title: "They gave exceptional customer service!",
       description: "I cannot say enough positive things about this business! I was in great need of this service, so I went online and found this business. From the very beginning, this business was punctual, attentive, and showed plenty effort of care with my service order. The this business associate walked me through each and every detail, time frame, and explained everything in a way that was easy to understand. Their employees are the best there are! I am truly satisfied this business.",
-      userName: "Cheap_Guy"
+      userName: "Cheap_Guy",
+      rating:4
     },
     {
       title: "Let me tell you something...",
       description: "This business is absolute RUBBISH!!. These blokes are moving MAD bruv. I will never work with these dodgy wankers again.",
-      userName: "Greg_The_Brit"
+      userName: "Greg_The_Brit",
+      rating:1
     },
     {
       title: "Fantastic work!",
       description: "I cannot say enough positive things about this business! I was in great need of this service, so I went online and found this business. From the very beginning, this business was punctual, attentive, and showed plenty effort of care with my service order. The this business associate walked me through each and every detail, time frame, and explained everything in a way that was easy to understand. Their employees are the best there are! I am truly satisfied this business.",
-      userName: "TinkerBell"
+      userName: "TinkerBell",
+      rating:4
     },
     {
       title: "They did exactly as advertised",
       description: "I cannot say enough positive things about this business! I was in great need of this service, so I went online and found this business. From the very beginning, this business was punctual, attentive, and showed plenty effort of care with my service order. The this business associate walked me through each and every detail, time frame, and explained everything in a way that was easy to understand. Their employees are the best there are! I am truly satisfied this business.",
-      userName: "John.Collins89"
+      userName: "John.Collins89",
+      rating:3
     },
 
   ])

@@ -57,6 +57,7 @@ export const SINGLE_BUSINESS = gql`
       reviews {
         title
         description
+        rating
       }
     }
   }

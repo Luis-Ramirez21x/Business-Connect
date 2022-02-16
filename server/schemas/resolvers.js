@@ -25,7 +25,7 @@ const resolvers = {
 
     //business querys
     businesses: async () => {
-      return Business.find().populate("reviews");
+      return Business.find().populate("reviews").populate('ratingAverage');
     },
     business: async (parent, { businessId }, context) => {
       return Business.findById({ _id: businessId }).populate("reviews");
