@@ -10,7 +10,7 @@ import Auth from '../../utils/auth';
 import "./index.css"
 
 function BusinessForm({ businessFormData, 
-    setBusinessFormData, createBusiness, tagInput, setTagInput }) {
+    setBusinessFormData, businessMutation, tagInput, setTagInput }) {
   const {loading: tagLoading, data: tagData} = useQuery(ALL_TAGS);
 
   const handleInputChange = (event) => {
@@ -36,13 +36,10 @@ function BusinessForm({ businessFormData,
     console.log(newBusiness)
     
     try {
-      //changing price to an Int to meet model validation
-      newBusiness.price = parseInt(newBusiness.price);
-      console.log(typeof newBusiness.price)
-      console.log(tagInput);
-      const { data } = await createBusiness({
+      const { data } = await businessMutation({
         variables: { ...newBusiness }
       })
+      console.log(data)
       
       // Auth.login(data.login.token);
     } catch (err) {
