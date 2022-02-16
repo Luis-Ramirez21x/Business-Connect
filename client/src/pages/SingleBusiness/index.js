@@ -77,26 +77,24 @@ const SingleBusiness = () => {
       ) : (
         <>
           <Card className="business-card-main" key={data.business._id}>
-            <Card.Body className="card-body-main">
-              <div className="card-body-header">
-                <CardImg className="card-img" width="100%" src={`/images/${data.business.image}`} alt="Business Image" />
-                <Card.Text className="business-description">{data.business.description}</Card.Text>
-              </div>
-              <div className="card-info-main">
-                <Card.Text>{data.business.name}</Card.Text>
-                
-                <Card.Text>{stars.map((_, index) => {
-                  return (
-                    <FaStar key={index} 
-                      size={24} color={(averageRating) > index ? "#FFBA5A" : "#a9a9a9"} 
-                      style={{marginRight: 10,}}/>
-                    )
-                  })}
-                </Card.Text>
-                <Card.Text>{data.business.businessEmail}</Card.Text>
-                <Card.Text>{data.business.phoneNumber}</Card.Text>
-              </div>  
-            </Card.Body>
+            <div className="card-body-header">
+              <CardImg className="card-img" width="100%" src={data.business.image} alt="Business Image" />
+              <Card.Text className="business-description">{data.business.description}</Card.Text>
+            </div>
+            <div className="card-info-main">
+              <Card.Text>{data.business.name}</Card.Text>
+              
+              <Card.Text>{stars.map((_, index) => {
+                return (
+                  <FaStar key={index} 
+                    size={24} color={(averageRating) > index ? "#FFBA5A" : "#a9a9a9"} 
+                    style={{marginRight: 10,}}/>
+                  )
+                })}
+              </Card.Text>
+              <Card.Text>{data.business.businessEmail}</Card.Text>
+              <Card.Text>{data.business.phoneNumber}</Card.Text>
+            </div>
 
             {userData?.user?.myBusiness[0]?._id == id? <Button className="sb-edit-btn" as={Link} to={`/update/${id}`} >Edit</Button> : null}
             {following? 
