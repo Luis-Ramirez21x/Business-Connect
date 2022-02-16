@@ -3,7 +3,6 @@ import { useQuery } from '@apollo/client';
 import { Container, Col, Form, Button, DropdownButton, Alert, } from 'react-bootstrap';
 import DropdownItem from 'react-bootstrap/esm/DropdownItem';
 import { ALL_TAGS } from '../../utils/queries'
-import Auth from '../../utils/auth';
 import "./index.css"
 
 function BusinessForm({ businessFormData, setBusinessFormData, businessMutation, tagInput, setTagInput }) {
@@ -39,10 +38,9 @@ function BusinessForm({ businessFormData, setBusinessFormData, businessMutation,
       }
 
       try {
-        const { data } = await businessMutation({
+        await businessMutation({
           variables: { ...newBusiness }
         })
-        // Auth.login(data.login.token);
       } catch (err) {
         console.error(err);
         setShowAlert(true);
