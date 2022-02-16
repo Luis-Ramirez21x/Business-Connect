@@ -16,6 +16,7 @@ const SingleBusiness = () => {
   const {loading, data} = useQuery(SINGLE_BUSINESS, { variables: {_id: id} })
   //this is pulling your business not the business of the page we are on
   const {data: userData} = useQuery(MY_BUSINESS)
+  // query to get "following" array
   const {data: followData} = useQuery(MY_FOLLOWING)
 
   const [showReview, toggleShowReview] = useState(false)
@@ -25,12 +26,10 @@ const SingleBusiness = () => {
   const [unfollow] = useMutation(UNFOLLOW_BUSINESS)
 
   useEffect(() => {
-
-
-
     if (followData?.user?.following.some(item => item._id === id)) {
       setFollowing(true)
     } else {
+      // else set "following" to false
       setFollowing(false)
     }
   }, [followData])
@@ -95,7 +94,7 @@ const SingleBusiness = () => {
               <Card.Text>{data.business.phoneNumber}</Card.Text>
 
             </Card.Body>
-            {userData?.user.myBusiness[0]._id == id? <Button as={Link} to={`/update/${id}`} >Edit</Button> : null}
+            {userData?.user.myBusiness[0]?._id == id? <Button as={Link} to={`/update/${id}`} >Edit</Button> : null}
             {following? 
               <Button onClick={() => followBusiness(id)}>Unfollow</Button> 
                 : 
@@ -118,7 +117,7 @@ const SingleBusiness = () => {
             <ul className="list-container">
               {data.business.reviews.map((review) => {
                 return (
-                  <Review review={review}></Review>
+                  <Review key={review._id} review={review}></Review>
                 )
               })}
             </ul>
