@@ -92,7 +92,7 @@ const resolvers = {
           { _id: context.user._id },
           { $addToSet: { following: businessId } },
           { new: true }
-        );
+        )
       }
       throw new AuthenticationError("You need to be logged in!");
     },

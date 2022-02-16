@@ -83,6 +83,16 @@ query user{
 }
 `;
 
+export const MY_FOLLOWING = gql`
+  query user{
+    user {
+        following{
+            _id
+        }
+    }
+  }
+`;
+
 export const MY_BUSINESS = gql`
   query user{
     user{
