@@ -5,6 +5,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import ReviewForm from "../../components/ReviewForm";
 import Review from "../../components/Review"
 import { FaStar } from "react-icons/fa";
+//import image from '../../images/'
 
 import "./index.css"
 import { SINGLE_BUSINESS, MY_BUSINESS, MY_FOLLOWING } from "../../utils/queries";
@@ -46,7 +47,7 @@ const SingleBusiness = () => {
         sumRatings += reviewsArr[i].rating;
     }
     averageRating = sumRatings/reviewsArr.length;
-  
+    console.log(data.business.image);
     averageRating = Math.floor(averageRating);
   }
 
