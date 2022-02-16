@@ -14,18 +14,22 @@ const SingleBusiness = () => {
   const { id } = useParams()
 
   const {loading, data} = useQuery(SINGLE_BUSINESS, { variables: {_id: id} })
+  //this is pulling your business not the business of the page we are on
   const {data: userData} = useQuery(MY_BUSINESS)
   const {data: followData} = useQuery(MY_FOLLOWING)
 
   const [showReview, toggleShowReview] = useState(false)
-  const [following, setFollowing] = useState([])
+  const [following, setFollowing] = useState(false)
 
   const [follow] = useMutation(FOLLOW_BUSINESS)
   const [unfollow] = useMutation(UNFOLLOW_BUSINESS)
 
   useEffect(() => {
-    console.log(followData?.user?.following)
-    if (followData?.user?.following.includes(userData?.user?.myBusiness[0]._id)) {
+    console.log('logged in user following' + followData?.user?.following);
+    console.log('current business:' + id);
+    console.log(followData?.user?.following.some(item => item._id === id));
+
+    if (followData?.user?.following.some(item => item._id === id)) {
       setFollowing(true)
     } else {
       setFollowing(false)
@@ -85,13 +89,15 @@ const SingleBusiness = () => {
                   style={{marginRight: 10,}}/>
                 )
               })}</Card.Text>
+              <Card.Text>{data.business.businessEmail}</Card.Text>
+              <Card.Text>{data.business.phoneNumber}</Card.Text>
 
             </Card.Body>
             {userData?.user.myBusiness[0]._id == id? <Button as={Link} to={`/update/${id}`} >Edit</Button> : null}
             {following? 
-              <Button onClick={() => followBusiness(userData?.user.myBusiness[0]._id)}>Unfollow</Button> 
+              <Button onClick={() => followBusiness(id)}>Unfollow</Button> 
                 : 
-              <Button onClick={() => followBusiness(userData?.user.myBusiness[0]._id)}>Follow</Button>}
+              <Button onClick={() => followBusiness(id)}>Follow</Button>}
               
           </Card>
 

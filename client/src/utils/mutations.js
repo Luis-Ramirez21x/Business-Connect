@@ -90,9 +90,10 @@ mutation followBusiness($businessId: ID) {
 
 export const UNFOLLOW_BUSINESS = gql`
   mutation unfollowBusiness($businessId: ID) {
-    unfollowBusiness(businessId: $businessId)
-        following {
-            _id
-        }
+      unfollowBusiness(businessId: $businessId){
+          following {
+              _id
+          }
+      }
   }
 `;

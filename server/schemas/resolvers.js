@@ -82,6 +82,7 @@ const resolvers = {
     },
     followBusiness: async (parent, { businessId }, context) => {
       if (context.user) {
+        console.log('followBusiness--' + businessId);
         await Business.findOneAndUpdate(
           { _id: businessId },
           { $addToSet: { followers: context.user._id } },
@@ -98,6 +99,7 @@ const resolvers = {
     },
     unfollowBusiness: async (parent, { businessId }, context) => {
       if (context.user) {
+        console.log('unfollowBusiness--' + businessId);
         await Business.findOneAndUpdate(
           { _id: businessId },
           { $pull: { followers: context.user._id } },
