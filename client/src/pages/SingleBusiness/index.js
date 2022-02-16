@@ -15,19 +15,22 @@ const SingleBusiness = () => {
 
   const {loading, data} = useQuery(SINGLE_BUSINESS, { variables: {_id: id} })
   const {data: userData} = useQuery(MY_BUSINESS)
+  // query to get "following" array
   const {data: followData} = useQuery(MY_FOLLOWING)
 
   const [showReview, toggleShowReview] = useState(false)
-  const [following, setFollowing] = useState([])
+  const [following, setFollowing] = useState(false)
 
   const [follow] = useMutation(FOLLOW_BUSINESS)
   const [unfollow] = useMutation(UNFOLLOW_BUSINESS)
 
   useEffect(() => {
     console.log(followData?.user?.following)
-    if (followData?.user?.following.includes(userData?.user?.myBusiness[0]._id)) {
+    // if business Id is in following array, set the state of "following" to true
+    if (followData?.user.following.includes(userData?.user.myBusiness[0]?._id)) {
       setFollowing(true)
     } else {
+      // else set "following" to false
       setFollowing(false)
     }
   }, [followData])
@@ -86,11 +89,11 @@ const SingleBusiness = () => {
               })}</Card.Text>
 
             </Card.Body>
-            {userData?.user.myBusiness[0]._id == id? <Button as={Link} to={`/update/${id}`} >Edit</Button> : null}
+            {userData?.user.myBusiness[0]?._id == id? <Button as={Link} to={`/update/${id}`} >Edit</Button> : null}
             {following? 
-              <Button onClick={() => followBusiness(userData?.user.myBusiness[0]._id)}>Unfollow</Button> 
+              <Button onClick={() => followBusiness(userData?.user.myBusiness[0]?._id)}>Unfollow</Button> 
                 : 
-              <Button onClick={() => followBusiness(userData?.user.myBusiness[0]._id)}>Follow</Button>}
+              <Button onClick={() => followBusiness(userData?.user.myBusiness[0]?._id)}>Follow</Button>}
               
           </Card>
 
@@ -109,7 +112,7 @@ const SingleBusiness = () => {
             <ul className="list-container">
               {data.business.reviews.map((review) => {
                 return (
-                  <Review review={review}></Review>
+                  <Review key={review._id} review={review}></Review>
                 )
               })}
             </ul>

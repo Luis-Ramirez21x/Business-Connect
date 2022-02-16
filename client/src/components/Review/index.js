@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container, Card, CardImg, Button } from "react-bootstrap";
 
-const Review = ({review}) => {
+const Review = ({key, review}) => {
 
   return(
     <>
