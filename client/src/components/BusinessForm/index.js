@@ -10,13 +10,17 @@ import Auth from '../../utils/auth';
 import "./index.css"
 
 function BusinessForm({ businessFormData, 
-    setBusinessFormData, createBusiness, tagInput, setTagInput }) {
+    setBusinessFormData, businessMutation, tagInput, setTagInput }) {
   const {loading: tagLoading, data: tagData} = useQuery(ALL_TAGS);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setBusinessFormData({ ...businessFormData, [name]: value });
   };
+
+  function refreshPage() {
+    window.location.reload(false);
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -37,8 +41,10 @@ function BusinessForm({ businessFormData,
     
     try {
       //changing price to an Int to meet model validation
-      
-      const { data } = await createBusiness({
+
+
+      const { data } = await businessMutation({
+
         variables: { ...newBusiness }
       })
       
@@ -60,6 +66,8 @@ function BusinessForm({ businessFormData,
       phoneNumber: ''
     });
     setTagInput('Tag Your Business Here')
+
+    refreshPage();
   };
 
   return (
