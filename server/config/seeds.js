@@ -1,5 +1,9 @@
 const db = require("./connection");
 const { User, Business, Tag, Review } = require("../models");
+//
+//const mechanic = require('../../client/public/images/worker-gc44dbe687_1920.jpg')
+
+
 
 db.once("open", async () => {
   await Business.deleteMany({});
@@ -21,10 +25,10 @@ db.once("open", async () => {
       rating:2
     },
     {
-      title: "They gave exceptional customer service!",
-      description: "I cannot say enough positive things about this business! I was in great need of this service, so I went online and found this business. From the very beginning, this business was punctual, attentive, and showed plenty effort of care with my service order. The this business associate walked me through each and every detail, time frame, and explained everything in a way that was easy to understand. Their employees are the best there are! I am truly satisfied this business.",
+      title: "If i were to star you guys zero...",
+      description: "If i were to star you guys zero would’ve been my select because of the bad business you guys do. Stop ripping people off their money that’s not good. You just lost a potential buyer",
       userName: "Cheap_Guy",
-      rating:4
+      rating:1
     },
     {
       title: "Let me tell you something...",
@@ -33,72 +37,121 @@ db.once("open", async () => {
       rating:1
     },
     {
-      title: "Fantastic work!",
-      description: "I cannot say enough positive things about this business! I was in great need of this service, so I went online and found this business. From the very beginning, this business was punctual, attentive, and showed plenty effort of care with my service order. The this business associate walked me through each and every detail, time frame, and explained everything in a way that was easy to understand. Their employees are the best there are! I am truly satisfied this business.",
+      title: "This was the best experience I have…",
+      description: "Wonderful client helping mindset. Thanks for being one of my go to for service!",
       userName: "TinkerBell",
       rating:4
     },
     {
       title: "They did exactly as advertised",
-      description: "I cannot say enough positive things about this business! I was in great need of this service, so I went online and found this business. From the very beginning, this business was punctual, attentive, and showed plenty effort of care with my service order. The this business associate walked me through each and every detail, time frame, and explained everything in a way that was easy to understand. Their employees are the best there are! I am truly satisfied this business.",
+      description: "So far they are reliable and they have good customer service. I will be solicting business with them again.",
       userName: "John.Collins89",
-      rating:2
+      rating:4
     },
+    {
+      title: "Decent, nothing crazy",
+      description: "My friend John gave me the recommendation. They were decent but you can probably find better service elsewhere",
+      userName: "Boink-32",
+      rating:4
+    },
+    {
+      title: "Gary helped me and was awesome!",
+      description: "All I can say is give that man a RAISE!",
+      userName: "enthu-si",
+      rating:4
+    },
+
 
   ])
   console.log("reviews seeded");
 
   const companies = await Business.insertMany([
+    //lawn care
     {
-      name: "Green Landscaping",
-      address: "570 Brookhaven",
-      description: "asfasdfasdfas",
-      price: 200,
-      image: "image url here",
-      reviews: [reviews[0]],
-      businessEmail: 'green_scape@gmail.com',
+      name: "Chris Savage Lawn Care",
+      address: "Winder, GA",
+      description: "There are two ways to handle your Winder, GA landscaping. One is to do it yourself, which means you’ll need to find the time for mowing, weeding, and all the little maintenance tasks that are so easy to forget. And after you’ve done it all… well, it’s time to do it again. Or you could just call Chris Savage Lawn Care. We offer yearly contracts as well as one-off jobs to make taking care of outdoor space as easy as possible.",
+      price: "$1/sqft",
+      image: 'lawn-care-gcf1748be3_1920.jpg',
+      reviews: [reviews[0],reviews[5],reviews[6]],
+      businessEmail: 'chris.lawn.care@gmail.com',
       phoneNumber: '470-282-9696'
     },
     {
-      name: "Steel Construction",
-      address: "1320 Ark Bush Ct",
-      description: "sjdfnaiufp",
-      price: 50,
-      image: "image url here",
-      reviews: [reviews[1]],
-      businessEmail: 'steel.boys@gmail.com',
-      phoneNumber: '678-455-5254'
-    },
-    {
-      name: "Luis's Landscaping",
-      address: "90 Peachtree Rd",
-      description: "asfasdfasdfas",
-      price: 100,
-      image: "image url here",
-      reviews: [reviews[2]],
-      businessEmail: 'lawncare_luis@hotmail.com',
+      name: "Lucy's Landscaping",
+      address: "Macon, GA",
+      description: "We bring quality “Cutting Edge” services in design, installation and lawn maintenance to both residential and commercial properties throughout central Georgia",
+      price: "$2/sqft",
+      image: "lawn-care-gcf1748be3_1920.jpg",
+      reviews: [reviews[2],reviews[1]],
+      businessEmail: 'lucy_lawns@hotmail.com',
       phoneNumber: '505-986-5689'
     },
+    //construction 
     {
-      name: "Car Fix Felix",
-      address: "967 Dunn Pkwy",
-      description: "jfmfghfghs",
-      price: 100,
-      image: "image url here",
-      reviews: [reviews[3], reviews[5]],
+      name: "JOMA Construction",
+      address: "Athens, GA",
+      description: "Based in Athens, GA, JOMA Construction is made up of a talented team of remodeling specialists who collaborate to help businesses of all sizes create spaces that are functional, comfortable and inviting. Ultimately, our mission is 100% customer satisfaction from start to finish and we believe our Commercial divisions craftsmanship and relationships speak to that",
+      price: 'Call for a quote!',
+      image: "plumber-g833be0f0c_1920.jpg",
+      reviews: [reviews[1],reviews[8],,reviews[3]],
+      businessEmail: 'Joma.construction@gmail.com',
+      phoneNumber: '678-455-5254'
+    },
+    //mechanic
+    {
+      name: "Mobile Car Mechanic",
+      address: "Dulth, GA",
+      description: "I've been working on cars and trucks for 32 years and am a Master Technician on both domestic and Asian cars. I also have extensive experience working with European cars. I love servicing and repairing vehicles of any kind and it would be my pleasure to service your vehicle!",
+      price: '$50 intial service fee',
+      image: 'worker-gc44dbe687_1920.jpg',
+      reviews: [reviews[3], reviews[5],reviews[0]],
       businessEmail: 'car.felix.89@cars.net',
       phoneNumber: '469-952-9641'
     },
     {
+      name: "DMA Automotive",
+      address: "Johns Creek, GA",
+      description: "DMA Automotive is here for all of your automotive repair needs in Johns Creek, GA and the nearby areas. We provide premier auto repair services for foreign and domestic vehicles of all different makes and models. Our technicians work diligently to provide top-rated auto repair services to guarantee outstanding results. ",
+      price: '$20 inquiry fee',
+      image: "man-gbad338d00_1920.jpg",
+      reviews: [reviews[3], reviews[4],reviews[7]],
+      businessEmail: 'dma_autos@gmail.com',
+      phoneNumber: '457-952-0125'
+    },
+    //food
+    {
       name: "Italian Express Catering",
-      address: "958 Plaza Ct ",
-      description: "nhn;osfgnngsf",
-      price: 20,
-      image: "image url here",
-      reviews: [reviews[4]],
+      address: "Buckhead, GA",
+      description: "Restaurant and bar that serves delicious soul-food style Italian American cooking that mixes their traditional flavors and techniques with contemporary style. The restaurant’s menu is constantly changing based on the freshest ingredients that are available that season.",
+      price: 'As low as $10 meals!',
+      image: "guitar-g74eda9609_1920.jpg",
+      reviews: [reviews[4],reviews[1],reviews[2]],
       businessEmail: 'italy__eats.9698@outlook.com',
       phoneNumber: '986-526-9823'
     },
+    {
+      name: "Rays BBQ",
+      address: "South Atlanta, GA",
+      description: "Rays Southern Foods is a premier, full-service catering company bringing traditional smoked barbecue and delicious southern food to homes, businesses and corporate events all over Georgia. Fully licensed and insured, we have the capacity to cater everything from small gatherings to large corporate events with thousands of people.",
+      price: 'As low as $5 meals!',
+      image: "networks-g473bf3745_1920.jpg",
+      reviews: [reviews[4],reviews[8],reviews[2]],
+      businessEmail: 'bbqrays.rib@outlook.com',
+      phoneNumber: '504-604-9433'
+    },
+    //daycare
+    {
+      name: "Day Care Sunny Smiles",
+      address: "Midtown, GA",
+      description: "DSS provides alternative child care for children whos parents work non-traditional days and hours or attempting to go back to school and taking night classes Sunday through Friday 6pm to 600 am Services also available Saturdays and drop In care",
+      price: '$100/day',
+      image: "children-g8ea7ea10d_1920.jpg",
+      reviews: [reviews[0],reviews[2],reviews[6],reviews[7]],
+      businessEmail: 'safe_kids@outlook.com',
+      phoneNumber: '506-526-0205'
+    },
+
   ]);
   console.log("companies seeded");
 
@@ -141,19 +194,23 @@ db.once("open", async () => {
   const tags = await Tag.insertMany([
     {
       name: "Food",
-      businesses: [companies[4]._id]
+      businesses: [companies[5]._id,companies[6]._id]
     },
     {
       name: "Mechanic",
-      businesses: [companies[3]._id]
+      businesses: [companies[3]._id,companies[4]._id]
     },
     {
       name: "Landscaping",
-      businesses: [companies[0]._id,companies[2]._id]
+      businesses: [companies[0]._id,companies[1]._id]
     },
     {
       name: "Construction",
-      businesses: [companies[1]._id]
+      businesses: [companies[2]._id]
+    },
+    {
+      name: "Day-Care",
+      businesses: [companies[7]._id]
     },
   ]);
 
