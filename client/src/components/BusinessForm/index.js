@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
+import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
-import {useMutation} from '@apollo/client';
-import { Jumbotron, Container, Col, Form, Button, DropdownButton, Dropdown } from 'react-bootstrap';
+import { Container, Col, Form, Button, DropdownButton, Alert, } from 'react-bootstrap';
 import DropdownItem from 'react-bootstrap/esm/DropdownItem';
-import { ALL_TAGS, MY_BUSINESS } from '../../utils/queries'
-import { CREATE_BUSINESS } from '../../utils/mutations';
+import { ALL_TAGS } from '../../utils/queries'
 import Auth from '../../utils/auth';
 import "./index.css"
 
 function BusinessForm({ businessFormData, 
     setBusinessFormData, businessMutation, tagInput, setTagInput }) {
   const {loading: tagLoading, data: tagData} = useQuery(ALL_TAGS);
+
+  const [validated] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -26,48 +26,44 @@ function BusinessForm({ businessFormData,
     event.preventDefault();
     
     // check if form has everything
-    const form = event.currentTarget;
-     if (form.checkValidity() === false) {
-       event.preventDefault();
-       event.stopPropagation();
-     }
-     console.log(businessFormData)
-    const newBusiness = {
-      ...businessFormData,
-      tagName: tagInput
+    if (tagInput != 'Tag Your Business Here') {
+
+      const form = event.currentTarget;
+      if (form.checkValidity() === false && tagInput != 'Tag Your Business Here') {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+  
+      const newBusiness = {
+        ...businessFormData,
+        tagName: tagInput
+      }
+
+      try {
+        const { data } = await businessMutation({
+          variables: { ...newBusiness }
+        })
+        // Auth.login(data.login.token);
+      } catch (err) {
+        console.error(err);
+        setShowAlert(true);
+      }
+
+      setBusinessFormData({
+        name: '',
+        address: '',
+        description: '',
+        price: '',
+        image: '',
+        businessEmail: '',
+        phoneNumber: ''
+      });
+      setTagInput('Tag Your Business Here');
+
+      refreshPage();
+    } else {
+      setShowAlert(true)
     }
-    console.log(newBusiness);
-
-    
-    try {
-      //changing price to an Int to meet model validation
-
-
-      const { data } = await businessMutation({
-
-        variables: { ...newBusiness }
-      })
-      
-      // Auth.login(data.login.token);
-    } catch (err) {
-      console.error(err);
-      //this code can be used to show an alert on the form
-      //setShowAlert(true);
-    }
-
-    //clearing the form
-    setBusinessFormData({
-      name: '',
-      address: '',
-      description: '',
-      price: '',
-      image: '',
-      businessEmail: '',
-      phoneNumber: ''
-    });
-    setTagInput('Tag Your Business Here')
-
-    refreshPage();
   };
 
   return (
@@ -75,7 +71,10 @@ function BusinessForm({ businessFormData,
     <h2 className='business-info-header'>Enter Your Business's Info Here</h2>
       <Container className='bi-background'>
         <div className='business-info-main'>
-          <Form className='form-input-container' onSubmit={handleSubmit}>
+          <Form className='form-input-container' noValidate validated={validated} onSubmit={handleSubmit}>
+            <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
+              Something went wrong with your login credentials!
+            </Alert>
             <Form.Row>
               <Col xs={12} md={12}>
                 <Form.Control
@@ -168,19 +167,21 @@ function BusinessForm({ businessFormData,
               </Col>
             </Form.Row>
             <Form.Row>
+              <Col xs={12} md={12}>
+                <DropdownButton size='lg' className='text-center' id="dropdown-basic-button" title={tagInput} value={tagInput} onSelect={(eventKey, event) => setTagInput(eventKey)}>
+                  {tagLoading ? (<DropdownItem>loading...</DropdownItem>) : 
+                    tagData.tags.map((tag)=> {
+                      return (
+                        <DropdownItem key={tag.name} eventKey={tag.name} value>{tag.name}</DropdownItem>
+                      )
+                    })}
+                </DropdownButton>
+              </Col>
+            </Form.Row>
+            <Form.Row>
               <Button className='bi-submit-btn' type='submit' variant='success' size='md'>Submit</Button>
             </Form.Row>
           </Form>
-        <div>
-          <DropdownButton size='lg' id="dropdown-basic-button" title={tagInput} value={tagInput} onSelect={(eventKey, event) => setTagInput(eventKey)}>
-            {tagLoading ? (<DropdownItem>loading...</DropdownItem>) : 
-              tagData.tags.map((tag)=> {
-                return (
-                  <DropdownItem eventKey={tag.name} value>{tag.name}</DropdownItem>
-                )
-              })}
-          </DropdownButton>
-        </div>
         </div>
       </Container>
     </>
