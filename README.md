@@ -2,7 +2,7 @@
 
 ## Description
 
-An application to help users to connect to a range of small businesses with upfront information and pricing for daycare, cleaning, restaurants, and more
+An application to help users to connect to a range of small businesses with upfront information and pricing for daycare, cleaning, restaurants, and more!
 
 ## Table of Contents
 
