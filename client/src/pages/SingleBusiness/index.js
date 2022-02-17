@@ -79,7 +79,7 @@ const SingleBusiness = () => {
           <Card className="business-card-main" key={data.business._id}>
             <Card.Body className="card-body-main">
               <div className="card-body-header">
-                <CardImg className="card-img" width="100%" src={`/images/${data.business.image}`} alt="Business Image" />
+                <CardImg className="card-img" width="100%" src={data.business.image} alt="Business Image" />
                 <Card.Text className="business-description">{data.business.description}</Card.Text>
               </div>
               <div className="card-info-main">

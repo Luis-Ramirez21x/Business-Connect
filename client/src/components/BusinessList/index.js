@@ -6,7 +6,7 @@ const BusinessList = ({business}) => {
   return (
     <>
       <Card key={business._id}>
-        <CardImg width="100%" src={`/images/${business.image}`} alt="Business Image" />
+        <CardImg width="100%" src={business.image} alt="Business Image" />
         <Card.Body>
           <Card.Link as={Link} to={`/businesses/${business._id}`}>{business.name}</Card.Link>
         </Card.Body>
