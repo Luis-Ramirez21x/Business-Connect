@@ -1,15 +1,12 @@
-# Business Connect [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+# Business Connect
 
-## Description
+An application to help users to connect to a range of small businesses with upfront information and pricing for daycare, cleaning, restaurants, and more. Check it out, [here](https://business-connect-app.herokuapp.com/)!
 
-An application to help users to connect to a range of small businesses with upfront information and pricing for daycare, cleaning, restaurants, and more!
-
-## Table of Contents
-
-- [User](#user-story)
+- [User Story](#user-story)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Technologies](#questions)
+- [Images](#images)
 
 ## User Story
 
