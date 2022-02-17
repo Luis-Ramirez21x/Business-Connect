@@ -108,6 +108,7 @@ db.once("open", async () => {
       reviews: [reviews[3], reviews[5],reviews[0]],
       businessEmail: 'car.felix.89@cars.net',
       phoneNumber: '469-952-9641'
+      
     },
     {
       name: "DMA Automotive",

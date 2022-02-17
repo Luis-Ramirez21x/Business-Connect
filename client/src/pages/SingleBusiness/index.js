@@ -5,7 +5,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import ReviewForm from "../../components/ReviewForm";
 import Review from "../../components/Review"
 import { FaStar } from "react-icons/fa";
-//import image from '../../images/'
+
 
 import "./index.css"
 import { SINGLE_BUSINESS, MY_BUSINESS, MY_FOLLOWING } from "../../utils/queries";
