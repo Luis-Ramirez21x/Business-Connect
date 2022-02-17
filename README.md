@@ -46,4 +46,26 @@ npm run develop
 
 ## Technologies
 
-MERN (Mongo, Express, React, NodeJS), GraphQL, JWT
+MERN (Mongo, Express, React, NodeJS), GraphQL, Apollo, JSON Web Tokens (JWT)
+
+## Images
+
+Home Page
+
+![Homepage](./assets/homepage.png)
+
+Search Bar
+
+![Search Bar](./assets/business_search.png)
+
+Business Page
+
+![Business Page](./assets/single_business_page.png)
+
+Review Page
+
+![Review Page](./assets/review.png)
+
+Connection Page
+
+![Connection Page](./assets/connections.png)
