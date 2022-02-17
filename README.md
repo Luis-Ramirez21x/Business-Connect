@@ -33,20 +33,13 @@ AS a customer of business services,
 I WANT to be able to follow businesses,
 SO that I can keep track of new products and services that they offer
 
-## Installation
-
-`npm install`
-
-## Usage
-
-```javascript
-npm run seeds
-npm run develop
-```
-
 ## Technologies
 
 MERN (Mongo, Express, React, NodeJS), GraphQL, Apollo, JSON Web Tokens (JWT)
+
+## Join
+
+Deployed Live Here: https://business-connect-app.herokuapp.com/
 
 ## Images
 
