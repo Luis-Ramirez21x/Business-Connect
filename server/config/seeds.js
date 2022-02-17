@@ -72,7 +72,7 @@ db.once("open", async () => {
       address: "Winder, GA",
       description: "There are two ways to handle your Winder, GA landscaping. One is to do it yourself, which means you’ll need to find the time for mowing, weeding, and all the little maintenance tasks that are so easy to forget. And after you’ve done it all… well, it’s time to do it again. Or you could just call Chris Savage Lawn Care. We offer yearly contracts as well as one-off jobs to make taking care of outdoor space as easy as possible.",
       price: "$1/sqft",
-      image: 'lawn-care-gcf1748be3_1920.jpg',
+      image: 'https://www.davey.com/media/2570472/lawn-mowing-heights.png?w=640',
       reviews: [reviews[0],reviews[5],reviews[6]],
       businessEmail: 'chris.lawn.care@gmail.com',
       phoneNumber: '470-282-9696'
@@ -82,7 +82,7 @@ db.once("open", async () => {
       address: "Macon, GA",
       description: "We bring quality “Cutting Edge” services in design, installation and lawn maintenance to both residential and commercial properties throughout central Georgia",
       price: "$2/sqft",
-      image: "lawn-care-gcf1748be3_1920.jpg",
+      image: "https://www.weisslawnandsnow.com/wp-content/uploads/home-banner-2.jpg",
       reviews: [reviews[2],reviews[1]],
       businessEmail: 'lucy_lawns@hotmail.com',
       phoneNumber: '505-986-5689'
@@ -93,7 +93,7 @@ db.once("open", async () => {
       address: "Athens, GA",
       description: "Based in Athens, GA, JOMA Construction is made up of a talented team of remodeling specialists who collaborate to help businesses of all sizes create spaces that are functional, comfortable and inviting. Ultimately, our mission is 100% customer satisfaction from start to finish and we believe our Commercial divisions craftsmanship and relationships speak to that",
       price: 'Call for a quote!',
-      image: "plumber-g833be0f0c_1920.jpg",
+      image: "https://www.become.co/blog/wp-content/uploads/2019/03/iStock-584498720-1-1-1024x576.jpg",
       reviews: [reviews[1],reviews[8],,reviews[3]],
       businessEmail: 'Joma.construction@gmail.com',
       phoneNumber: '678-455-5254'
@@ -104,17 +104,18 @@ db.once("open", async () => {
       address: "Dulth, GA",
       description: "I've been working on cars and trucks for 32 years and am a Master Technician on both domestic and Asian cars. I also have extensive experience working with European cars. I love servicing and repairing vehicles of any kind and it would be my pleasure to service your vehicle!",
       price: '$50 intial service fee',
-      image: 'worker-gc44dbe687_1920.jpg',
+      image: 'https://media.istockphoto.com/photos/truck-driver-picture-id1306896540?b=1&k=20&m=1306896540&s=170667a&w=0&h=yjttGCoOkWw6opxB2W4XTuRbJSIAby0sMDZcxhKVt6E=',
       reviews: [reviews[3], reviews[5],reviews[0]],
       businessEmail: 'car.felix.89@cars.net',
       phoneNumber: '469-952-9641'
+      
     },
     {
       name: "DMA Automotive",
       address: "Johns Creek, GA",
       description: "DMA Automotive is here for all of your automotive repair needs in Johns Creek, GA and the nearby areas. We provide premier auto repair services for foreign and domestic vehicles of all different makes and models. Our technicians work diligently to provide top-rated auto repair services to guarantee outstanding results. ",
       price: '$20 inquiry fee',
-      image: "man-gbad338d00_1920.jpg",
+      image: "https://cdn-ds.com/blogs-media/sites/252/2016/12/26140213/bigstock-Portrait-of-an-auto-mechanic-a-91601333_o.jpg",
       reviews: [reviews[3], reviews[4],reviews[7]],
       businessEmail: 'dma_autos@gmail.com',
       phoneNumber: '457-952-0125'
@@ -125,7 +126,7 @@ db.once("open", async () => {
       address: "Buckhead, GA",
       description: "Restaurant and bar that serves delicious soul-food style Italian American cooking that mixes their traditional flavors and techniques with contemporary style. The restaurant’s menu is constantly changing based on the freshest ingredients that are available that season.",
       price: 'As low as $10 meals!',
-      image: "guitar-g74eda9609_1920.jpg",
+      image: "https://myareanetwork-photos.s3.amazonaws.com/editorphotos/f/2416_1530273076.jpg",
       reviews: [reviews[4],reviews[1],reviews[2]],
       businessEmail: 'italy__eats.9698@outlook.com',
       phoneNumber: '986-526-9823'
@@ -135,7 +136,7 @@ db.once("open", async () => {
       address: "South Atlanta, GA",
       description: "Rays Southern Foods is a premier, full-service catering company bringing traditional smoked barbecue and delicious southern food to homes, businesses and corporate events all over Georgia. Fully licensed and insured, we have the capacity to cater everything from small gatherings to large corporate events with thousands of people.",
       price: 'As low as $5 meals!',
-      image: "networks-g473bf3745_1920.jpg",
+      image: "https://media-cdn.tripadvisor.com/media/photo-s/15/cc/92/ab/baby-beef.jpg",
       reviews: [reviews[4],reviews[8],reviews[2]],
       businessEmail: 'bbqrays.rib@outlook.com',
       phoneNumber: '504-604-9433'
@@ -146,7 +147,7 @@ db.once("open", async () => {
       address: "Midtown, GA",
       description: "DSS provides alternative child care for children whos parents work non-traditional days and hours or attempting to go back to school and taking night classes Sunday through Friday 6pm to 600 am Services also available Saturdays and drop In care",
       price: '$100/day',
-      image: "children-g8ea7ea10d_1920.jpg",
+      image: "https://oneworldpreschools.com/wp-content/uploads/2018/08/AdobeStock_11477.jpg",
       reviews: [reviews[0],reviews[2],reviews[6],reviews[7]],
       businessEmail: 'safe_kids@outlook.com',
       phoneNumber: '506-526-0205'
