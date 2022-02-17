@@ -95,13 +95,15 @@ const SingleBusiness = () => {
               <Card.Text>{data.business.businessEmail}</Card.Text>
               <Card.Text>{data.business.phoneNumber}</Card.Text>
             </div>
+          </Card>
 
+          <div className="unfol-fol-btn">
             {userData?.user?.myBusiness[0]?._id == id? <Button className="sb-edit-btn" as={Link} to={`/update/${id}`} >Edit</Button> : null}
             {following? 
               <Button className="follow-unfollow-btn" onClick={() => followBusiness(id)}>Unfollow</Button> 
                 : 
               <Button className="follow-unfollow-btn" onClick={() => followBusiness(id)}>Follow</Button>}
-          </Card>
+          </div>
           
           {showReview 
           ? (
