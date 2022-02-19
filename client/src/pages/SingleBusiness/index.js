@@ -16,7 +16,6 @@ const SingleBusiness = () => {
   const {loading, data} = useQuery(SINGLE_BUSINESS, { variables: {_id: id} })
   const {data: userData} = useQuery(MY_BUSINESS)
   const {data: followData} = useQuery(MY_FOLLOWING)
-  console.log(data?.business.reviews)
 
   const [showReview, toggleShowReview] = useState(false)
   const [following, setFollowing] = useState(false)
@@ -96,8 +95,8 @@ const SingleBusiness = () => {
           </Card>
           
           <div className="unfol-fol-btn">
-            {userData?.user?.myBusiness[0]?._id == id? <Button className="sb-edit-btn" as={Link} to={`/update/${id}`} >Edit</Button> : null}
-            {userData?.user?.myBusiness[0]?._id == id? null :
+            {userData?.user?.myBusiness[0]?._id === id? <Button className="sb-edit-btn" as={Link} to={`/update/${id}`} >Edit</Button> : null}
+            {userData?.user?.myBusiness[0]?._id === id? null :
              following? 
               <Button className="follow-unfollow-btn" onClick={() => followBusiness(id)}>Unfollow</Button> 
                 : 

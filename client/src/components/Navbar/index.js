@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, Container, Modal, Tab, Dropdown, DropdownButton } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
 import SignUpForm from '../SignupForm';
 import LoginForm from '../LoginForm';
 import './index.css';
 import Auth from '../../utils/auth';
 
 const Navv = () => {
-  // set modal display state
-  const dispatch = useDispatch();
-  // const state = useSelector((state) => state);
   const [showModal, setShowModal] = useState(false);
 
   return (

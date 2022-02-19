@@ -9,7 +9,7 @@ import "./index.css"
 
 function MyBusiness() {
   const {data: businessData} = useQuery(MY_BUSINESS)
-  const [businessMutation, { error }] = useMutation(CREATE_BUSINESS)
+  const [businessMutation] = useMutation(CREATE_BUSINESS)
 
   const [tagInput, setTagInput] = useState('Tag Your Business Here')
   const [businessFormData, setBusinessFormData] = useState(

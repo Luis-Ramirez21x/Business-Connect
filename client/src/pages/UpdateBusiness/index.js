@@ -10,7 +10,7 @@ import "./index.css"
 function UpdateBusines() {
   const { id } = useParams()
   const {data:taggedData} = useQuery(TAGGED, {variables: { _id: id } })
-  const {loading: businessLoading, data: businessData} = useQuery(MY_BUSINESS)
+  const {data: businessData} = useQuery(MY_BUSINESS)
     
   const [businessFormData, setBusinessFormData] = useState(
     { name: '', address: '', description: '', 
@@ -18,7 +18,7 @@ function UpdateBusines() {
   )
   const [tagInput, setTagInput] = useState('Tag Your Business Here');
   
-  const [businessMutation, { error }] = useMutation(UPDATE_BUSINESS);
+  const [businessMutation] = useMutation(UPDATE_BUSINESS);
 
   useEffect(() => {
     setBusinessFormData({

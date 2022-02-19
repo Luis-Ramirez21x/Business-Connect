@@ -24,10 +24,10 @@ function BusinessForm({ businessFormData, setBusinessFormData, businessMutation,
     event.preventDefault();
     
     // check if form has everything
-    if (tagInput != 'Tag Your Business Here') {
+    if (tagInput !== 'Tag Your Business Here') {
 
       const form = event.currentTarget;
-      if (form.checkValidity() === false && tagInput != 'Tag Your Business Here') {
+      if (form.checkValidity() === false && tagInput !== 'Tag Your Business Here') {
         event.preventDefault();
         event.stopPropagation();
       }
