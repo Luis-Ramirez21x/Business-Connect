@@ -82,7 +82,6 @@ const SingleBusiness = () => {
             </div>
             <div className="card-info-main">
               <Card.Text>{data.business.name}</Card.Text>
-              
               <Card.Text>{stars.map((_, index) => {
                 return (
                   <FaStar key={index} 
@@ -95,6 +94,7 @@ const SingleBusiness = () => {
               <Card.Text>{data.business.phoneNumber}</Card.Text>
             </div>
           </Card>
+          
           <div className="unfol-fol-btn">
             {userData?.user?.myBusiness[0]?._id == id? <Button className="sb-edit-btn" as={Link} to={`/update/${id}`} >Edit</Button> : null}
             {userData?.user?.myBusiness[0]?._id == id? null :
