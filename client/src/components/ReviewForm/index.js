@@ -85,7 +85,7 @@ const ReviewForm = ({ businessID, toggleReview }) => {
     <>
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
         <Form.Group className="review-form-group">
-        <Form.Label className="review-form-label">Your Review</Form.Label>  
+          <Form.Label className="review-form-label">Your Review</Form.Label>  
           <Form.Control
               className="review-title-section"
               name='title'
@@ -111,21 +111,21 @@ const ReviewForm = ({ businessID, toggleReview }) => {
           />  
         </Form.Group>  
         <div style={styles.stars}>
-        {stars.map((_, index) => {
-          return (
-            <FaStar
-              key={index}
-              size={24}
-              onClick={() => handleClick(index + 1)}
-              onMouseOver={() => handleMouseOver(index + 1)}
-              onMouseLeave={handleMouseLeave}
-              color={(hoverValue || currentValue) > index ? colors.orange : colors.grey}
-              style={{
-                marginRight: 10,
-                cursor: "pointer"
-              }}
-            />
-            )
+          {stars.map((_, index) => {
+            return (
+              <FaStar
+                key={index}
+                size={24}
+                onClick={() => handleClick(index + 1)}
+                onMouseOver={() => handleMouseOver(index + 1)}
+                onMouseLeave={handleMouseLeave}
+                color={(hoverValue || currentValue) > index ? colors.orange : colors.grey}
+                style={{
+                  marginRight: 10,
+                  cursor: "pointer"
+                }}
+              />
+              )
           })}
         </div>
         <Button
@@ -164,7 +164,6 @@ const styles = {
     width: 300,
     padding: 10,
   }
-
 };
 
 export default ReviewForm;

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Card, CardImg } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 
-
 const BusinessList = ({business}) => {
   return (
     <>
@@ -12,7 +11,6 @@ const BusinessList = ({business}) => {
           <Card.Link as={Link} to={`/businesses/${business._id}`}>{business.name}</Card.Link>
         </Card.Body>
       </Card>
-      
     </>
   )
 };

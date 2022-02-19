@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import SignUpForm from '../SignupForm';
 import LoginForm from '../LoginForm';
 import './index.css';
-
 import Auth from '../../utils/auth';
 
 const Navv = () => {

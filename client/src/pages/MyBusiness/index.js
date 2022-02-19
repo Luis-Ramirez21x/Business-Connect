@@ -9,7 +9,7 @@ import "./index.css"
 
 function MyBusiness() {
   const {data: businessData} = useQuery(MY_BUSINESS)
-  console.log(businessData)
+  const [businessMutation, { error }] = useMutation(CREATE_BUSINESS)
 
   const [tagInput, setTagInput] = useState('Tag Your Business Here')
   const [businessFormData, setBusinessFormData] = useState(
@@ -17,19 +17,17 @@ function MyBusiness() {
     price: '', image: '',  businessEmail: '', phoneNumber: '' }
   )
   
-  const [businessMutation, { error }] = useMutation(CREATE_BUSINESS)
-
   return (
     <>
       {businessData?.user?.myBusiness.length? (<Redirect to={`/businesses/${businessData?.user?.myBusiness[0]._id}`} />) : 
       (
         <BusinessForm 
-      businessFormData={businessFormData}
-      setBusinessFormData={setBusinessFormData}
-      businessMutation={businessMutation}
-      tagInput={tagInput} 
-      setTagInput={setTagInput} 
-      ></BusinessForm>
+          businessFormData={businessFormData}
+          setBusinessFormData={setBusinessFormData}
+          businessMutation={businessMutation}
+          tagInput={tagInput} 
+          setTagInput={setTagInput} 
+        />
       )}
     </>
   )

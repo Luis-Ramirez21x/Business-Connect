@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Container, Card, CardImg, Button } from "react-bootstrap";
+import React from "react";
+import { Card } from "react-bootstrap";
 import { FaStar } from "react-icons/fa";
 
 const Review = ({review}) => {
@@ -15,7 +15,8 @@ const Review = ({review}) => {
                   size={24} color={(review.rating) > index ? "#FFBA5A" : "#a9a9a9"} 
                   style={{marginRight: 10,}}/>
                 )
-              })}</Card.Text>
+              })}
+          </Card.Text>
           <Card.Text>{review.description}</Card.Text>
         </Card.Body>  
       </Card>
