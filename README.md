@@ -36,7 +36,7 @@ MERN (Mongo, Express, React, NodeJS), GraphQL, Apollo, JSON Web Tokens (JWT)
 
 ## Join
 
-Deployed Live Here: https://business-connect-app.herokuapp.com/
+Deployed Live Here: https://business-connect-lgat.herokuapp.com/
 
 ## Images
 
