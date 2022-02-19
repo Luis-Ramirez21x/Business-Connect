@@ -43,7 +43,7 @@ const ReviewForm = ({ businessID, toggleReview }) => {
     }
 
     try {
-      const { data } = await postReview({
+      await postReview({
         variables: { businessId: businessID, 
                      title: reviewFormData.title,
                      description: reviewFormData.description,
@@ -59,7 +59,6 @@ const ReviewForm = ({ businessID, toggleReview }) => {
       title: '',
       description: '',
     });
-
     refreshPage();
   };
 
