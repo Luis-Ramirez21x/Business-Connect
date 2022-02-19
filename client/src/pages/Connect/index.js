@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Jumbotron, Container, Col, Row, Form, Button } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Container, Col, Row, Form, Button } from 'react-bootstrap';
 import { MY_FOLLOWS } from '../../utils/queries';
 import { useQuery } from '@apollo/client';
 import { Link } from 'react-router-dom';
@@ -8,23 +8,14 @@ import "./index.css"
 
 const Connect = () => {
   const {loading, data} = useQuery(MY_FOLLOWS);
+
   const [friendInput, setFriendInput] = useState('');
   const [toggle, flipToggle] = useState(true);
   
-  
-
- console.log(data);
-
-
-  
-
- 
-
   function setToggle(val) {
     flipToggle(val)
   };
  
-  
   return (
     <>
       <Container className='connect-main'>
@@ -54,27 +45,34 @@ const Connect = () => {
         </Row>
 
         <Row className='connect-list'>
-        {toggle ? <>
-            {loading? (<div>Loading...</div>)
-              :data.user.myBusiness[0].followers.map((user) =>{
-                return(
-                <li key={user.username}>{user.username}</li>
-                )
-              })  
-            }
-            </> 
-
-            : <>
-                {loading? (<div>Loading...</div>)
-                :data.user.following.map((business) =>{
+          {toggle 
+            ? <>
+              {loading
+                ? 
+                (<div>Loading...</div>)
+                :
+                data?.user.myBusiness[0]?.followers.map((user) =>{
                   return(
-                  <Link to={`/businesses/${business._id}`}>
-                  <li key={business._id}>{business.name}</li>
-                  </Link>
+                    <li key={user.username}>{user.username}</li>
                   )
                 })  
               }
-              </>} 
+              </> 
+
+              : <>
+                {loading
+                  ? 
+                  (<div>Loading...</div>)
+                  :
+                  data.user.following.map((business) =>{
+                    return(
+                      <Link key={business._id} to={`/businesses/${business._id}`}>
+                      <li key={business._id}>{business.name}</li>
+                      </Link>
+                    )
+                  })  
+                }
+          </>} 
         </Row>
       </Container>
     </>  

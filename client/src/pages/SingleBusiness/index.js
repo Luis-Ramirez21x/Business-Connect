@@ -6,7 +6,6 @@ import ReviewForm from "../../components/ReviewForm";
 import Review from "../../components/Review"
 import { FaStar } from "react-icons/fa";
 
-
 import "./index.css"
 import { SINGLE_BUSINESS, MY_BUSINESS, MY_FOLLOWING } from "../../utils/queries";
 import { FOLLOW_BUSINESS, UNFOLLOW_BUSINESS } from "../../utils/mutations";
@@ -98,7 +97,8 @@ const SingleBusiness = () => {
           </Card>
           <div className="unfol-fol-btn">
             {userData?.user?.myBusiness[0]?._id == id? <Button className="sb-edit-btn" as={Link} to={`/update/${id}`} >Edit</Button> : null}
-            {following? 
+            {userData?.user?.myBusiness[0]?._id == id? null :
+             following? 
               <Button className="follow-unfollow-btn" onClick={() => followBusiness(id)}>Unfollow</Button> 
                 : 
               <Button className="follow-unfollow-btn" onClick={() => followBusiness(id)}>Follow</Button>}
