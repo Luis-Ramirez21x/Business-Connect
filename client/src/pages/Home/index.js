@@ -70,7 +70,7 @@ const Home = () => {
 
       <div className="top-banner-container">
         <div className="top-info-text">
-          <h1 id="top-banner-text">
+          <h1 className="top-banner-text">
             Find the services you need in an instant.
           </h1>
           <p>
