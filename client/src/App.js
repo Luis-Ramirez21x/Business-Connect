@@ -13,9 +13,7 @@ import MyBusiness from './pages/MyBusiness'
 import UpdateBusines from './pages/UpdateBusiness';
 import Connect from './pages/Connect';
 import SingleBusiness from './pages/SingleBusiness';
-
 import Navv from './components/Navbar';
-import StoreProvider from './utils/GlobalState';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -42,7 +40,6 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <StoreProvider>
           <Navv />
           <Switch>
             <Route exact path='/' component={Home} />
@@ -52,9 +49,8 @@ function App() {
             <Route exact path='/connect' component={Connect} />
             <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
           </Switch>
-        </StoreProvider>
       </Router>
-      </ApolloProvider>
+    </ApolloProvider>
   );
 }
 
