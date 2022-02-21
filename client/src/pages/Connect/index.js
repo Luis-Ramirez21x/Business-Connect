@@ -11,9 +11,19 @@ const Connect = () => {
 
   const [friendInput, setFriendInput] = useState('');
   const [toggle, flipToggle] = useState(true);
-  
+  const [followerStyle, setFollowerStyle] = useState('btn-primary')
+  const [followingStyle, setFollowingStyle] = useState('btn-secondary')
+
   function setToggle(val) {
     flipToggle(val)
+
+    if (val === false) {
+      setFollowerStyle("btn-secondary") 
+      setFollowingStyle("btn-primary") 
+    } else {
+      setFollowerStyle("btn-primary") 
+      setFollowingStyle("btn-secondary") 
+    }
   };
  
   return (
@@ -37,10 +47,10 @@ const Connect = () => {
         </Form>
         <Row className='followers-section-main'> 
           <Col className='connect-btns-main'>
-            <Button className='list-btn' onClick={() => setToggle(true)}>Followers</Button>
+            <Button className={followerStyle} onClick={() => setToggle(true)}>Followers</Button>
           </Col>
           <Col className='connect-btns-main'>
-            <Button className='list-btn' onClick={() => setToggle(false)}>Following</Button>
+            <Button className={followingStyle} onClick={() => setToggle(false)}>Following</Button>
           </Col>   
         </Row>
 
