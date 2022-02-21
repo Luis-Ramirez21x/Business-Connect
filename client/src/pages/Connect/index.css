@@ -72,6 +72,10 @@
     font-size: 2em;
 }
 
+.list {
+  list-style-type: none;  
+}
+
 .list-btn:active {
     background-color: rgb(56, 192, 255);
 }
