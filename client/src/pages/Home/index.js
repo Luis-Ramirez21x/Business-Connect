@@ -52,8 +52,10 @@ const Home = () => {
     event.preventDefault();
     try {
       const { data: business_data } = await searchBusinesses();
-      if (business_data) {
+      if (business_data.businessSearch.length) {
         setSearchContent(business_data.businessSearch);
+      } else {
+        setSearchContent([{ result: "No results, please try again" }])
       }
     } catch (e) {
       console.log(e);
@@ -100,7 +102,7 @@ const Home = () => {
       </Container>
 
       <Container className="cat-search">
-        <h2 className="cat-header">You May Also Choose A Category Here </h2>
+        <h2 className="cat-header">You May Also Search By Category Here </h2>
           <DropdownButton
             className="drop-down-btn"
             size="lg"
@@ -126,17 +128,18 @@ const Home = () => {
 
       <Container>
         {searchContent.length ? (
-          searchContent.map((business) => {
-            return (
-              <BusinessList
-                key={business.name}
-                business={business}
-              ></BusinessList>
-            );
-          })
-        ) : (
-          <h3>Start by Searching for A Category</h3>
-        )}
+          searchContent[0].result?  
+          ( <h2>{searchContent[0]?.result}</h2> ) : (
+            searchContent.map((business) => {
+              return (
+                <BusinessList
+                  key={business.name}
+                  business={business}
+                ></BusinessList>
+              );
+            })
+          )
+          ) : null}
       </Container>
 
       <Container className="bot-banner-container">
