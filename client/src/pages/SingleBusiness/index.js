@@ -5,6 +5,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import ReviewForm from "../../components/ReviewForm";
 import Review from "../../components/Review"
 import { FaStar } from "react-icons/fa";
+import Auth from "../../utils/auth";
 
 import "./index.css"
 import { SINGLE_BUSINESS, MY_BUSINESS, MY_FOLLOWING } from "../../utils/queries";
@@ -12,6 +13,7 @@ import { FOLLOW_BUSINESS, UNFOLLOW_BUSINESS } from "../../utils/mutations";
 
 const SingleBusiness = () => {
   const { id } = useParams()
+  const token = Auth.loggedIn()
 
   const {loading, data} = useQuery(SINGLE_BUSINESS, { variables: {_id: id} })
   const {data: userData} = useQuery(MY_BUSINESS)
@@ -58,13 +60,20 @@ const SingleBusiness = () => {
   }
 
   const followBusiness = async (id)  => {
-    console.log(following);
     if (following) {
-      await unfollow({variables: { businessId: id } })
-      refreshPage()
+      if (token) {
+        await unfollow({variables: { businessId: id } })
+        refreshPage()
+      } else {
+        alert("You must be logged in to follow a business!")
+      }
     } else {
-      await follow({variables: { businessId: id } })
-      refreshPage()
+      if (token) {
+        await follow({variables: { businessId: id } })
+        refreshPage()
+      } else {
+        alert("You must be logged in to follow a business!")
+      }
     }
   }
 
