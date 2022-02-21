@@ -3,9 +3,8 @@
 An application to help users to connect to a range of small businesses with upfront information and pricing for daycare, cleaning, restaurants, and more. Check it out, [here](https://business-connect-app.herokuapp.com/)!
 
 - [User Story](#user-story)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Technologies](#questions)
+- [Technologies](#technologies)
+- [Join](#join)
 - [Images](#images)
 
 ## User Story
