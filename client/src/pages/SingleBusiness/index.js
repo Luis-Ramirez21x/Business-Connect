@@ -21,12 +21,17 @@ const SingleBusiness = () => {
 
   const [showReview, toggleShowReview] = useState(false)
   const [following, setFollowing] = useState(false)
+  // const [show, setShow] = useState(false);
+
   //star rating state
   const [currentValue, setCurrentValue] = useState(3);
   const stars = Array(5).fill(0)
 
   const [follow] = useMutation(FOLLOW_BUSINESS)
   const [unfollow] = useMutation(UNFOLLOW_BUSINESS)
+
+  // const handleClose = () => setShow(false);
+  // const handleShow = () => setShow(true);
 
   useEffect(() => {
     if (followData?.user?.following.some(item => item._id === id)) {
@@ -120,6 +125,20 @@ const SingleBusiness = () => {
           ? (
           <Container className="review-section">
           <ReviewForm businessID={data.business._id} toggleReview={toggleReview}></ReviewForm>
+          {/* <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>Modal heading</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Close
+              </Button>
+              <Button variant="primary" onClick={handleClose}>
+                Save Changes
+              </Button>
+            </Modal.Footer>
+          </Modal> */}
           </Container>)
           :
           (<Button className='leave-review-btn' onClick={() => toggleReview(true)}>Click Here To Leave A Review</Button>)}
