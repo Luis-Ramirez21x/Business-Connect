@@ -52,7 +52,11 @@ const SingleBusiness = () => {
   }
 
   function toggleReview(val) {
-    toggleShowReview(val)
+    if (token) {
+      toggleShowReview(val)
+    } else {
+      alert("You must be logged in to leave a review!") 
+    }
   };
 
   function refreshPage() {
