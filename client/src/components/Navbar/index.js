@@ -25,6 +25,7 @@ const Navv = () => {
                 {Auth.loggedIn() ? (
                   <div>
                     <Dropdown.Item onClick={Auth.logout}>Logout</Dropdown.Item>
+                    <Dropdown.Item as={Link} to='/myprofile' >My Profile</Dropdown.Item>
                     <Dropdown.Item as={Link} to='/mybusiness'>My Business</Dropdown.Item>
                     <Dropdown.Item as={Link} to='/connect' >Connect</Dropdown.Item>
                   </div>

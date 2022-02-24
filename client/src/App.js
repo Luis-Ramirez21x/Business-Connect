@@ -10,6 +10,7 @@ import { setContext } from '@apollo/client/link/context';
 
 import Home from './pages/Home';
 import MyBusiness from './pages/MyBusiness'
+import MyProfile from './pages/MyProfile'
 import UpdateBusines from './pages/UpdateBusiness';
 import Connect from './pages/Connect';
 import SingleBusiness from './pages/SingleBusiness';
@@ -44,6 +45,7 @@ function App() {
           <Switch>
             <Route exact path='/' component={Home} />
             <Route exact path='/mybusiness' component={MyBusiness} />
+            <Route exact path='/myprofile' component={MyProfile} />
             <Route exact path='/update/:id' component={UpdateBusines} />
             <Route exact path='/businesses/:id' component={SingleBusiness} />
             <Route exact path='/connect' component={Connect} />
