@@ -115,19 +115,15 @@ export const MY_BUSINESS = gql`
     }
   }
 `;
-/*
-export const MY_FOLLOWERS = gql`
-query user{
-    user{
-        username
-        myBusiness{
-            name
-            followers{
-            username
-            }
-        }
-    }
-}
 
-`*/
+export const MY_PROFILE = gql`
+query user{
+  user{
+    _id
+    username
+    email
+    
+  }
+}
+`;
 
