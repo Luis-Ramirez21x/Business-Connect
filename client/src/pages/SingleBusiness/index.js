@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Card, CardImg, Button } from "react-bootstrap";
+import { Container, Card, CardImg, Button, Modal } from "react-bootstrap";
 import { useParams, Link } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/client";
 import ReviewForm from "../../components/ReviewForm";
@@ -19,9 +19,8 @@ const SingleBusiness = () => {
   const {data: userData} = useQuery(MY_BUSINESS)
   const {data: followData} = useQuery(MY_FOLLOWING)
 
-  const [showReview, toggleShowReview] = useState(false)
   const [following, setFollowing] = useState(false)
-  // const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false);
 
   //star rating state
   const [currentValue, setCurrentValue] = useState(3);
@@ -30,8 +29,7 @@ const SingleBusiness = () => {
   const [follow] = useMutation(FOLLOW_BUSINESS)
   const [unfollow] = useMutation(UNFOLLOW_BUSINESS)
 
-  // const handleClose = () => setShow(false);
-  // const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false);
 
   useEffect(() => {
     if (followData?.user?.following.some(item => item._id === id)) {
@@ -56,9 +54,9 @@ const SingleBusiness = () => {
     averageRating = Math.floor(averageRating);
   }
 
-  function toggleReview(val) {
+  function toggleReview() {
     if (token) {
-      toggleShowReview(val)
+      setShow(true)
     } else {
       alert("You must be logged in to leave a review!") 
     }
@@ -120,12 +118,7 @@ const SingleBusiness = () => {
                 : 
               <Button className="follow-unfollow-btn" onClick={() => followBusiness(id)}>Follow</Button>}
           </div>
-          
-          {showReview 
-          ? (
-          <Container className="review-section">
-          <ReviewForm businessID={data.business._id} toggleReview={toggleReview}></ReviewForm>
-          {/* <Modal show={show} onHide={handleClose}>
+          <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
               <Modal.Title>Modal heading</Modal.Title>
             </Modal.Header>
@@ -138,10 +131,9 @@ const SingleBusiness = () => {
                 Save Changes
               </Button>
             </Modal.Footer>
-          </Modal> */}
-          </Container>)
-          :
-          (<Button className='leave-review-btn' onClick={() => toggleReview(true)}>Click Here To Leave A Review</Button>)}
+          </Modal>
+         
+          <Button className='leave-review-btn' onClick={() => toggleReview()}>Click Here To Leave A Review</Button>
           
           <Container>
             <h2 className="review-heading">User Reviews</h2>
