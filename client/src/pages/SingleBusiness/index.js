@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Container, Card, CardImg, Button } from "react-bootstrap";
 import { useParams, Link } from "react-router-dom";
 import { useMutation, useQuery } from "@apollo/client";
-import ReviewForm from "../../components/ReviewForm";
 import Review from "../../components/Review"
 import { FaStar } from "react-icons/fa";
 import Auth from "../../utils/auth";
@@ -10,6 +9,7 @@ import Auth from "../../utils/auth";
 import "./index.css"
 import { SINGLE_BUSINESS, MY_BUSINESS, MY_FOLLOWING } from "../../utils/queries";
 import { FOLLOW_BUSINESS, UNFOLLOW_BUSINESS } from "../../utils/mutations";
+import ReviewModal from "../../components/ReviewModal";
 
 const SingleBusiness = () => {
   const { id } = useParams()
@@ -19,9 +19,8 @@ const SingleBusiness = () => {
   const {data: userData} = useQuery(MY_BUSINESS)
   const {data: followData} = useQuery(MY_FOLLOWING)
 
-  const [showReview, toggleShowReview] = useState(false)
   const [following, setFollowing] = useState(false)
-  // const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false);
 
   //star rating state
   const [currentValue, setCurrentValue] = useState(3);
@@ -29,9 +28,6 @@ const SingleBusiness = () => {
 
   const [follow] = useMutation(FOLLOW_BUSINESS)
   const [unfollow] = useMutation(UNFOLLOW_BUSINESS)
-
-  // const handleClose = () => setShow(false);
-  // const handleShow = () => setShow(true);
 
   useEffect(() => {
     if (followData?.user?.following.some(item => item._id === id)) {
@@ -41,6 +37,14 @@ const SingleBusiness = () => {
       setFollowing(false)
     }
   }, [followData])
+
+  function toggleReview() {
+    if (token) {
+      setShow(true)
+    } else {
+      alert("You must be logged in to leave a review!") 
+    }
+  };
 
   //logic for calculating rating average
   let sumRatings = 0;
@@ -55,14 +59,6 @@ const SingleBusiness = () => {
     console.log(data.business.image);
     averageRating = Math.floor(averageRating);
   }
-
-  function toggleReview(val) {
-    if (token) {
-      toggleShowReview(val)
-    } else {
-      alert("You must be logged in to leave a review!") 
-    }
-  };
 
   function refreshPage() {
     window.location.reload(false);
@@ -120,28 +116,10 @@ const SingleBusiness = () => {
                 : 
               <Button className="follow-unfollow-btn" onClick={() => followBusiness(id)}>Follow</Button>}
           </div>
-          
-          {showReview 
-          ? (
-          <Container className="review-section">
-          <ReviewForm businessID={data.business._id} toggleReview={toggleReview}></ReviewForm>
-          {/* <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton>
-              <Modal.Title>Modal heading</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
-                Close
-              </Button>
-              <Button variant="primary" onClick={handleClose}>
-                Save Changes
-              </Button>
-            </Modal.Footer>
-          </Modal> */}
-          </Container>)
-          :
-          (<Button className='leave-review-btn' onClick={() => toggleReview(true)}>Click Here To Leave A Review</Button>)}
+
+          <ReviewModal show={show} setShow={setShow} refreshPage={refreshPage} businessID={data.business._id}/>
+         
+          <Button className='leave-review-btn' onClick={() => toggleReview()}>Click Here To Leave A Review</Button>
           
           <Container>
             <h2 className="review-heading">User Reviews</h2>
