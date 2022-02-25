@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { useMutation } from "@apollo/client";
-import { Button, Form } from "react-bootstrap";
+import { Button, Col, Form, Modal, Row } from "react-bootstrap";
 import { POST_REVIEW } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 import "./index.css";
 import { FaStar } from "react-icons/fa";
 
-
-const ReviewForm = ({ businessID }) => {
+function ReviewModal({businessID, show, setShow, refreshPage}) {
   const [reviewFormData, setReviewFormData] = useState({ title: '', description: '' });
   const [validated] = useState(false);
   const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -24,10 +23,6 @@ const ReviewForm = ({ businessID }) => {
     setReviewFormData({ ...reviewFormData, [name]: value });
   };
 
-  function refreshPage() {
-    window.location.reload(false);
-  }
-
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -35,7 +30,7 @@ const ReviewForm = ({ businessID }) => {
       alert('You must be logged in to leave a review!')
       return false;
     }
-    console.log(reviewFormData.title, reviewFormData.description)
+
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
@@ -79,61 +74,74 @@ const ReviewForm = ({ businessID }) => {
     grey: "#a9a9a9"  
 };
 
+  const handleClose = () => setShow(false);
+
   return (
-    <>
-      <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
-        <Form.Group className="review-form-group">  
-          <Form.Control
-              className="review-title-section"
-              name='title'
-              value={reviewFormData.title}
-              onChange={handleInputChange}
-              type='text'
-              size='md'
-              placeholder='Review Title'
-              required 
-          /> 
-          <textarea
-              className= 'form-review-section'
-              name='description'
-              rows={14}
-              cols={10}
-              wrap="soft"
-              value={reviewFormData.description}
-              onChange={handleInputChange}
-              type='textarea'
-              size='md'
-              placeholder='Review Description'
-              required 
-          />  
-        </Form.Group>  
-        <div style={styles.stars}>
-          {stars.map((_, index) => {
-            return (
-              <FaStar
-                key={index}
-                size={24}
-                onClick={() => handleClick(index + 1)}
-                onMouseOver={() => handleMouseOver(index + 1)}
-                onMouseLeave={handleMouseLeave}
-                color={(hoverValue || currentValue) > index ? colors.orange : colors.grey}
-                style={{
-                  marginRight: 10,
-                  cursor: "pointer"
-                }}
+    <Modal show={show} onHide={handleClose}>
+      <Modal.Header closeButton>
+        <Modal.Title>Your Review</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+          <Row>
+            <Col sm={11}>
+              <Form.Control
+                  className="review-title-section"
+                  name='title'
+                  value={reviewFormData.title}
+                  onChange={handleInputChange}
+                  type='text'
+                  size='md'
+                  placeholder='Review Title'
+                  required 
+              /> 
+            </Col>
+          </Row> 
+          <Row>
+            <Col sm={12}>
+              <textarea
+                className= 'form-review-section'
+                name='description'
+                rows={5}
+                cols={5}
+                wrap="soft"
+                value={reviewFormData.description}
+                onChange={handleInputChange}
+                type='textarea'
+                size='md'
+                placeholder='Review Description'
+                required 
               />
-              )
-          })}
-        </div>
-        <Button
-          className='review-post-btn'
-          disabled={!(reviewFormData.title && reviewFormData.description)}
-          type='submit'
-          variant='success'>
-          Post
-        </Button>
-      </Form>
-    </>  
+            </Col>
+          </Row> 
+          <div style={styles.stars}>
+            {stars.map((_, index) => {
+              return (
+                <FaStar
+                  key={index}
+                  size={24}
+                  onClick={() => handleClick(index + 1)}
+                  onMouseOver={() => handleMouseOver(index + 1)}
+                  onMouseLeave={handleMouseLeave}
+                  color={(hoverValue || currentValue) > index ? colors.orange : colors.grey}
+                  style={{
+                    marginRight: 10,
+                    cursor: "pointer"
+                  }}
+                />
+                )
+            })}
+          </div>
+          <Button
+            className='review-post-btn'
+            disabled={!(reviewFormData.title && reviewFormData.description)}
+            type='submit'
+            variant='success'>
+            Post
+          </Button>
+        </Form>
+      </Modal.Body>
+    </Modal>
   )
 };
 //star styles
@@ -163,4 +171,4 @@ const styles = {
   }
 };
 
-export default ReviewForm;
+export default ReviewModal;
