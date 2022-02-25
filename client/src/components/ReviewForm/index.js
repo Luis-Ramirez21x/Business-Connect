@@ -7,7 +7,7 @@ import "./index.css";
 import { FaStar } from "react-icons/fa";
 
 
-const ReviewForm = ({ businessID, toggleReview }) => {
+const ReviewForm = ({ businessID }) => {
   const [reviewFormData, setReviewFormData] = useState({ title: '', description: '' });
   const [validated] = useState(false);
   const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -50,7 +50,6 @@ const ReviewForm = ({ businessID, toggleReview }) => {
                      rating: currentValue 
                     }
       })
-      toggleReview(false)
     } catch (err) {
       console.error(err);
     }
@@ -83,8 +82,7 @@ const ReviewForm = ({ businessID, toggleReview }) => {
   return (
     <>
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
-        <Form.Group className="review-form-group">
-          <Form.Label className="review-form-label">Your Review</Form.Label>  
+        <Form.Group className="review-form-group">  
           <Form.Control
               className="review-title-section"
               name='title'

@@ -29,8 +29,6 @@ const SingleBusiness = () => {
   const [follow] = useMutation(FOLLOW_BUSINESS)
   const [unfollow] = useMutation(UNFOLLOW_BUSINESS)
 
-  const handleClose = () => setShow(false);
-
   useEffect(() => {
     if (followData?.user?.following.some(item => item._id === id)) {
       setFollowing(true)
@@ -61,6 +59,8 @@ const SingleBusiness = () => {
       alert("You must be logged in to leave a review!") 
     }
   };
+
+  const handleClose = () => setShow(false);
 
   function refreshPage() {
     window.location.reload(false);
@@ -118,19 +118,21 @@ const SingleBusiness = () => {
                 : 
               <Button className="follow-unfollow-btn" onClick={() => followBusiness(id)}>Follow</Button>}
           </div>
-          <Modal show={show} onHide={handleClose}>
+          <Modal show={show} size='lg' onHide={handleClose}>
             <Modal.Header closeButton>
-              <Modal.Title>Modal heading</Modal.Title>
+              <Modal.Title>Your Review</Modal.Title>
             </Modal.Header>
-            <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-            <Modal.Footer>
+            <Modal.Body>
+              <ReviewForm businessID={data.business._id} />
+            </Modal.Body>
+            {/* <Modal.Footer>
               <Button variant="secondary" onClick={handleClose}>
                 Close
               </Button>
               <Button variant="primary" onClick={handleClose}>
                 Save Changes
               </Button>
-            </Modal.Footer>
+            </Modal.Footer> */}
           </Modal>
          
           <Button className='leave-review-btn' onClick={() => toggleReview()}>Click Here To Leave A Review</Button>
