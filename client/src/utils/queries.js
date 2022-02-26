@@ -72,78 +72,76 @@ export const SINGLE_BUSINESS = gql`
 export const SINGLE_USER = gql`
   query user {
     user {
+      _id
+      username
+      email
+      following {
         _id
-        username
-        email
-        following{
-            _id
-            name
+        name
+      }
+      myBusiness {
+        name
+        followers {
+          username
         }
-        myBusiness{
-            name
-            followers{
-                username
-            }
-        }
+      }
     }
   }
 `;
 
 export const MY_FOLLOWS = gql`
-
-query user{
-    user{
-        username
-        email
-        following{
-            _id
-            name
+  query user {
+    user {
+      username
+      email
+      following {
+        _id
+        name
+      }
+      myBusiness{
+        name
+        followers{
+          username
         }
-        myBusiness{
-            name
-            followers{
-                username
-            }
-        }
+      }
     }
-}
+  }
 `;
 
 export const MY_FOLLOWING = gql`
-  query user{
+  query user {
     user {
-        following{
-            _id
-        }
+      following {
+        _id
+      }
     }
   }
 `;
 
 export const MY_BUSINESS = gql`
-  query user{
-    user{
-        myBusiness{
-          _id
-          name
-          address
-          description
-          price
-          image
-          businessEmail
-          phoneNumber
-        }
+  query user {
+    user {  
+      myBusiness {
+        _id
+        name
+        address
+        description
+        price
+        image
+        businessEmail
+        phoneNumber
+      }
     }
   }
 `;
 
 export const MY_PROFILE = gql`
-query user{
-  user{
-    _id
-    username
-    email
-    
+  query user {
+    user { 
+      _id
+      username
+      email
+    }
   }
-}
 `;
 
