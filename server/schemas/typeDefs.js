@@ -48,6 +48,7 @@ const typeDefs = gql`
   type Query {
     users: [User]
     user(_id: ID): User
+    singleUser(_id: ID): User
     businesses: [Business]
     business(businessId: ID): Business
     myBusiness: User

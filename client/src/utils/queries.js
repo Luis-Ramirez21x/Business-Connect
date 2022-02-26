@@ -69,6 +69,26 @@ export const SINGLE_BUSINESS = gql`
   }
 `;
 
+export const SINGLE_USER = gql`
+  query user {
+    user {
+        _id
+        username
+        email
+        following{
+            _id
+            name
+        }
+        myBusiness{
+            name
+            followers{
+                username
+            }
+        }
+    }
+  }
+`;
+
 export const MY_FOLLOWS = gql`
 
 query user{
