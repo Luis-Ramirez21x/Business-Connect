@@ -7,7 +7,7 @@ import { SINGLE_USER } from "../../utils/queries";
 function UserProfile() {
   const { id } = useParams()
   const {loading, data} = useQuery(SINGLE_USER, {variables: { _id: id} });
-  console.log(data)
+
   return (
     <>
       {loading? 
