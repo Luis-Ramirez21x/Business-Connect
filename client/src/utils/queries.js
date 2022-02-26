@@ -70,8 +70,8 @@ export const SINGLE_BUSINESS = gql`
 `;
 
 export const SINGLE_USER = gql`
-  query user {
-    user {
+  query singleUser($_id: ID) {
+    singleUser(_id: $_id) {
       _id
       username
       email
@@ -101,6 +101,7 @@ export const MY_FOLLOWS = gql`
       myBusiness{
         name
         followers{
+          _id
           username
         }
       }

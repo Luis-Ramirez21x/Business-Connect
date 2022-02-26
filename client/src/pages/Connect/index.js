@@ -3,11 +3,11 @@ import { Container, Col, Row, Button } from 'react-bootstrap';
 import { MY_FOLLOWS } from '../../utils/queries';
 import { useQuery } from '@apollo/client';
 import { Link } from 'react-router-dom';
-
 import "./index.css"
 
 const Connect = () => {
   const {loading, data} = useQuery(MY_FOLLOWS);
+  console.log(data)
 
   const [toggle, flipToggle] = useState(true);
   const [followerStyle, setFollowerStyle] = useState('btn-primary')
@@ -49,7 +49,9 @@ const Connect = () => {
                   <ul className='list'>
                     {data?.user.myBusiness[0]?.followers.map((user) =>{
                       return(
-                        <li key={user.username}>{user.username}</li>
+                        <Link key={user._id} to={`/user/${user._id}`}>
+                        <li key={user._id}>{user.username}</li>
+                        </Link>
                       )
                     })}
                   </ul>

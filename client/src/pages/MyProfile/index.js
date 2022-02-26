@@ -5,6 +5,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import Auth from "../../utils/auth";
 import { MY_PROFILE } from "../../utils/queries";
 import Profile from "../../components/Profile";
+import Connect from "../Connect";
 
 import "./index.css"
 
@@ -12,7 +13,16 @@ const MyProfile = () =>{
   const {loading, data} = useQuery(MY_PROFILE);
 
   return (
-    <Profile data={data} loading={loading}/>
+    <>
+      {loading? 
+        <li>loading...</li>
+      : 
+        <>
+          <Profile data={data.user} loading={loading}/>
+          <Connect />
+        </>
+      }
+    </>
   );
 };
 
